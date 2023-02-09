@@ -1,35 +1,36 @@
-interface geo {
-  lat: string;
-  lon: string;
+interface UserData {
+  apellido: string
+  created_at: string
+  email: string
+  direccion: string
+  fecha_nacimiento?: string
+  id: number
+  nombre: string
+  nro_documento: number
+  password: string
+  telefono: string
 }
 
-interface adress {
-  street: string;
-  suite: string;
-  city: string;
-  zipCode: string;
-  geo: geo;
+interface UserLogin{
+  user: string | null
+  password: string | null
 }
 
-interface company {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
-
-interface userData {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  adress: adress;
-  phone: string;
-  website: string;
-  company: company;
+interface UserRegister {
+  nombre: string
+  apellido: string
+  nro_documento: string
+  email: string
+  telefono: string
+  direccion: string
 }
 
 export interface AppState {
-  user: userData[];
+  data: UserData[] | null
+  form: UserLogin
+  register: UserRegister
+  errors: {
+    user?: string
+    password?: string
+  }
 }
-
-

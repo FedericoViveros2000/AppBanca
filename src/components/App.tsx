@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import Login from "./Login";
 
 const App = () => {
- 
+  
+  useEffect(() => {
+    if (localStorage.getItem("userData")) {
+      window.location.assign("/Home");
+    }
+  }, []);
+
   return (
     <div className="App">
-     <Login/>
+      <Login />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
