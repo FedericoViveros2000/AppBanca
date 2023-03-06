@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BiHide, BiShow } from "react-icons/bi";
+import { BiHide, BiShow, BiArrowBack } from "react-icons/bi";
 import { useFetch, fetchData } from "../hooks/useFetch";
 import Loader from "./Loader";
 import { validationLogin } from "./validations/validationLogin";
@@ -26,61 +26,63 @@ const Login = () => {
   if (isFetching) return <Loader />;
 
   return (
-    <div className="w-full h-screen relative">
-      <form
-        className="w-full absolute bottom-0 p-3"
-        onSubmit={(e) => handleLogin(e)}
-      >
-        <label htmlFor="user">Usuario</label>
+    <div className="container">
+      <section className="container__title">
+        <BiArrowBack className="arrow-back"/>
+        <h1 className="title">Sign In</h1>
+      </section>
+      <form className="container__form" onSubmit={(e) => handleLogin(e)}>
+        <div>
+          <h2 className="title title__normal">Welcome Back</h2>
+          <p><span>Hello there, sign in to continue</span></p>
+        </div>
+        <label htmlFor="user" className="label__login">User or email</label>
         <input
           type="text"
           autoComplete="off"
-          className="input"
+          className="input__login"
           name="user"
           id="user"
           disabled={isFetching}
-          placeholder="Introduzca su numero de documento"
+          placeholder="Enter your username or email"
           onChange={(e) => handleChangeLogin(e)}
         />
-        {errors.user && <p className="text-red-600 text-base">{errors.user}</p>}
-
-        <label htmlFor="password">Contraseña</label>
-        <div className="flex items-center border my-3 p-3 border-blue-600 rounded-md px-3">
+        {errors.user && <p>{errors.user}</p>}
+        <label htmlFor="password" className="label__login">Password</label>
+        <div className="container__password">
           <input
             type={inputType}
+            className="input__login input__login--password"
             autoComplete="off"
             name="password"
             id="password"
             disabled={isFetching}
-            className="block w-full rounded-md outline-0 bg-transparent"
-            placeholder="Introduzca su contraseña"
+            placeholder="Enter your password"
             onChange={(e) => handleChangeLogin(e)}
           />
           <span onClick={changeInputType}>
             {inputType === "password" ? (
-              <BiHide className="text-2xl" />
+              <BiHide className="icon-custom"/>
             ) : (
-              <BiShow className="text-2xl" />
+              <BiShow className="icon-custom"/>
             )}
           </span>
         </div>
         {errors.password && (
-          <p className="text-red-600 text-base">{errors.password}</p>
+          <p>{errors.password}</p>
         )}
+        <p>
+          <a href="#" className="forgot__password">
+            Forgot your password?
+          </a>
+        </p>
         <input
           type="submit"
-          value="Iniciar Sesion"
+          className="input__sign"
+          value="Sign In"
           disabled={isFetching}
-          className={`block w-full mt-5 p-3 cursor-pointer rounded-md text-white ${
-            isFetching ? "bg-red-500" : "bg-primary"
-          }`}
         />
-        <Link
-          to="/register"
-          className="block text-center w-full mt-3 p-3 cursor-pointer rounded-lg bg-slate-300"
-        >
-          Registrar Usuario
-        </Link>
+        <p className="signup">Don't have an account? <span className="font-link">Sign up</span></p>
       </form>
     </div>
   );

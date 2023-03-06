@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 
 const Home = () => {
-    
   useEffect(() => {
     if (!localStorage.getItem("userData")) {
       window.location.assign("/");

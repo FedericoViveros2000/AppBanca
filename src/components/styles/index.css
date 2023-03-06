@@ -1,0 +1,14 @@
+@import url(./colors/colors.css);
+@import url(./modules/login.module.css);
+@import url(./fonts/font.css);
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+}

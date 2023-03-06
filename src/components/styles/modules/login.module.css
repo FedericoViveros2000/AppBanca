@@ -1,0 +1,109 @@
+.container{
+    background-color: var(--principal-color);
+    min-height: 80vh;
+    overflow: hidden;
+}
+
+.container__form{
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 25px;
+    max-height: 75%;
+    background-color: var(--background-light-color);
+    border-radius: 15px 15px 0px 0px;
+    line-height: 2;
+}
+
+.container__title{
+    line-height: 2;
+    font-size: var(--font-size-regular-title);
+    margin: 0px 20px;
+    padding-top: 15px;
+    color: var(--background-light-color);
+}
+
+.title{
+    font-weight: var(--font-weight-bold);
+
+}
+
+.title__normal{
+    font-size: 1.5rem;
+}
+
+.font-link{
+    color: var(--principal-color);
+    font-weight: 600;
+}
+
+.arrow-back{
+    font-weight: var(--font-weight-bold);
+    font-size: 2.25rem;
+}
+
+.container__password{
+    display: flex;
+    align-items: center;
+    background-color: var(--input-background);
+    border-radius: 10px; 
+    padding: 0px 15px;
+}
+
+.input__login{
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: var(--input-background);
+    border-radius: 10px;
+    font-size: var(--font-size-regular-normal);
+    outline: none;
+    border: none;
+}
+
+.icon-custom{
+    font-size: 1.375rem;
+    margin-top: 10px;
+}
+
+.label__login{
+    display: block;
+    margin: 5px 0px;
+    font-size: var(--font-size-regular-normal);
+    font-weight: var(--font-weight-semibold);
+    color: var(--letter-gray-color);
+}
+
+.signup{
+    text-align: center;
+    margin: 1.25rem 0px;
+}
+
+.input__sign{
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    padding: 15px 0px;
+    border-radius: 10px;
+    background-color: var(--principal-color);
+    color: var(--background-light-color);
+    font-size: var(--font-size-regular-normal);
+    font-weight: var(--font-weight-semibold);
+}
+
+.input__login--password{
+    padding: 15px 0px;
+    outline: none;
+    border: none;
+}
+
+.forgot__password{
+    display: block;
+    color: var(--principal-color);
+    text-decoration: none;
+    margin-top:10px;
+    font-size: var(--font-size-regular-normal);
+    font-weight: var(--font-weight-semibold);
+}

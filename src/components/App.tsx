@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import Login from "./Login";
+import LoginPage from "../views/LoginPage";
 
 const App = () => {
   
@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Login />
+      <LoginPage />
     </div>
   );
 };
