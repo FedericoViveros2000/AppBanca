@@ -4,6 +4,7 @@ export type Form = {
     handleChangeLogin: Function;
     handleLogin: Function;
     errors?: AppState["errors"];
+    formLogin: AppState["form"]
 }
 
   
