@@ -1,6 +1,6 @@
 .container{
     background-color: var(--principal-color);
-    min-height: 80vh;
+    min-height: 90vh;
     overflow: hidden;
 }
 
@@ -10,10 +10,15 @@
     left: 0;
     bottom: 0;
     padding: 25px;
-    max-height: 75%;
+    max-height: 80%;
     background-color: var(--background-light-color);
     border-radius: 15px 15px 0px 0px;
     line-height: 2;
+}
+
+.container__create{
+    height: 10vh;
+    overflow: auto;
 }
 
 .container__title{
@@ -36,6 +41,8 @@
 .font-link{
     color: var(--principal-color);
     font-weight: 600;
+   
+    text-decoration: none;
 }
 
 .arrow-back{
@@ -77,12 +84,11 @@
 
 .signup{
     text-align: center;
-    margin: 1.25rem 0px;
 }
 
 .input__sign{
     width: 100%;
-    margin-top: 10px;
+    margin: 10px 0px;
     border: none;
     outline: none;
     padding: 15px 0px;
@@ -113,6 +119,7 @@
     align-items: center;
     font-size: 12px;
     padding: 0px 15px;
+    margin: 15px 0px;
     background-color: var(--input-background);
     border-radius: 10px;
 }

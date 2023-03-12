@@ -1,5 +1,5 @@
 @import url(./colors/colors.css);
-@import url(./modules/login.module.css);
+@import url(./modules/form.module.css);
 @import url(./fonts/font.css);
 *,
 ::after,
@@ -7,6 +7,15 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+:root{
+  font-size: 16px;
+}
+
+.link{
+  text-decoration: none;
+  color: #fff;
 }
 
 .container {

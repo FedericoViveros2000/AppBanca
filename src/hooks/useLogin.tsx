@@ -5,8 +5,8 @@ import { useFetch } from "./useFetch";
 const useLogin = (validationForm: Function) => {
   
   let [formLogin, setFormLogin] = useState<AppState["form"]>({
-    user: null,
-    password: null
+    user: '',
+    password: ''
   });
 
   let [errors, setErrors] = useState({});
@@ -14,16 +14,16 @@ const useLogin = (validationForm: Function) => {
   let { getUserData } = useFetch();
 
   const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let {name, value} = e.target;
     setFormLogin({
       ...formLogin,
-      [e.currentTarget.name]: e.currentTarget.value
+      [name]: value
     });
   };
 
   const handleLogin = (e: React.SyntheticEvent) => {
-    e.preventDefault();
+    e.preventDefault();    
     let error = validationForm(e, formLogin);
-
     if(formLogin.user && formLogin.password && Object.entries(error).length === 0){
       getUserData(formLogin.user, formLogin.password);    
     }else{

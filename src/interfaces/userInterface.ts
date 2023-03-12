@@ -12,8 +12,8 @@ interface UserData {
 }
 
 interface UserLogin{
-  user: string | null
-  password: string | null
+  user: string;
+  password: string;
 }
 
 interface UserRegister {
