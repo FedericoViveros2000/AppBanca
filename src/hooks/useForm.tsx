@@ -37,7 +37,7 @@ const useForm = (validationForm: Function) => {
   return {
     handleChange,
     handleSubmit,
-    errors,
+    errors
   };
 };
 

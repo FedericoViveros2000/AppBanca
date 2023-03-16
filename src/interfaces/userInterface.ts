@@ -1,28 +1,30 @@
 interface UserData {
+  id: number
+  nro_documento: number
+  nombre: string
   apellido: string
-  created_at: string
   email: string
+  password: string
   direccion: string
   fecha_nacimiento?: string
-  id: number
-  nombre: string
-  nro_documento: number
-  password: string
+  created_at: string
   telefono: string
 }
 
-interface UserLogin{
-  user: string | null
-  password: string | null
-}
+type UserRegister = Pick<UserData, 'nombre' | 'email' | 'password'>
 
-interface UserRegister {
+/* interface UserRegister {
   nombre: string
   apellido: string
   nro_documento: string
   email: string
   telefono: string
   direccion: string
+} */
+
+interface UserLogin{
+  user: string;
+  password: string;
 }
 
 export interface AppState {
@@ -33,4 +35,6 @@ export interface AppState {
     user?: string
     password?: string
   }
+  createAccount: UserRegister  
 }
+

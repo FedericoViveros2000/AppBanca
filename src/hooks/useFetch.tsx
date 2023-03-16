@@ -22,6 +22,7 @@ const useFetch = (table: string = "clientes", row: string = "") => {
         .eq("nro_documento", nro_documento)
         .eq("password", password);
       setData(response.data);
+      console.log(data)
     } catch (err) {
       console.log(err);
     } finally {
