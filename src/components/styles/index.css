@@ -2,6 +2,7 @@
 @import url(./modules/form.module.css);
 @import url(./fonts/font.css);
 @import url(./modules/modal.module.css);
+@import url(./modules/loader.module.css);
 
 *,
 *::after,
@@ -22,4 +23,20 @@
 
 .container {
   width: 100%;
+}
+
+
+.btn{
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px 0px;
+  border-radius: 10px;
+  font-size: var(--font-size-regular-normal);
+  font-weight: var(--font-weight-semibold);
+}
+
+.btn-success{
+  background-color: var(--principal-color);
+  color: var(--background-light-color);
 }

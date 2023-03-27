@@ -1,12 +1,21 @@
-import React from 'react';
+import React from "react";
 
-const ModalSuccess = () => {
-    return(
-        <div className='container__modal--success'>
-            <img src="" alt="" />
-            <p>El nuevo usuario se ha creado exitosamente</p>
-        </div>
-    )
+interface Props {
+  image: string;
+  title: string;
+  children?: JSX.Element;
 }
+
+const ModalSuccess = ({ image, children, title }: Props) => {
+  return (
+    <div className="container__modal--success">
+      <figure className="container__modal--success--img">
+        <img src={image} alt={title} className="img" />
+      </figure>
+      <p className="container__modal--text">{title}</p>
+      {children}
+    </div>
+  );
+};
 
 export default ModalSuccess;

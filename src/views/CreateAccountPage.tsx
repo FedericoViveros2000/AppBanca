@@ -4,17 +4,39 @@ import BaseGenericForm from "../components/BaseGenericForm";
 import CreateAccount from "../components/CreateAccount";
 import ModalBasic from "../components/modals/ModalBasic";
 import ModalSuccess from "../components/modals/ModalSuccess";
+import successImg from "../assets/success_img.png";
+import Loader from "../components/Loader";
 
 const CreateAccountPage = () => {
   //let { handleChange, handleSubmit, errors } = useForm(validationForm);
-  let { handleCreateAccount, createdSuccess, createAccount } =
-    useCreateAccount();
+  let {
+    newUser,
+    isLoading,
+    handleCreateAccount,
+    createdSuccess,
+    setCreatedSuccess,
+    createAccount,
+  } = useCreateAccount();
+
+  if (isLoading) return <Loader />;
 
   return (
     <>
-      <ModalBasic>
-        <ModalSuccess/>
-      </ModalBasic>
+      {createdSuccess && (
+        <ModalBasic>
+          <ModalSuccess
+            title="El nuevo usuario se ha creado exitosamente"
+            image={successImg}
+          >
+            <button
+              className="btn btn-success"
+              onClick={() => setCreatedSuccess(false)}
+            >
+              Done
+            </button>
+          </ModalSuccess>
+        </ModalBasic>
+      )}
       <BaseGenericForm
         navTitle="Create Account"
         urlBack="/"
@@ -22,7 +44,10 @@ const CreateAccountPage = () => {
         subTitleForm="Hello there, sign up to continue"
         handleSubmit={createAccount}
       >
-        <CreateAccount handleCreateAccount={handleCreateAccount} />
+        <CreateAccount
+          handleCreateAccount={handleCreateAccount}
+          newUser={newUser}
+        />
       </BaseGenericForm>
     </>
   );

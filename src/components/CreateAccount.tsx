@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { AppState } from "../interfaces/userInterface";
 interface Props {
+  newUser: AppState['createAccount'];
   handleCreateAccount: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const CreateAccount = ({handleCreateAccount} : Props) => {
+const CreateAccount = ({handleCreateAccount, newUser} : Props) => {
 
   return (
     <>
@@ -20,10 +21,11 @@ const CreateAccount = ({handleCreateAccount} : Props) => {
             className="input__login"
             name="nombre"
             id="name"
+            value={newUser.nombre}
             placeholder="Enter your name"
             onChange={handleCreateAccount}
           />
-          <p className="btn">
+          <p className="btn-check">
             <i className="fa-solid fa-check"></i>
           </p>
         </div>
@@ -37,10 +39,11 @@ const CreateAccount = ({handleCreateAccount} : Props) => {
             className="input__login"
             name="email"
             id="email"
+            value={newUser.email}
             onChange={handleCreateAccount}
             placeholder="Enter your email address"
           />
-          <p className="btn">
+          <p className="btn-check">
             <i className="fa-solid fa-check"></i>
           </p>
         </div>
@@ -54,10 +57,11 @@ const CreateAccount = ({handleCreateAccount} : Props) => {
             className="input__login"
             name="password"
             id="password"
+            value={newUser.password}
             onChange={handleCreateAccount}
             placeholder="Enter your password"
           />
-          <p className="btn">
+          <p className="btn-check">
             <i className="fa-solid fa-check"></i>
           </p>
         </div>

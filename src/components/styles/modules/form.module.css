@@ -146,7 +146,7 @@ input[type="checkbox"]{
     border-radius: 10px;
 }
 
-.btn{
+.btn-check{
     padding: .5px 6px;
     background-color: var(--input-success);
     border-radius: 50%;
