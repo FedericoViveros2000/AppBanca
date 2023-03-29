@@ -54,17 +54,18 @@
 .bubble{
     position: absolute;
     top: 0px;
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
+    opacity: 0.1;
     background-color: #fff;
 }
 
 .container--bubble{
     position: absolute;
-    top: 150px;
-    right: -100px;
-    transform: rotate(135deg);
+    top: 200px;
+    right: -80px;
+    transform: rotate(150deg);
 }
 
 

@@ -44,9 +44,9 @@ const Login = () => {
             placeholder="Enter your username or email"
             onChange={handleChangeLogin}
           />
-          <p className="btn">
+          {/* <p className="btn">
             <i className="fa-solid fa-check"></i>
-          </p>
+          </p> */}
         </div>
         {errors.user && <p>{errors.user}</p>}
         <label htmlFor="password" className="label__login">

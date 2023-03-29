@@ -12,7 +12,9 @@ const CreateAccountPage = () => {
   let {
     newUser,
     isLoading,
+    error,
     handleCreateAccount,
+    handleIsAccept,
     createdSuccess,
     setCreatedSuccess,
     createAccount,
@@ -37,6 +39,7 @@ const CreateAccountPage = () => {
           </ModalSuccess>
         </ModalBasic>
       )}
+      
       <BaseGenericForm
         navTitle="Create Account"
         urlBack="/"
@@ -46,7 +49,9 @@ const CreateAccountPage = () => {
       >
         <CreateAccount
           handleCreateAccount={handleCreateAccount}
+          handleIsAccept={handleIsAccept}
           newUser={newUser}
+          error={error}
         />
       </BaseGenericForm>
     </>
