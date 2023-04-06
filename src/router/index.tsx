@@ -1,21 +1,21 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "../components/App";
-import CreateAccountPage from "../views/CreateAccountPage"
-import Home from "../components/Home";
+import { createBrowserRouter } from 'react-router-dom'
+import App from '../components/App'
+import CreateAccountPage from '../views/CreateAccountPage'
+import Home from '../components/Home'
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <App />,
+    path: '/',
+    element: <App />
   },
   {
-    path: "/createAccount",
-    element: <CreateAccountPage/>,
+    path: '/createAccount',
+    element: <CreateAccountPage />
   },
   {
-    path: "/Home",
-    element: <Home />,
-  },
-]);
+    path: '/Home',
+    element: <Home />
+  }
+])
 
-export { router };
+export { router }

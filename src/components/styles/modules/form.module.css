@@ -1,9 +1,3 @@
-.container{
-    background-color: var(--principal-color);
-    min-height: 90vh;
-    overflow: hidden;
-}
-
 .container__form{
     width: 100%;
     position: absolute;

@@ -1,42 +1,41 @@
-import React, { useState } from "react";
-import { AppState } from "../interfaces/userInterface";
-import { useFetch } from "./useFetch";
+import React, { useState } from 'react'
+import { AppState } from '../interfaces/userInterface'
+import { useFetch } from './useFetch'
 
 const useLogin = (validationForm: Function) => {
-  
-  let [formLogin, setFormLogin] = useState<AppState["form"]>({
+  const [formLogin, setFormLogin] = useState<AppState['form']>({
     user: '',
     password: ''
-  });
+  })
 
-  let [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({})
 
-  let { getUserData } = useFetch();
+  const { getUserData } = useFetch()
 
   const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let {name, value} = e.target;
+    const { name, value } = e.target
     setFormLogin({
       ...formLogin,
       [name]: value
-    });
-  };
+    })
+  }
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();    
-    let error = validationForm(e, formLogin);
-    if(formLogin.user && formLogin.password && Object.entries(error).length === 0){
-      getUserData(formLogin.user, formLogin.password);    
-    }else{
-      setErrors(error);
+    e.preventDefault()
+    const error = validationForm(e, formLogin)
+    if (formLogin.user && formLogin.password && Object.entries(error).length === 0) {
+      getUserData(formLogin.user, formLogin.password)
+    } else {
+      setErrors(error)
     }
-  };
+  }
 
   return {
     handleChangeLogin,
     handleLogin,
     errors,
     formLogin
-  };
-};
+  }
+}
 
-export { useLogin };
+export { useLogin }

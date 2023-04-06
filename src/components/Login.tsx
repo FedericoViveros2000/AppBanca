@@ -1,65 +1,65 @@
-import { Link } from "react-router-dom";
-import NavBar from "./NavBar";
-import BaseGenericForm from "./BaseGenericForm";
-import { useFetch, fetchData } from "../hooks/useFetch";
-import Loader from "./Loader";
-import { validationLogin } from "./validations/validationLogin";
-import { Form } from "../interfaces/loginTypes";
-import { useLogin } from "../hooks/useLogin";
+import { Link } from 'react-router-dom'
+import NavBar from './NavBar'
+import BaseGenericForm from './BaseGenericForm'
+import { useFetch, fetchData } from '../hooks/useFetch'
+import Loader from './Loader'
+import { validationLogin } from './validations/validationLogin'
+import { Form } from '../interfaces/loginTypes'
+import { useLogin } from '../hooks/useLogin'
 
 const Login = () => {
   /* let [showSuccess, setShowSuccess] = useState(false); */
 
-  let { isFetching }: fetchData = useFetch("clientes");
+  const { isFetching }: fetchData = useFetch('clientes')
 
-  let { formLogin, handleChangeLogin, handleLogin, errors }: Form =
-    useLogin(validationLogin);
+  const { formLogin, handleChangeLogin, handleLogin, errors }: Form =
+    useLogin(validationLogin)
 
   /* if (formLogin.user !== null) {
       setShowSuccess(true);
   } */
 
-  if (isFetching) return <Loader />;
+  if (isFetching) return <Loader />
 
   return (
     <BaseGenericForm
-      navTitle="Sign In"
-      urlBack="/"
-      titleForm="Welcome Back"
-      subTitleForm="Hello there, sign in to continue"
+      navTitle='Sign In'
+      urlBack='/'
+      titleForm='Welcome Back'
+      subTitleForm='Hello there, sign in to continue'
       handleSubmit={handleLogin}
     >
       <>
-        <label htmlFor="user" className="label__login">
+        <label htmlFor='user' className='label__login'>
           User or email
         </label>
-        <div className="container__messages">
+        <div className='container__messages'>
           <input
-            type="text"
-            autoComplete="off"
-            className="input__login"
-            name="user"
-            id="user"
+            type='text'
+            autoComplete='off'
+            className='input__login'
+            name='user'
+            id='user'
             disabled={isFetching}
-            placeholder="Enter your username or email"
+            placeholder='Enter your username or email'
             onChange={handleChangeLogin}
           />
-          <p className="btn">
-            <i className="fa-solid fa-check"></i>
+          <p className='btn'>
+            <i className='fa-solid fa-check' />
           </p>
         </div>
         {errors.user && <p>{errors.user}</p>}
-        <label htmlFor="password" className="label__login">
+        <label htmlFor='password' className='label__login'>
           Password
         </label>
-        <div className="container__messages">
+        <div className='container__messages'>
           <input
-            className="input__login input__login--password"
-            autoComplete="off"
-            name="password"
-            id="password"
+            className='input__login input__login--password'
+            autoComplete='off'
+            name='password'
+            id='password'
             disabled={isFetching}
-            placeholder="Enter your password"
+            placeholder='Enter your password'
             onChange={handleChangeLogin}
           />
           {/* {
@@ -71,25 +71,25 @@ const Login = () => {
         </div>
         {errors.password && <p>{errors.password}</p>}
         <p>
-          <a href="#" className="forgot__password">
+          <a href='#' className='forgot__password'>
             Forgot your password?
           </a>
         </p>
         <input
-          type="submit"
-          className="input__sign"
-          value="Sign In"
+          type='submit'
+          className='input__sign'
+          value='Sign In'
           disabled={isFetching}
         />
-        <p className="signup">
-          Don't have an account?{" "}
-          <Link to="/createAccount" className="font-link">
+        <p className='signup'>
+          Don't have an account?{' '}
+          <Link to='/createAccount' className='font-link'>
             Sign up
           </Link>
         </p>
       </>
     </BaseGenericForm>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

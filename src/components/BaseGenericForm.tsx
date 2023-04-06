@@ -1,13 +1,13 @@
-import React from "react";
-import NavBar from "./NavBar";
+import React from 'react'
+import NavBar from './NavBar'
 
 interface Props {
-  navTitle: string;
-  urlBack: string;
-  titleForm: string;
-  subTitleForm: string;
-  handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
-  children?: JSX.Element;
+  navTitle: string
+  urlBack: string
+  titleForm: string
+  subTitleForm: string
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  children?: JSX.Element
 }
 
 const BaseGenericForm = ({
@@ -16,15 +16,14 @@ const BaseGenericForm = ({
   titleForm,
   subTitleForm,
   children,
-  handleSubmit,
+  handleSubmit
 }: Props) => {
-
   return (
-    <div className="container">
+    <div className='container'>
       <NavBar title={navTitle} urlBack={urlBack} />
-      <form className="container__form" onSubmit={(e) => handleSubmit(e)}>
+      <form className='container__form' onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <h2 className="title title__normal">{titleForm}</h2>
+          <h2 className='title title__normal'>{titleForm}</h2>
           <p>
             <span>{subTitleForm}</span>
           </p>
@@ -32,7 +31,7 @@ const BaseGenericForm = ({
         {children}
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default BaseGenericForm;
+export default BaseGenericForm

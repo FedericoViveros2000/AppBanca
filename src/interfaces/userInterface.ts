@@ -22,9 +22,9 @@ type UserRegister = Pick<UserData, 'nombre' | 'email' | 'password'>
   direccion: string
 } */
 
-interface UserLogin{
-  user: string;
-  password: string;
+interface UserLogin {
+  user: string
+  password: string
 }
 
 export interface AppState {
@@ -35,6 +35,5 @@ export interface AppState {
     user?: string
     password?: string
   }
-  createAccount: UserRegister  
+  createAccount: UserRegister
 }
-

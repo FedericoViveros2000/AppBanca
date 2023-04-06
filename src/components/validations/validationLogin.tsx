@@ -1,25 +1,24 @@
-import { AppState } from '../../interfaces/userInterface';
+import { AppState } from '../../interfaces/userInterface'
 
 const validationLogin = (
   e: React.SyntheticEvent,
-  formLogin: AppState["form"]
-): AppState["errors"] => {
-  e.preventDefault();
+  formLogin: AppState['form']
+): AppState['errors'] => {
+  e.preventDefault()
 
-  let errors: AppState["errors"] = {};
+  const errors: AppState['errors'] = {}
 
   if (!formLogin.user) {
-    errors.user = "El numero de documento del usuario no debe estar vacio";
+    errors.user = 'El numero de documento del usuario no debe estar vacio'
   }
 
   if (!formLogin.password) {
-    errors.password = "Introduzca la contraseña del usuario";
+    errors.password = 'Introduzca la contraseña del usuario'
   }
 
-  return errors;
-};
-
+  return errors
+}
 
 export {
-    validationLogin
+  validationLogin
 }
