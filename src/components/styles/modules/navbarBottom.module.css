@@ -1,0 +1,32 @@
+.container__navbarBottom {
+    width: 100%;
+    height: 50px;
+    background-color: var(--background-bottom-bar);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    box-shadow: var(--shadow-bottom);
+}
+
+.container__navbarBottom--icons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.icons__navbarBottom {
+    color: var(--icon-inactive);
+    font-size: 1.5625rem;
+}
+
+.icons__navbarBottom--active{
+    font-size: 1.5625rem;
+    color: var(--icon-active);
+}
+
+.icon__plus {
+    color: var(--icon-plus);
+    transform: translateY(-10px);
+    font-size: 50px;
+}

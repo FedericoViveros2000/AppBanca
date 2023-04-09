@@ -1,11 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { AppState } from '../interfaces/userInterface'
 interface Props {
+  newUser: AppState['createAccount']
   handleCreateAccount: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleIsAccept: () => void
+  error: string
 }
 
-const CreateAccount = ({ handleCreateAccount }: Props) => {
+const CreateAccount = ({ handleCreateAccount, handleIsAccept, newUser, error }: Props) => {
   return (
     <>
       <div className='container__create'>
@@ -19,10 +22,11 @@ const CreateAccount = ({ handleCreateAccount }: Props) => {
             className='input__login'
             name='nombre'
             id='name'
+            value={newUser.nombre}
             placeholder='Enter your name'
             onChange={handleCreateAccount}
           />
-          <p className='btn'>
+          <p className='btn-check'>
             <i className='fa-solid fa-check' />
           </p>
         </div>
@@ -36,10 +40,11 @@ const CreateAccount = ({ handleCreateAccount }: Props) => {
             className='input__login'
             name='email'
             id='email'
+            value={newUser.email}
             onChange={handleCreateAccount}
             placeholder='Enter your email address'
           />
-          <p className='btn'>
+          <p className='btn-check'>
             <i className='fa-solid fa-check' />
           </p>
         </div>
@@ -53,19 +58,26 @@ const CreateAccount = ({ handleCreateAccount }: Props) => {
             className='input__login'
             name='password'
             id='password'
+            value={newUser.password}
             onChange={handleCreateAccount}
             placeholder='Enter your password'
           />
-          <p className='btn'>
+          <p className='btn-check'>
             <i className='fa-solid fa-check' />
           </p>
         </div>
         <label htmlFor='accept' className='container__accept'>
-          <input type='checkbox' id='accept' />
+          <input
+            type='checkbox'
+            id='accept'
+            name='accept'
+            onChange={handleIsAccept}
+          />
           <span className='terms'>
             By creating an account, you agree to our
           </span>
         </label>
+        {error && <p>{error}</p>}
         <p>
           <Link to='/' className='font-terms'>
             Terms and conditions

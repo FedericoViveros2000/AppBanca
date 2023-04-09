@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import NavBar from './NavBar'
 import BaseGenericForm from './BaseGenericForm'
 import { useFetch, fetchData } from '../hooks/useFetch'
 import Loader from './Loader'
@@ -44,9 +43,9 @@ const Login = () => {
             placeholder='Enter your username or email'
             onChange={handleChangeLogin}
           />
-          <p className='btn'>
-            <i className='fa-solid fa-check' />
-          </p>
+          {/* <p className="btn">
+            <i className="fa-solid fa-check"></i>
+          </p> */}
         </div>
         {errors.user && <p>{errors.user}</p>}
         <label htmlFor='password' className='label__login'>
@@ -58,6 +57,7 @@ const Login = () => {
             autoComplete='off'
             name='password'
             id='password'
+            type='password'
             disabled={isFetching}
             placeholder='Enter your password'
             onChange={handleChangeLogin}

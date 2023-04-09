@@ -4,5 +4,12 @@
     --letter-gray-color: #969fb3;
     --input-background: #efeeee;
     --input-success: #00b3f3;;
-    --btn-disabled: ;
+    --btn-disabled: #d9e3f6;
+
+    --background-bottom-bar: #ffffff;
+    --icon-active: #0041c4;
+    --icon-inactive: #c1c7d0;
+    --icon-plus: #6cd4f7;
+    --shadow-bottom: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    --background-top-bar: #ffffff;
 }

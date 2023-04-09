@@ -2,43 +2,69 @@ import { useState } from 'react'
 import { supabase } from '../supabase/index'
 import { AppState } from '../interfaces/userInterface'
 
+const initialValue = {
+  nombre: '',
+  email: '',
+  password: ''
+}
+
 const useCreateAccount = () => {
-  const [newUser, setNewUser] = useState<AppState['createAccount']>({
-    nombre: '',
-    email: '',
-    password: ''
-  })
+  const [newUser, setNewUser] = useState<AppState['createAccount']>(initialValue)
+  const [isAccept, setIsAccept] = useState(false)
+  const [error, setError] = useState('')
+  const [isLoading, setLoading] = useState(false)
   const [createdSuccess, setCreatedSuccess] = useState(false)
 
   const handleCreateAccount = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
+
     setNewUser({
       ...newUser,
       [name]: value
     })
   }
 
+  const handleIsAccept = () => {
+    setIsAccept(!isAccept)
+  }
+
   const createAccount = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    console.log(newUser)
-    try {
-      const { data, error } = await supabase
-        .from('clientes')
-        .insert(newUser)
-        .select()
-      if (error != null) throw error
-      setCreatedSuccess(true)
-      return
-    } catch (err) {
-      setCreatedSuccess(false)
-      console.log(err)
+    if (isAccept) {
+      try {
+        setLoading(true)
+        console.log(newUser)
+
+        const { data, error } = await supabase
+          .from('clientes')
+          .insert(newUser)
+          .select()
+        if (error != null) throw error
+        setCreatedSuccess(true)
+        setNewUser(initialValue)
+        return
+      } catch (err) {
+        setCreatedSuccess(false)
+        console.log(err)
+      } finally {
+        setLoading(false)
+        setIsAccept(false)
+        setError('')
+      }
+    } else {
+      setError('Acepte los terminos y condiciones')
     }
   }
 
   return {
+    newUser,
+    error,
+    isLoading,
     createAccount,
     createdSuccess,
-    handleCreateAccount
+    setCreatedSuccess,
+    handleCreateAccount,
+    handleIsAccept
   }
 }
 

@@ -8,7 +8,7 @@ export interface fetchData {
   getUserData: Function
 }
 
-const useFetch = (table: string = 'clientes', row: string = '') => {
+const useFetch = (table = 'clientes', row = '') => {
   const [data, setData] = useState<AppState['data']>([])
   const [isFetching, setIsFetching] = useState<boolean>(false)
 

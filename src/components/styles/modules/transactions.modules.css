@@ -1,0 +1,40 @@
+.container__transactions--title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container__items{
+    width: 100%;
+}
+
+.container__info{
+    display: flex;
+    align-items: center;
+}
+
+.items__icon{
+    margin-right: 10px;
+    color: var(--background-light-color);
+    background-color: blue;
+    border-radius: 15px;
+    padding: 10px 12px 5px 12px;
+    font-size: 24px;
+}
+
+.items{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: red;
+    line-height: 1.5;
+}
+
+.date__transaction{
+    display: block;
+    font-size: 0.875rem;
+}

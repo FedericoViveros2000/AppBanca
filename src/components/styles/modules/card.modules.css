@@ -1,0 +1,28 @@
+.container__cards{
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+.container__target{
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+}
+
+.target{
+    list-style: none;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+
+.container__target--card{
+    min-width: 90%;
+    scroll-snap-align: center;
+    background-color: var(--principal-color);
+}
+
+.container__target--budget{
+    background-color: red;
+    scroll-snap-align: center;
+    height: 250px;
+    min-width: 70%;
+}

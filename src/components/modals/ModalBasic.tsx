@@ -7,7 +7,13 @@ interface Props {
 const ModalBasic = ({ children }: Props) => {
   return (
     <article className='container__modal'>
-      {children}
+      <div className='container--bubble--general'>
+        <div className='container--bubble'>
+          <div className='bubble' />
+          <div className='bubble container__modal--bubble--two' />
+        </div>
+      </div>
+      <div className='container__modal--content'>{children}</div>
     </article>
   )
 }
