@@ -15,14 +15,16 @@
 }
 
 .container__target--card{
+    flex-shrink: 0;
     min-width: 90%;
     scroll-snap-align: center;
     background-color: var(--principal-color);
 }
 
 .container__target--budget{
-    background-color: red;
+    background-color: cadetblue;
     scroll-snap-align: center;
     height: 250px;
     min-width: 70%;
+    flex-shrink: 0;
 }
