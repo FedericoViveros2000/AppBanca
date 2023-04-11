@@ -8,6 +8,15 @@
     display: flex;
 }
 
+.container__cards::-webkit-scrollbar{
+    display: none;
+}
+
+.container__cards{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 .target{
     list-style: none;
     margin-right: 10px;
@@ -22,7 +31,15 @@
 }
 
 .container__target--budget{
-    background-color: cadetblue;
+    background-color: var(--background-light-card-subscriptions);
+    scroll-snap-align: center;
+    height: 250px;
+    min-width: 70%;
+    flex-shrink: 0;
+}
+
+.container__target--subscriptions{
+    background-color: var(--background-light-card-subscriptions);
     scroll-snap-align: center;
     height: 250px;
     min-width: 70%;
