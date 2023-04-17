@@ -27,11 +27,11 @@
     flex-shrink: 0;
     min-width: 90%;
     scroll-snap-align: center;
-    background-color: var(--principal-color);
+   /*  background-color: var(--principal-color); */
 }
 
 .container__target--budget{
-    background-color: var(--background-light-card-subscriptions);
+    /* background-color: var(--background-light-card-subscriptions); */
     scroll-snap-align: center;
     height: 250px;
     min-width: 70%;
@@ -39,7 +39,7 @@
 }
 
 .container__target--subscriptions{
-    background-color: var(--background-light-card-subscriptions);
+    /* background-color: var(--background-light-card-subscriptions); */
     scroll-snap-align: center;
     height: 250px;
     min-width: 70%;

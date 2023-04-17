@@ -1,9 +1,11 @@
 import {MdWork} from 'react-icons/md'
+
+
 const ListTransaction = () => {
 return(
 <article className='container__transations'>
     <div className="container__transactions--title">
-        <h2>Transactions</h2>
+        <h2 className='font-blue font-regular-text-bold'>Transactions</h2>
         <span>See All</span>
     </div>
     <ul className="container__items">

@@ -29,12 +29,20 @@ window.location.assign('/')
             <ListTransaction />
           </section>
         </section>
-      </main>
-      <section className="container__section--budget">
-        <h3 className="container__section--title">Monthly Budget</h3>
+        <section className="section__separator bg-light">
+        <h3 className="font-dark font-regular-text-bold">Monthly Budget</h3>
         <article className="container__cards section__separator">
           <ContainerSlider>
-            <BudgetCard />
+            <BudgetCard bgColor="bg-light-budget"/>
+          </ContainerSlider>
+        </article>
+      </section>
+      </main>
+      <section className="container__section--budget bg-principal">
+        <h3 className="font-light font-regular-text-bold">Monthly Subscriptions</h3>
+        <article className="container__cards section__separator">
+          <ContainerSlider>
+            <BudgetCard bgColor="bg-light"/>
           </ContainerSlider>
         </article>
       </section>

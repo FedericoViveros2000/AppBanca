@@ -1,6 +1,5 @@
 .container__header {
     width: 100%;
-    background-color: var(--background-top-bar);
 }
 
 .container__header--info > li {
@@ -22,13 +21,6 @@
 
 .text-bold {
     font-weight: var(--font-weight-semibold);
-    font-size: 1.25rem;
-}
-
-.text-thin{
-    font-weight: var(--font-weight-thin);
-    font-size: var(--font-size-regular-normal);
-    color: var(--letter-gray-color);
 }
 
 .img-user {

@@ -1,16 +1,83 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
 
+
+* {
+    font-family: 'Rubik', sans-serif;
+}
+
 /* Tamanhos de fuente y negrita */
 :root{
-    --font-size-regular-normal: 1rem;
-    --font-size-regular-title: 1.375rem;
-    --font-size-regular-title-large: 1.5rem;
+    /* --font-size-regular-normal: 1rem; */
+    --font-size-regular-normal: clamp(1rem, 1rem + 1vw ,1.5rem)
+    --font-size-regular-title: clamp(1.375rem, 1rem + 1vw, 2rem);
+    --font-size-regular-title-large: clamp(1.5rem, 1rem + 1vw, 2rem);
+    --font-size-bold: clamp(1.25rem, 1rem + 1vw, 2rem);
     --font-weight-thin: 400;
     --font-weight-normal: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
 }
 
-* {
-    font-family: 'Rubik', sans-serif;
+/* Estilos para las fuentes principales de tamanhos*/
+.font-regular{
+    font-size: var(--font-size-regular-normal);
+}
+
+.font-regular-title{
+    font-size: var(--font-size-regular-title);
+}
+
+.font-regular-title-large{
+    font-size: var(--font-size-regular-title-large);
+}
+
+.font-regular-text-bold{
+    font-size: var(--font-size-bold);
+}
+
+/* Estilos de peso */
+
+.fw-thin{
+    font-weight: var(--font-weight-thin);
+}
+
+.fw-normal{
+    font-weight: var(--font-weight-normal);
+}
+
+.fw-semibold{
+    font-weight: var(--font-weight-semibold);
+}
+
+.fw-bold{
+    font-weight: var(--font-weight-bold);
+}
+
+/* Colores de las fuentes */
+.font-light{
+    color: var(--font-light);
+}
+
+.font-grey{
+    color: var(--font-grey);
+}
+
+.font-inactive{
+    color: var(--icon-inactive);
+}
+
+.font-active{
+    color: var(--icon-active);
+}
+
+.font-dark{
+    color: var(--font-dark);
+}
+
+.font-name{
+    color: var(--font-name);
+}
+
+.font-blue{
+    color: var(--font-blue);
 }

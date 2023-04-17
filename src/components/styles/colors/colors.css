@@ -5,14 +5,61 @@
     --input-background: #efeeee;
     --input-success: #00b3f3;;
     --btn-disabled: #d9e3f6;
-
     --background-bottom-bar: #ffffff;
     --background-light-card-subscriptions: #fff;
     --background-light-card-budget: #f3f6fb;
+    --background-bottom-bar-icon: #f4f5f8;
 
     --icon-active: #0041c4;
     --icon-inactive: #c1c7d0;
     --icon-plus: #6cd4f7;
     --shadow-bottom: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     --background-top-bar: #ffffff;
+
+    --font-light: #ffffff;
+    --font-dark: #082755;
+    --font-name: #17224f;
+    --font-grey: #a1a9b7;
+    --font-blue: #0b2957;
 }
+
+.bg-principal{
+    background: var(--principal-color);
+}
+
+.bg-light{
+    background-color: var(--background-light-color);
+}
+
+.bg-input{
+    background-color: var(--input-background);
+}
+
+.bg-input-disabled{
+    background-color: var(--btn-disabled);
+}
+
+.bg-bottom-bar{
+    background-color: var(--background-bottom-bar);
+}
+
+.bg-bottom-bar-icon{
+    background-color: var(--background-bottom-bar-icon);
+}
+
+.bg-top-bar{
+    background-color: var(--background-top-bar);
+}
+
+.bg-light-suscriptions{
+    background-color: var(--background-light-card-subscriptions);
+}
+
+.bg-light-budget{
+    background-color: var(--background-light-card-budget);
+}
+
+.bg-icon-plus{
+    background-color: var(--icon-plus);
+}
+

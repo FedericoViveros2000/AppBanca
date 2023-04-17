@@ -23,19 +23,16 @@
 
 .link{
   text-decoration: none;
-  color: #fff;
 }
 
 .container {
   width: 100%;
   position: relative;
   height: 100vh;
-  background-color: var(--principal-color);
 }
 
 .container__section{
   width: 100%;
-  /*padding: 0px 5px;*/
 }
 
 .section__separator{
@@ -56,10 +53,6 @@
   font-weight: var(--font-weight-semibold);
 }
 
-.btn-success{
-  background-color: var(--principal-color);
-  color: var(--background-light-color);
-}
 
 .container__main--home{
   position: relative;
@@ -67,14 +60,9 @@
 }
 
 .container__section--budget{
-  background-color: var(--principal-color);
   padding: 20px;
   margin-top: 15px;
   margin-bottom: 50px;
-}
-
-.container__section--title{
-  color: #fff;
 }
 
 .icons{

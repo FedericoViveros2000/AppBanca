@@ -1,11 +1,12 @@
 import {AiFillBell} from 'react-icons/ai';
+
 const NavBarDetailUser = () => {
     return (
-        <header className="container__header">
+        <header className="container__header bg-top-bar">
             <ul className="container__header--info">
                 <li>
-                    <span className='text-thin'>Good Morning</span>
-                    <p className='text-bold'>Jose Viveros</p>
+                    <span className='font-regular fw-thin font-grey'>Good Morning</span>
+                    <p className='fw-bold font-regular-text-bold font-name'>Jose Viveros</p>
                 </li>
                 <li className='container__header--notification'>
                     <p className='icons'>
