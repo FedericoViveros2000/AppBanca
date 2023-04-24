@@ -7,16 +7,10 @@ import { Form } from '../interfaces/loginTypes'
 import { useLogin } from '../hooks/useLogin'
 
 const Login = () => {
-  /* let [showSuccess, setShowSuccess] = useState(false); */
-
   const { isFetching }: fetchData = useFetch('clientes')
 
   const { formLogin, handleChangeLogin, handleLogin, errors }: Form =
     useLogin(validationLogin)
-
-  /* if (formLogin.user !== null) {
-      setShowSuccess(true);
-  } */
 
   if (isFetching) return <Loader />
 

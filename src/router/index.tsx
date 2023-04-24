@@ -7,7 +7,7 @@ import HomePage from '../views/HomePage'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />
+    element: <App />,
   },
   {
     path: '/createAccount',

@@ -1,24 +1,49 @@
-import {AiFillBell} from 'react-icons/ai';
+import { useState, useEffect, useContext } from "react";
+import { AiFillBell } from "react-icons/ai";
 
-const NavBarDetailUser = () => {
-    return (
-        <header className="container__header bg-top-bar">
-            <ul className="container__header--info">
-                <li>
-                    <span className='font-regular fw-thin font-grey'>Good Morning</span>
-                    <p className='fw-bold font-regular-text-bold font-name'>Jose Viveros</p>
-                </li>
-                <li className='container__header--notification'>
-                    <p className='icons'>
-                        <AiFillBell/>
-                    </p>
-                    <figure className='img-user'>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbRQ__k2EYW6KuKOGDuoftyTVDlxJ_lFv8lzXrNixMg&s" alt="" />
-                    </figure>
-                </li>
-            </ul>
-        </header>
-    )
+interface Props {
+  name: string
 }
+
+const NavBarDetailUser = ({name}: Props) => {
+  const [greeting, setGreeting] = useState(""); 
+
+  useEffect(() => {   
+    const currentHour = new Date().getHours();
+    if (currentHour >= 6 && currentHour < 12) {
+      setGreeting("Good Morning");
+    } else if (currentHour >= 12 && currentHour < 18) {
+      setGreeting("Good Afternoon");
+    } else if (currentHour > 18 && currentHour < 21) {
+      setGreeting("Good Evening");
+    } else {
+      setGreeting("Good Night");
+    }
+  }, []);
+
+  return (
+    <header className="container__header bg-top-bar">
+      <ul className="container__header--info">
+        <li>
+          <span className="font-regular fw-thin font-grey">{greeting}</span>
+          <p className="fw-bold font-regular-text-bold font-name">
+            {name}
+          </p>
+        </li>
+        <li className="container__header--notification">
+          <p className="icons">
+            <AiFillBell />
+          </p>
+          <figure className="img-user">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbRQ__k2EYW6KuKOGDuoftyTVDlxJ_lFv8lzXrNixMg&s"
+              alt=""
+            />
+          </figure>
+        </li>
+      </ul>
+    </header>
+  );
+};
 
 export default NavBarDetailUser;

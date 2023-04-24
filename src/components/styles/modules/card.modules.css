@@ -4,7 +4,7 @@
 }
 .container__target{
     width: 100%;
-    min-height: 200px;
+    min-height: 165px;
     display: flex;
 }
 
@@ -21,13 +21,13 @@
     list-style: none;
     margin-right: 10px;
     border-radius: 20px;
+    padding: 20px;
 }
 
 .container__target--card{
     flex-shrink: 0;
     min-width: 90%;
     scroll-snap-align: center;
-   /*  background-color: var(--principal-color); */
 }
 
 .container__target--budget{
@@ -36,6 +36,16 @@
     height: 250px;
     min-width: 70%;
     flex-shrink: 0;
+}
+
+.container__target--balance{
+    position: absolute;
+    bottom: 20px;
+}
+
+.title-balance{
+    margin-bottom: 5px;
+    opacity: .5;
 }
 
 .container__target--subscriptions{

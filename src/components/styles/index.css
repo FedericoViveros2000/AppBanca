@@ -25,6 +25,22 @@
   text-decoration: none;
 }
 
+.flex{
+  display: flex;
+}
+
+.space-between{
+  justify-content: space-between;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.relative{
+  position: relative;
+}
+
 .container {
   width: 100%;
   position: relative;
@@ -54,7 +70,7 @@
 }
 
 
-.container__main--home{
+.container__main{
   position: relative;
   padding: 0px 20px;
 }
@@ -68,3 +84,17 @@
 .icons{
   font-size: 1.375rem;
 }
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+

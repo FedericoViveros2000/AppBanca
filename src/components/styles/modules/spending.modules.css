@@ -9,6 +9,6 @@
 .container__spending{
     flex-grow: 1;
     background-color: blueviolet;
-    padding: 20px;
+    padding: 15px;
     border-radius: 15px;
 }

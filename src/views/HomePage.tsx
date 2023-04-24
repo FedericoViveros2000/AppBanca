@@ -5,17 +5,18 @@ import Spending from "../components/cards/Spending";
 import ListTransaction from "../components/transactions/ListTransactions";
 import BudgetCard from "../components/cards/BudgetCard";
 import ContainerSlider from "../components/cards/ContainerSlider";
+import { Context } from "../context/AuthContext";
+import { useEffect, useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AppState } from "../interfaces/userInterface";
+
 const HomePage = () => {
-  /*useEffect(() => {
-if (!localStorage.getItem('userData')) {
-window.location.assign('/')
-}
-}, [])*/
+  const auth: AppState["data"] = useContext(Context);
 
   return (
     <>
-      <main className="container__main--home">
-        <NavBarDetailUser />
+      <main className="container__main">
+        <NavBarDetailUser name={auth[0].nombre} />
         <section className="container__section">
           <section className="section__separator container__cards">
             <ContainerSlider>
@@ -30,19 +31,21 @@ window.location.assign('/')
           </section>
         </section>
         <section className="section__separator bg-light">
-        <h3 className="font-dark font-regular-text-bold">Monthly Budget</h3>
-        <article className="container__cards section__separator">
-          <ContainerSlider>
-            <BudgetCard bgColor="bg-light-budget"/>
-          </ContainerSlider>
-        </article>
-      </section>
+          <h3 className="font-dark font-regular-text-bold">Monthly Budget</h3>
+          <article className="container__cards section__separator">
+            <ContainerSlider>
+              <BudgetCard bgColor="bg-light-budget" />
+            </ContainerSlider>
+          </article>
+        </section>
       </main>
       <section className="container__section--budget bg-principal">
-        <h3 className="font-light font-regular-text-bold">Monthly Subscriptions</h3>
+        <h3 className="font-light font-regular-text-bold">
+          Monthly Subscriptions
+        </h3>
         <article className="container__cards section__separator">
           <ContainerSlider>
-            <BudgetCard bgColor="bg-light"/>
+            <BudgetCard bgColor="bg-light" />
           </ContainerSlider>
         </article>
       </section>
