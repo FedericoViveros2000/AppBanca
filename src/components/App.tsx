@@ -10,18 +10,10 @@ import { AppState } from "../interfaces/userInterface";
 
 const App = () => {
   const authUser: AppState["data"] = useContext(Context);
-
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <ProtectedRoutes userAuth={!!authUser} redirectTo="/Home">
-              <LoginPage />
-            </ProtectedRoutes>
-          }
-        />
+        <Route path="/" element={<LoginPage />} />
         <Route element={<ProtectedRoutes userAuth={!!authUser} />}>
           <Route path="/CreateAccount" element={<CreateAccountPage />} />
           <Route path="/Home" element={<HomePage />} />

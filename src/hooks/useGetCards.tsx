@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
-import { supabase } from "../supabase/index";
 import { Cards } from "../interfaces/cards.types";
+import { Balance } from "../interfaces/balance.types";
+import { getCards, getBalance } from "../utils/getDataCards";
+
+type params = {
+  id_customer: number;
+};
 
 const INITIAL_VALUE = [
   {
@@ -8,28 +13,34 @@ const INITIAL_VALUE = [
     card_color: null,
     card_supplier: "",
     card_title: "",
-    error: null
+    card_balance: 0,
+    error: null,
   },
 ];
 
-const useGetCards = () => {
+const useGetCards = ({ id_customer }: params) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState<Cards[]>(INITIAL_VALUE);
 
-  const getCards = async (): Promise<Cards[]> => {
-    setIsLoading(true);
-    let { data: cards, error } = await supabase.from("cards").select("*");
-    if (error) throw new Error("Error al obtener las tarjetas");
-    return cards || [];
-  };
-
   useEffect(() => {
+    setIsLoading(true);
     getCards()
-      .then((res) => {
-        setData(res);
+      .then((res: Cards[]) => {
+        getBalance(id_customer)
+          .then((balance: Balance[]) => {
+            setData([
+              {
+                id: res[0].id,
+                card_color: res[0].card_color,
+                card_title: res[0].card_title,
+                card_balance: balance[0].card_balance,
+                card_supplier: res[0].card_supplier,
+                error: null,
+              },
+            ]);
+        }).finally(() => setIsLoading(false));;
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
   }, []);
 
   return {

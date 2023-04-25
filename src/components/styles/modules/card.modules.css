@@ -4,7 +4,7 @@
 }
 .container__target{
     width: 100%;
-    min-height: 165px;
+    min-height: 170px;
     display: flex;
 }
 
@@ -24,9 +24,16 @@
     padding: 20px;
 }
 
+.min-w-90{
+    min-width: 90%;
+}
+
+.min-w-100{
+    min-width: 100%;
+}
+
 .container__target--card{
     flex-shrink: 0;
-    min-width: 90%;
     scroll-snap-align: center;
 }
 
