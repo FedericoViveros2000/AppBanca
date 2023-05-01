@@ -1,3 +1,5 @@
+import './styles/navbarUser.css';
+
 import { useState, useEffect, useContext } from "react";
 import { AiFillBell } from "react-icons/ai";
 

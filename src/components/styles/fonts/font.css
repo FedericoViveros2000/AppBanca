@@ -19,19 +19,19 @@
 }
 
 /* Estilos para las fuentes principales de tamanhos*/
-.font-regular{
+.fs-normal{
     font-size: var(--font-size-regular-normal);
 }
 
-.font-regular-title{
+.fs-normal-md{
     font-size: var(--font-size-regular-title);
 }
 
-.font-regular-title-large{
+.fs-normal-xl{
     font-size: var(--font-size-regular-title-large);
 }
 
-.font-regular-text-bold{
+.fs-bold{
     font-size: var(--font-size-bold);
 }
 

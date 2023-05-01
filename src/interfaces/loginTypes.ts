@@ -5,4 +5,5 @@ export interface Form {
   handleLogin: (e: React.FormEvent<HTMLFormElement>) => void
   errors?: AppState['errors']
   formLogin: AppState['form']
+  isFetching: boolean
 }

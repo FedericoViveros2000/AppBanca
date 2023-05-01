@@ -12,6 +12,7 @@
 .container__navbarBottom--icons {
     width: 100%;
     display: flex;
+    max-height: 50px;
     justify-content: space-between;
     padding: 5px 20px;
 }
@@ -26,8 +27,13 @@
     font-size: 1.5625rem;
 }
 
-.icon__plus {
-    color: var(--icon-plus);
-    transform: translateY(-10px);
+.bg-plus{
+    fill: var(--icon-plus);
     font-size: 50px;
+    stroke-width: 50px;
+    stroke: #fff;
+}
+
+.translateY{
+ transform: translateY(-25px);
 }

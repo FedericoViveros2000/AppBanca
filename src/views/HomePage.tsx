@@ -6,25 +6,32 @@ import ListTransaction from "../components/transactions/ListTransactions";
 import BudgetCard from "../components/cards/BudgetCard";
 import ContainerSlider from "../components/cards/ContainerSlider";
 import { Context } from "../context/AuthContext";
-import { useEffect, useContext } from "react";
-import { Navigate } from "react-router-dom";
-import { AppState } from "../interfaces/userInterface";
+import { useContext, useEffect } from "react";
+import { notifications } from "../utils/notifications";
+
+interface AuthData{
+  auth: string[];
+  changeAuth: React.Dispatch<React.SetStateAction<string[]>>
+}
 
 const HomePage = () => {
-  const auth: AppState["data"] = useContext(Context);
-
+  const {authData} : AuthData = useContext(Context);  
+  
   return (
     <>
       <main className="container__main">
-        <NavBarDetailUser name={auth[0].nombre} />
+        <NavBarDetailUser name={authData[0]?.nombre} />
         <section className="container__section">
-          <section className="section__separator container__cards">
+          <section className="section__separator container__cards scroll-none">
             <ContainerSlider>
               <TargetCards />
             </ContainerSlider>
           </section>
           <section className="section__separator container__main--spending">
-            <Spending />
+            <Spending 
+              spending={1000}
+              income={10000}
+            />
           </section>
           <section className="section__separator">
             <ListTransaction />
@@ -32,7 +39,7 @@ const HomePage = () => {
         </section>
         <section className="section__separator bg-light">
           <h3 className="font-dark font-regular-text-bold">Monthly Budget</h3>
-          <article className="container__cards section__separator">
+          <article className="container__cards section__separator scroll-none">
             <ContainerSlider>
               <BudgetCard bgColor="bg-light-budget" />
             </ContainerSlider>
@@ -43,7 +50,7 @@ const HomePage = () => {
         <h3 className="font-light font-regular-text-bold">
           Monthly Subscriptions
         </h3>
-        <article className="container__cards section__separator">
+        <article className="container__cards section__separator scroll-none">
           <ContainerSlider>
             <BudgetCard bgColor="bg-light" />
           </ContainerSlider>

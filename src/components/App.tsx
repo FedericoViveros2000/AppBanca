@@ -7,9 +7,11 @@ import HistoryPage from "../views/HistoryPage";
 import { Context } from "../context/AuthContext";
 import { ProtectedRoutes } from "../router/ProtectedRoutes";
 import { AppState } from "../interfaces/userInterface";
+import './index.css';
 
 const App = () => {
   const authUser: AppState["data"] = useContext(Context);
+  
   return (
     <BrowserRouter>
       <Routes>

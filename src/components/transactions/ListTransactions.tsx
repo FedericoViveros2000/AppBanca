@@ -1,3 +1,4 @@
+import './styles/transactions.css';
 import {MdWork} from 'react-icons/md'
 
 

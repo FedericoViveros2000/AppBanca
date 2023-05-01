@@ -1,0 +1,24 @@
+.spending:nth-child(1){
+    margin-right: 10px;
+}
+
+.spending{
+    flex-grow: 1;
+    border-radius: 15px;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.icon{
+    display: inline-block;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.icon-spending{
+    /* background-color: black; */
+    font-size: 25px;
+    margin: 0 auto;
+    fill: var(--principal-color);
+}

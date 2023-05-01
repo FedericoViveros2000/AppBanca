@@ -1,3 +1,4 @@
+import './styles/navbarBottom.css'
 import { NavLink } from 'react-router-dom';
 import {AiFillHome, AiFillPlusCircle} from 'react-icons/ai';
 import {RiBarChart2Fill} from 'react-icons/ri';
@@ -13,11 +14,11 @@ const BottomBar = () => {
                 </NavLink>
                 <NavLink 
                 to="/History"
-                className={({isActive}) => isActive ? "icons__navbarBottom bg-bottom-bar-icon font-active" : "icons__navbarBottom font-inactive"}>
+                className={({isActive}) => isActive ? "icons__navbarBottom bg-bottom-bar-icon  font-active" : "icons__navbarBottom  font-inactive"}>
                     <RiBarChart2Fill/>
                 </NavLink>
-                <NavLink to="/" className={({isActive}) => isActive ? "icons__navbarBottom bg-bottom-bar-icon font-active" : "icons__navbarBottom font-inactive"}>
-                    <AiFillPlusCircle/>
+                <NavLink to="/" className={({isActive}) => isActive ? " bg-bottom-bar-icon" : "translateY bg-plus "}>
+                    <AiFillPlusCircle className='bg-plus'/>
                 </NavLink>
                 <NavLink to="/" className={({isActive}) => isActive ? "icons__navbarBottom bg-bottom-bar-icon font-active" : "icons__navbarBottom font-inactive"}>
                     <FaWallet/>

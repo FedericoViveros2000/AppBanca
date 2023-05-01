@@ -10,6 +10,23 @@
     line-height: 2;
 }
 
+.input{
+    width: 100%;
+    padding: 15px 0px;
+    border: none;
+    background-color: var(--input-background);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+}
+
+.input__password{
+    padding: 15px 0px;
+    outline: none;
+    border: none;
+}
+
+
 .container__create{
     overflow: auto;
     max-height: 400px;
@@ -21,14 +38,6 @@
     margin: 0px 20px;
     padding-top: 15px;
     color: var(--background-light-color);
-}
-
-.title{
-    font-weight: var(--font-weight-bold);
-}
-
-.title__normal{
-    font-size: 1.5rem;
 }
 
 .container__accept{
@@ -74,17 +83,6 @@ input[type="checkbox"]{
     padding: 0px 15px;
 }
 
-.input__login{
-    width: 100%;
-    padding: 15px 0px;
-    border: none;
-    background-color: var(--input-background);
-    border-radius: 10px;
-    font-size: var(--font-size-regular-normal);
-    outline: none;
-    border: none;
-}
-
 .icon-custom{
     font-size: 1.375rem;
     margin-top: 10px;
@@ -102,30 +100,10 @@ input[type="checkbox"]{
     text-align: center;
 }
 
-.input__sign{
-    width: 100%;
-    margin: 10px 0px;
-    border: none;
-    outline: none;
-    padding: 15px 0px;
-    border-radius: 10px;
-    background-color: var(--principal-color);
-    color: var(--background-light-color);
-    font-size: var(--font-size-regular-normal);
-    font-weight: var(--font-weight-semibold);
-}
-
-.input__login--password{
-    padding: 15px 0px;
-    outline: none;
-    border: none;
-}
-
 .forgot__password{
-    display: block;
     color: var(--principal-color);
     text-decoration: none;
-    margin-top:10px;
+    margin:10px 0px;
     font-size: var(--font-size-regular-normal);
     font-weight: var(--font-weight-semibold);
 }

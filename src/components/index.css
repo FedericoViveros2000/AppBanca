@@ -1,13 +1,5 @@
-@import url(./colors/colors.css);
-@import url(./modules/form.module.css);
-@import url(./fonts/font.css);
-@import url(./modules/modal.module.css);
-@import url(./modules/loader.module.css);
-@import url(./modules/navbarBottom.module.css);
-@import url(./modules/navbarUser.module.css);
-@import url(./modules/card.modules.css);
-@import url(./modules/spending.modules.css);
-@import url(./modules/transactions.modules.css);
+@import url(./styles/fonts/font.css);
+@import url(./styles/colors/colors.css);
 
 *,
 *::after,
@@ -23,6 +15,18 @@
 
 .link{
   text-decoration: none;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.min-w-90{
+  min-width: 90%;
+}
+
+.min-w-100{
+  min-width: 100%;
 }
 
 .flex{

@@ -1,5 +1,6 @@
 import React from 'react'
-import NavBar from './NavBar'
+import NavBar from '../navigation/NavBar'
+import './styles/form.css'
 
 interface Props {
   navTitle: string
@@ -23,7 +24,7 @@ const BaseGenericForm = ({
       <NavBar title={navTitle} urlBack={urlBack} />
       <form className='container__form' onSubmit={(e) => handleSubmit(e)}>
         <div>
-          <h2 className='title title__normal'>{titleForm}</h2>
+          <h2 className='fw-bold'>{titleForm}</h2>
           <p>
             <span>{subTitleForm}</span>
           </p>

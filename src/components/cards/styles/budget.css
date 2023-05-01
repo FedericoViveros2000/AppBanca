@@ -1,0 +1,7 @@
+.container__target--budget{
+    scroll-snap-align: center;
+    height: 250px;
+    min-width: 70%;
+    flex-shrink: 0;
+}
+

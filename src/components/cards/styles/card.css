@@ -8,14 +8,6 @@
     display: flex;
 }
 
-.container__cards::-webkit-scrollbar{
-    display: none;
-}
-
-.container__cards{
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
 
 .target{
     list-style: none;
@@ -24,12 +16,13 @@
     padding: 20px;
 }
 
-.min-w-90{
-    min-width: 90%;
+.scroll-none::-webkit-scrollbar{
+    display: none;
 }
 
-.min-w-100{
-    min-width: 100%;
+.scroll-none{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .container__target--card{
@@ -37,13 +30,6 @@
     scroll-snap-align: center;
 }
 
-.container__target--budget{
-    /* background-color: var(--background-light-card-subscriptions); */
-    scroll-snap-align: center;
-    height: 250px;
-    min-width: 70%;
-    flex-shrink: 0;
-}
 
 .container__target--balance{
     position: absolute;
@@ -56,7 +42,6 @@
 }
 
 .container__target--subscriptions{
-    /* background-color: var(--background-light-card-subscriptions); */
     scroll-snap-align: center;
     height: 250px;
     min-width: 70%;

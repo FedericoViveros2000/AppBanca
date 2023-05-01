@@ -1,11 +1,10 @@
-import React from 'react'
 import { useCreateAccount } from '../hooks/useCreateAccount'
-import BaseGenericForm from '../components/BaseGenericForm'
+import BaseGenericForm from '../components/forms/BaseGenericForm'
 import CreateAccount from '../components/CreateAccount'
 import ModalBasic from '../components/modals/ModalBasic'
 import ModalSuccess from '../components/modals/ModalSuccess'
 import successImg from '../assets/success_img.png'
-import Loader from '../components/Loader'
+import Loader from '../components/loaders/Loader'
 
 const CreateAccountPage = () => {
   // let { handleChange, handleSubmit, errors } = useForm(validationForm);

@@ -1,7 +1,9 @@
+import "./styles/card.css";
 import { useGetCards } from "../../hooks/useGetCards";
 import TargetCardLoader from "./TargetCardLoader";
 import { Cards } from "../../interfaces/cards.types";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { useRealtime } from "../../hooks/useRealtime";
 
 interface Data {
   data: Cards[];
@@ -10,12 +12,13 @@ interface Data {
 
 const TargetCards = () => {
   let { id } = JSON.parse(localStorage.getItem("userData") as string)[0];
-
+  let {data: newBalance} = useRealtime({
+    eventType: 'UPDATE',
+    table: 'card_balance'
+  });
   let { isLoading, data }: Data = useGetCards({ id_customer: id });
+  if (isLoading) return <TargetCardLoader />;
 
-  if (isLoading) {
-    return <TargetCardLoader />;
-  }
   return (
     <>
       {data?.map((card) => (
@@ -35,7 +38,8 @@ const TargetCards = () => {
           <div className="container__target--balance">
             <p className="title-balance font-light fw-normal">Balance</p>
             <h2 className="font-regular-title-large font-light fw-normal">
-              {formatCurrency(card.card_balance)}
+              {/* {formatCurrency(card.card_balance)} */}
+              {formatCurrency(newBalance?.card_balance || data[0].card_balance)}
             </h2>
           </div>
         </li>

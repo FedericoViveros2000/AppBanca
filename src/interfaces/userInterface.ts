@@ -23,12 +23,12 @@ type UserRegister = Pick<UserData, 'nombre' | 'email' | 'password'>
 } */
 
 interface UserLogin {
-  user: string
+  user: number
   password: string
 }
 
 export interface AppState {
-  data: UserData[] | null
+  data: UserData[]
   form: UserLogin
   register: UserRegister
   errors: {

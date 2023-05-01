@@ -16,6 +16,9 @@
     --shadow-bottom: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     --background-top-bar: #ffffff;
 
+    --spending-color: #d9f4fd;
+    --income-color: #e5ecf9;
+
     --font-light: #ffffff;
     --font-dark: #082755;
     --font-name: #17224f;
@@ -57,6 +60,13 @@
 
 .bg-light-budget{
     background-color: var(--background-light-card-budget);
+}
+
+.bg-spending-color{
+    background-color: var(--spending-color);
+}
+.bg-income-color{
+    background-color: var(--income-color);
 }
 
 .bg-icon-plus{

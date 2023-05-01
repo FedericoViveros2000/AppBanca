@@ -3,7 +3,7 @@ interface Props {
 }
 
 const ContainerSlider = ({ children }: Props) => {
-  return <ul className="container__target">{children}</ul>;
+  return <ul className="container__target scroll-none">{children}</ul>;
 };
 
 export default ContainerSlider;

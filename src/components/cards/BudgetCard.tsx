@@ -1,3 +1,5 @@
+import './styles/budget.css';
+
 interface Props {
     children?: JSX.Element;
     bgColor: string;
