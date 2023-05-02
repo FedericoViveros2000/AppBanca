@@ -38,7 +38,7 @@ const useGetCards = ({ id_customer }: params) => {
                 error: null,
               },
             ]);
-        }).finally(() => setIsLoading(false));;
+        }).finally(() => setIsLoading(false));
       })
       .catch((err) => console.log(err))
   }, []);

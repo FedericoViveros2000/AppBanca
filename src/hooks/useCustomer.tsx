@@ -19,7 +19,7 @@ const useCustomer = () => {
   const getData = async ({ nro_documento, password }: Props) => {
     try {
       setIsFetching(true);
-      let response = await getUserData({
+      const response = await getUserData({
         nro_documento,
         password,
       });

@@ -12,7 +12,7 @@ const getUserData = async ({
   nro_documento,
   password,
 }: customParams): Promise<AppState["data"]> => {
-  let userData = JSON.parse(localStorage.getItem("userData") as string);
+  const userData = JSON.parse(localStorage.getItem("userData") as string);
   if (userData !== null) {
     return userData;
   }

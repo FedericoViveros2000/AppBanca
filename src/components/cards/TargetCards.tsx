@@ -11,13 +11,24 @@ interface Data {
 }
 
 const TargetCards = () => {
-  let { id } = JSON.parse(localStorage.getItem("userData") as string)[0];
-  let {data: newBalance} = useRealtime({
+  const { id } = JSON.parse(localStorage.getItem("userData") as string)[0];
+  const {data: newBalance} = useRealtime({
     eventType: 'UPDATE',
     table: 'card_balance'
   });
-  let { isLoading, data }: Data = useGetCards({ id_customer: id });
-  if (isLoading) return <TargetCardLoader />;
+  const { isLoading, data }: Data = useGetCards({ id_customer: id });
+  if (isLoading) return 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <TargetCardLoader />;
 
   return (
     <>

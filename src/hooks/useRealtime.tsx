@@ -14,7 +14,7 @@ const useRealtime = ({
   table = "card_balance",
 }: realtimeProps) => {
     
-  let [data, setData] = useState({
+  const [data, setData] = useState({
     card_balance: 0
   });
 

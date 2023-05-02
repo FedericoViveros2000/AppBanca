@@ -26,7 +26,7 @@ const useLogin = (validationForm: Function) => {
 
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let { user, password } = formLogin;
+    const { user, password } = formLogin;
     const error = validationForm(e, formLogin);
     if (user && password && Object.entries(error).length === 0) {
       if (!auth) {
