@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AppState } from "../interfaces/userInterface";
 import { getUserData } from "../utils/getUserData";
 
@@ -23,6 +23,8 @@ const useCustomer = () => {
         nro_documento,
         password,
       });
+      console.log(response);
+      
       setData(response);
     } catch (error) {
       console.log(error)

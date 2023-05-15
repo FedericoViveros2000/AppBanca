@@ -3,28 +3,24 @@ import { supabase } from "../supabase/index";
 import { notifications } from "../utils/notifications";
 import { TYPE_MOVEMENTS } from "../interfaces/enums/Notifications";
 import { formatCurrency } from "../utils/formatCurrency";
-
 interface realtimeProps {
-  eventType: string;
   table: string;
 }
 
 const useRealtime = ({
-  eventType = "UPDATE",
   table = "card_balance",
 }: realtimeProps) => {
-    
   const [data, setData] = useState({
-    card_balance: 0
+    card_balance: 0,
   });
 
-  useEffect(() => {
+  const realtime = () => {
     const realtimeBalance = supabase
-      .channel("schema-db-changes")
+      .channel("table-db-changes")
       .on(
         "postgres_changes",
         {
-          event: eventType,
+          event: "UPDATE",
           schema: "public",
           table: table,
         },
@@ -34,12 +30,16 @@ const useRealtime = ({
           });
           notifications({
             card_balance: formatCurrency(payload.new?.card_balance),
-            type_movement: TYPE_MOVEMENTS.DEBIT
-          })
+            type_movement: TYPE_MOVEMENTS.DEBIT,
+          });
         }
       )
       .subscribe();
-    return () => realtimeBalance.unsubscribe();
+    return realtimeBalance;
+  };
+
+  useEffect(() => {
+    realtime();
   }, []);
 
   return {

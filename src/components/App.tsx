@@ -1,22 +1,20 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import LoginPage from "../views/LoginPage";
 import CreateAccountPage from "../views/CreateAccountPage";
 import HomePage from "../views/HomePage";
 import HistoryPage from "../views/HistoryPage";
 import { Context } from "../context/AuthContext";
 import { ProtectedRoutes } from "../router/ProtectedRoutes";
-import { AppState } from "../interfaces/userInterface";
 import './index.css';
 
 const App = () => {
-  const authUser: AppState["data"] = useContext(Context);
-  
+  const auth = useContext(Context);    
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route element={<ProtectedRoutes userAuth={!!authUser} />}>
+        <Route element={<ProtectedRoutes userAuth={!!auth} />}>
           <Route path="/CreateAccount" element={<CreateAccountPage />} />
           <Route path="/Home" element={<HomePage />} />
         </Route>

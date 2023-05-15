@@ -6,10 +6,13 @@ interface Props {
   redirectTo?: string;
 }
 
-const ProtectedRoutes = ({ children, userAuth, redirectTo = "/" }: Props) => {  
+const ProtectedRoutes = ({ children, userAuth, redirectTo = "/" }: Props) => {   
+  console.log(userAuth);
+   
   if (!userAuth) {
     return <Navigate to={redirectTo}></Navigate>;
   }
+
   return children || <Outlet />;
 };
 

@@ -1,6 +1,6 @@
 import './styles/navbarUser.css';
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { AiFillBell } from "react-icons/ai";
 
 interface Props {

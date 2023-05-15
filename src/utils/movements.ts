@@ -7,7 +7,7 @@ const debitTrans = ({
     text,
     img
 }: Props) => {
-  const notification = new Notification("Transferencia Exitosa", {
+  new Notification("Transferencia Exitosa", {
     body: text,
     icon: img,
   });

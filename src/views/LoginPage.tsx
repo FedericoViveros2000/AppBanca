@@ -1,16 +1,13 @@
 import { Link } from "react-router-dom";
-import { useCustomer } from "../hooks/useCustomer";
 import BaseGenericForm from "../components/forms/BaseGenericForm";
-import { AppState } from "../interfaces/userInterface";
 import { useLogin } from "../hooks/useLogin";
-import { validationLogin } from "../components/validations/validationLogin";
 import Loader from "../components/loaders/Loader";
 import { Form } from "../interfaces/loginTypes";
 
 const LoginPage = () => {
   
   const { isFetching, handleChangeLogin, handleLogin, errors }: Form =
-  useLogin(validationLogin);
+  useLogin();
   
   if (isFetching) return <Loader />;
 

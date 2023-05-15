@@ -5,22 +5,19 @@ import Spending from "../components/cards/Spending";
 import ListTransaction from "../components/transactions/ListTransactions";
 import BudgetCard from "../components/cards/BudgetCard";
 import ContainerSlider from "../components/cards/ContainerSlider";
+import { useGetBalance } from "../hooks/useGetBalance";
+import { useContext } from "react";
 import { Context } from "../context/AuthContext";
-import { useContext, useEffect } from "react";
-import { notifications } from "../utils/notifications";
-
-interface AuthData{
-  auth: string[];
-  changeAuth: React.Dispatch<React.SetStateAction<string[]>>
-}
+import { AuthContext } from "../interfaces/authContext.types";
 
 const HomePage = () => {
-  const {authData} : AuthData = useContext(Context);  
-  
+  const auth : AuthContext['auth'] = useContext(Context);  
+  const { balanceAmount, isFetching } = useGetBalance();
+
   return (
     <>
       <main className="container__main">
-        <NavBarDetailUser name={authData[0]?.nombre} />
+        <NavBarDetailUser name={auth[0]?.nombre} />
         <section className="container__section">
           <section className="section__separator container__cards scroll-none">
             <ContainerSlider>
@@ -28,10 +25,14 @@ const HomePage = () => {
             </ContainerSlider>
           </section>
           <section className="section__separator container__main--spending">
-            <Spending 
-              spending={1000}
-              income={10000}
-            />
+            {isFetching ? (
+              <p>Cargando mi gente</p>
+            ) : (
+              <Spending
+                spending={balanceAmount?.total_debit || 0}
+                income={balanceAmount?.total_credit || 0}
+              />
+            )}
           </section>
           <section className="section__separator">
             <ListTransaction />

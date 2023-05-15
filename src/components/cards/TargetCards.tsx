@@ -13,22 +13,10 @@ interface Data {
 const TargetCards = () => {
   const { id } = JSON.parse(localStorage.getItem("userData") as string)[0];
   const {data: newBalance} = useRealtime({
-    eventType: 'UPDATE',
     table: 'card_balance'
   });
   const { isLoading, data }: Data = useGetCards({ id_customer: id });
-  if (isLoading) return 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <TargetCardLoader />;
+  if (isLoading) return  <TargetCardLoader />;
 
   return (
     <>
@@ -49,7 +37,6 @@ const TargetCards = () => {
           <div className="container__target--balance">
             <p className="title-balance font-light fw-normal">Balance</p>
             <h2 className="font-regular-title-large font-light fw-normal">
-              {/* {formatCurrency(card.card_balance)} */}
               {formatCurrency(newBalance?.card_balance || data[0].card_balance)}
             </h2>
           </div>

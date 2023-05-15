@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
-import { ROUTES } from "../router/routes.types";
 import { AppState } from "../interfaces/userInterface";
 import { useNavigate } from "react-router-dom";
-//import { getUserData } from "../utils/getUserData";
 import { Context } from "../context/AuthContext";
 import { useCustomer } from "./useCustomer";
+import {AuthContext} from '../interfaces/authContext.types'
+/* validationForm: (e:React.SyntheticEvent,  formLogin: AppState["form"]) => string*/
+const useLogin = () => {
+  const {auth, changeAuth} : AuthContext = useContext(Context);
 
-const useLogin = (validationForm: Function) => {
-  const {auth, changeAuth}= useContext(Context);
   const {getData, data, isFetching} = useCustomer();
+
   const [formLogin, setFormLogin] = useState<AppState["form"]>({
     user: 0,
     password: "",
@@ -27,22 +28,23 @@ const useLogin = (validationForm: Function) => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { user, password } = formLogin;
-    const error = validationForm(e, formLogin);
-    if (user && password && Object.entries(error).length === 0) {
-      if (!auth) {
+    //const error = validationForm(e, formLogin);
+    //if (user && password && Object.entries(error).length === 0) {
+      if (!auth) {       
         getData({
           nro_documento: user,
           password: password,
         })
       }
-    } else {
-      setErrors(error);
-    }
+    //} else {
+      //setErrors(error);
+    //}
   };
 
   useEffect(() => {
-    if (data.length > 0) {
-      changeAuth(data);
+    if (data.length > 0) {        
+      changeAuth(JSON.stringify(data));
+      //changeAuth(JSON.stringify(data) as string);
       localStorage.setItem("userData", JSON.stringify(data));
       navigate('/Home');
     }

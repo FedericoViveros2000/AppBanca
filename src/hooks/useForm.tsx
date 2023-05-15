@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { AppState } from '../interfaces/userInterface'
-import { useFetch } from './useFetch'
 
-const useForm = (validationForm: Function) => {
+const useForm = () => {
   const [form, setForm] = useState<AppState['register']>({
     nombre: '',
     apellido: '',
     direccion: '',
+    password: '',
     email: '',
-    nro_documento: '',
+    nro_documento: 0,
     telefono: ''
   })
 
@@ -25,12 +25,12 @@ const useForm = (validationForm: Function) => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     console.log(form)
-    /* let error = validationForm(e, form);
+    const error = 'Error';
     if (Object.entries(error).length === 0) {
       //getUserData(form.user, form.password);
     } else {
       setErrors(error);
-    } */
+    }
   }
 
   return {

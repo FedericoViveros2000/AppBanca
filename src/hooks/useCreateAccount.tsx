@@ -5,8 +5,14 @@ import { AppState } from '../interfaces/userInterface'
 const initialValue = {
   nombre: '',
   email: '',
-  password: ''
+  apellido: '',
+  password: '',
+  direccion: '',
+  nro_documento: 0,
+  telefono: ''
 }
+
+/* 'nombre' | 'email' | 'apellido' |'direccion'| 'nro_documento' | 'telefono' */
 
 const useCreateAccount = () => {
   const [newUser, setNewUser] = useState<AppState['createAccount']>(initialValue)
@@ -35,7 +41,7 @@ const useCreateAccount = () => {
         setLoading(true)
         console.log(newUser)
 
-        const { data, error } = await supabase
+        const { error } = await supabase
           .from('clientes')
           .insert(newUser)
           .select()

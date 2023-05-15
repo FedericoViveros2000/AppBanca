@@ -1,11 +1,11 @@
 import './styles/budget.css';
 
 interface Props {
-    children?: JSX.Element;
+   // children?: JSX.Element;
     bgColor: string;
 }
 
-const BudgetCard = ({children, bgColor}: Props) => {
+const BudgetCard = ({bgColor}: Props) => {
     return(
         <>
             <li className={`container__target--budget target ${bgColor}`}></li>

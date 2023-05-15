@@ -6,7 +6,7 @@ import {
 } from "../interfaces/enums/Notifications";
 
 interface Props {
-  card_balance: number;
+  card_balance: string;
   type_movement: TYPE_MOVEMENTS.DEBIT | TYPE_MOVEMENTS.TRANSFER;
 }
 
