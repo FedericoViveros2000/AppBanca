@@ -1,0 +1,60 @@
+.menu-transactions {
+  position: fixed;
+  top: 0px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  transition-property: visibility, opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.3s;
+}
+
+.menu-transactions.hide {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.menu-transactions.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.menu-transaction {
+  max-width: 500px;
+  height: 50%;
+  padding: 20px;
+  margin: 0 auto;
+  background: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition-property: transform;
+  transition-duration: 0.2s;
+  transition-timing-function: linear;
+  transition-delay: 0.3s;
+}
+
+.menu-transaction.hide {
+  transform: translateY(200%);
+}
+
+.menu-transaction.show {
+  transform: translateY(100%);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  height: 85%;
+}
+
+.item-menu {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  list-style: none;
+}

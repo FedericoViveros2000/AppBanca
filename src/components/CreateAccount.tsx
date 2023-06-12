@@ -34,7 +34,7 @@ const CreateAccount = ({ handleCreateAccount, handleIsAccept, newUser, error }: 
           Email address
         </label>
         <div className='container__messages'>
-          <input
+          {/* <input
             type='text'
             autoComplete='off'
             className='input__login'
@@ -43,7 +43,7 @@ const CreateAccount = ({ handleCreateAccount, handleIsAccept, newUser, error }: 
             value={newUser.email}
             onChange={handleCreateAccount}
             placeholder='Enter your email address'
-          />
+          /> */}
           <p className='btn-check'>
             <i className='fa-solid fa-check' />
           </p>

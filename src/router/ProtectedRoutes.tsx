@@ -7,9 +7,9 @@ interface Props {
 }
 
 const ProtectedRoutes = ({ children, userAuth, redirectTo = "/" }: Props) => {   
-  console.log(userAuth);
+  console.log(!userAuth);
    
-  if (!userAuth) {
+  if (!userAuth) {    
     return <Navigate to={redirectTo}></Navigate>;
   }
 

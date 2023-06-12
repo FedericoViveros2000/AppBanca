@@ -1,14 +1,14 @@
-import React from 'react'
-import NavBar from '../navigation/NavBar'
-import './styles/form.css'
+import React from "react";
+import NavBar from "../navigation/NavBar";
+import "./styles/form.css";
 
 interface Props {
-  navTitle: string
-  urlBack: string
-  titleForm: string
-  subTitleForm: string
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
-  children?: JSX.Element
+  navTitle: string;
+  urlBack: string;
+  titleForm: string;
+  subTitleForm: string;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  children?: JSX.Element;
 }
 
 const BaseGenericForm = ({
@@ -17,22 +17,20 @@ const BaseGenericForm = ({
   titleForm,
   subTitleForm,
   children,
-  handleSubmit
+  handleSubmit,
 }: Props) => {
   return (
-    <div className='container'>
+    <div className="container bg-principal">
       <NavBar title={navTitle} urlBack={urlBack} />
-      <form className='container__form' onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <h2 className='fw-bold'>{titleForm}</h2>
-          <p>
-            <span>{subTitleForm}</span>
-          </p>
-        </div>
+      <form className="container__form bg-light" onSubmit={(e) => handleSubmit(e)}>
+        <h2 className="fw-bold fs-normal-xl">{titleForm}</h2>
+        <p>
+          <span>{subTitleForm}</span>
+        </p>
         {children}
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default BaseGenericForm
+export default BaseGenericForm;

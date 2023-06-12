@@ -6,7 +6,7 @@ import App from '../src/components/App';
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <AuthContext>
-        <App/>
+      <App/>
     </AuthContext>
   </React.StrictMode>
 );

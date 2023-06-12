@@ -10,13 +10,17 @@ interface Data {
   isLoading: boolean;
 }
 
-const TargetCards = () => {
-  const { id } = JSON.parse(localStorage.getItem("userData") as string)[0];
-  const {data: newBalance} = useRealtime({
-    table: 'card_balance'
+interface Props {
+  id_customer: number;
+}
+
+function TargetCards({ id_customer }: Props) {
+  const { data: newBalance } = useRealtime({
+    table: "card_balance",
   });
-  const { isLoading, data }: Data = useGetCards({ id_customer: id });
-  if (isLoading) return  <TargetCardLoader />;
+
+  const { isLoading, data }: Data = useGetCards({ id_customer: id_customer });
+  if (isLoading) return <TargetCardLoader />;
 
   return (
     <>
@@ -25,7 +29,7 @@ const TargetCards = () => {
           style={{
             backgroundColor: card.card_color || "blueviolet",
           }}
-          className={`'container__target--card relative target font-light' ${
+          className={`container__target--card relative target font-light ${
             data.length === 1 ? "min-w-100" : "min-w-90"
           }`}
           key={card.id}
@@ -37,13 +41,14 @@ const TargetCards = () => {
           <div className="container__target--balance">
             <p className="title-balance font-light fw-normal">Balance</p>
             <h2 className="font-regular-title-large font-light fw-normal">
-              {formatCurrency(newBalance?.card_balance || data[0].card_balance)}
+              {/* formatCurrency(newBalance?.card_balance) ||  */}
+              {formatCurrency(card?.card_balance)}
             </h2>
           </div>
         </li>
       ))}
     </>
   );
-};
+}
 
-export default TargetCards;
+export { TargetCards };

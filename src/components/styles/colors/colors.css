@@ -1,5 +1,6 @@
 :root{
     --principal-color: #0041c4;
+    --btn-inactive: #4f72b7;
     --background-light-color: #fff;
     --letter-gray-color: #969fb3;
     --input-background: #efeeee;
@@ -62,6 +63,10 @@
     background-color: var(--background-light-card-budget);
 }
 
+.bg-light-grey{
+    background-color: var(--background-light-card-budget);
+}
+
 .bg-spending-color{
     background-color: var(--spending-color);
 }
@@ -71,5 +76,9 @@
 
 .bg-icon-plus{
     background-color: var(--icon-plus);
+}
+
+.bg-dark-transparent{
+    background-color: rgba(0, 0, 0, 0.5);
 }
 

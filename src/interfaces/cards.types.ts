@@ -1,3 +1,4 @@
+import { Balance } from "./balance.types";
 export interface Cards {
     id: number;
     card_color: string | null;

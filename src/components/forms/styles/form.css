@@ -5,7 +5,6 @@
     bottom: 0;
     padding: 25px;
     max-height: 80%;
-    background-color: var(--background-light-color);
     border-radius: 15px 15px 0px 0px;
     line-height: 2;
 }
@@ -113,7 +112,6 @@ input[type="checkbox"]{
     align-items: center;
     font-size: 12px;
     padding: 0px 15px;
-    margin: 15px 0px;
     background-color: var(--input-background);
     border-radius: 10px;
 }

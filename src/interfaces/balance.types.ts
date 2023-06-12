@@ -15,10 +15,11 @@ export interface TotalData {
     total_debit: number | null;
 }
 
-
-type TypeTransaction =  'Credit' | 'Debit';
+export type TypeTransaction =  'Credit' | 'Debit';
 
 export interface TypesTransactions{
     type_transaction: TypeTransaction;
-    id_customer: number
+    id_customer: number;
+    first_date: string;
+    last_date: string;
 }

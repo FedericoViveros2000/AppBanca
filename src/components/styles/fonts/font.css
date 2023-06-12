@@ -7,9 +7,8 @@
 
 /* Tamanhos de fuente y negrita */
 :root{
-    /* --font-size-regular-normal: 1rem; */
-    --font-size-regular-normal: clamp(1rem, 1rem + 1vw ,1.5rem)
-    --font-size-regular-title: clamp(1.375rem, 1rem + 1vw, 2rem);
+    --font-size-regular-normal: 1rem;
+    --font-size-regular-title: clamp(1.1rem, 1rem + .5vw, 2rem);
     --font-size-regular-title-large: clamp(1.5rem, 1rem + 1vw, 2rem);
     --font-size-bold: clamp(1.25rem, 1rem + 1vw, 2rem);
     --font-weight-thin: 400;
@@ -25,6 +24,10 @@
 
 .fs-normal-md{
     font-size: var(--font-size-regular-title);
+}
+
+.fs-icon{
+    font-size: 20px;
 }
 
 .fs-normal-xl{

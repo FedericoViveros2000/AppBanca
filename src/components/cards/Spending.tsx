@@ -6,7 +6,7 @@ interface Props {
   income?: number;
 }
 
-const Spending = ({ spending, income }: Props) => {
+function Spending({ spending, income }: Props) {
   return (
     <section className="flex">
       <article className="spending flex items-center">
@@ -29,6 +29,6 @@ const Spending = ({ spending, income }: Props) => {
       </article>
     </section>
   );
-};
+}
 
-export default Spending;
+export { Spending };

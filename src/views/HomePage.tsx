@@ -1,18 +1,20 @@
-import BottomBar from "../components/navigation/BottomBar";
-import NavBarDetailUser from "../components/navigation/NavBarDetailUser";
-import TargetCards from "../components/cards/TargetCards";
-import Spending from "../components/cards/Spending";
-import ListTransaction from "../components/transactions/ListTransactions";
-import BudgetCard from "../components/cards/BudgetCard";
-import ContainerSlider from "../components/cards/ContainerSlider";
+import { BottomBar } from "../components/navigation/BottomBar";
+import { NavBarDetailUser } from "../components/navigation/NavBarDetailUser";
+import { TargetCards } from "../components/cards/TargetCards";
+import { Spending } from "../components/cards/Spending";
+import { ListTransaction } from "../components/transactions/ListTransactions";
+import { BudgetCard } from "../components/cards/BudgetCard";
+import { ContainerSlider } from "../components/cards/ContainerSlider";
 import { useGetBalance } from "../hooks/useGetBalance";
-import { useContext } from "react";
-import { Context } from "../context/AuthContext";
-import { AuthContext } from "../interfaces/authContext.types";
+import { useAuthContext } from "../context/AuthContext";
+import { TITLES } from "../utils/data/HomeData";
 
 const HomePage = () => {
-  const auth : AuthContext['auth'] = useContext(Context);  
-  const { balanceAmount, isFetching } = useGetBalance();
+  const { auth } = useAuthContext();
+
+  const { balanceAmount, isFetching } = useGetBalance({
+    id_customer: auth[0]?.id,
+  });
 
   return (
     <>
@@ -21,7 +23,7 @@ const HomePage = () => {
         <section className="container__section">
           <section className="section__separator container__cards scroll-none">
             <ContainerSlider>
-              <TargetCards />
+              <TargetCards id_customer={auth[0]?.id} />
             </ContainerSlider>
           </section>
           <section className="section__separator container__main--spending">
@@ -38,19 +40,17 @@ const HomePage = () => {
             <ListTransaction />
           </section>
         </section>
-        <section className="section__separator bg-light">
-          <h3 className="font-dark font-regular-text-bold">Monthly Budget</h3>
-          <article className="container__cards section__separator scroll-none">
-            <ContainerSlider>
-              <BudgetCard bgColor="bg-light-budget" />
-            </ContainerSlider>
-          </article>
-        </section>
       </main>
+      <section className="section__separator container__main bg-light">
+        <h3 className="font-dark fs-normal-md">{TITLES.MONTHLY_SUSCRIPTIONS}</h3>
+        <article className="container__cards section__separator scroll-none">
+          <ContainerSlider>
+            <BudgetCard bgColor="bg-light-budget" />
+          </ContainerSlider>
+        </article>
+      </section>
       <section className="container__section--budget bg-principal">
-        <h3 className="font-light font-regular-text-bold">
-          Monthly Subscriptions
-        </h3>
+        <h4 className="font-light fs-normal-md">{TITLES.MONTHLY_SUSCRIPTIONS}</h4>
         <article className="container__cards section__separator scroll-none">
           <ContainerSlider>
             <BudgetCard bgColor="bg-light" />

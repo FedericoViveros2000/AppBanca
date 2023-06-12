@@ -1,13 +1,21 @@
 import { supabase } from "../supabase";
+import {FUNCTIONS} from "../interfaces/enums/Functions"
 import { Cards } from "../interfaces/cards.types";
-import { Balance, Transactions, TypesTransactions } from "../interfaces/balance.types";
-import { TABLES, COLUMNS, VIEWS } from "../interfaces/enums/Tables";
+import {
+  Balance,
+  TypesTransactions,
+} from "../interfaces/balance.types";
+import { TABLES, COLUMNS } from "../interfaces/enums/Tables";
+import { TYPE_TRANSACTIONS } from "../interfaces/enums/Transactions";
 
-let TABLE ="";
+let FUNCTION = "";
 
 //Metodo mediante el cual obtenemos las tarjetas
-const getCards = async (): Promise<Cards[]> => {
-  const { data: cards, error } = await supabase.from(TABLES.CARDS).select("*");
+const getCards = async (id_customer: number): Promise<Cards[]> => {
+  //const { data: cards, error } = await supabase.from(TABLES.CARDS).select("*");
+  const { data: cards, error } = await supabase.rpc(FUNCTIONS.GETCARDS, {
+    id_cliente: id_customer,
+  });
   if (error) throw new Error("Error al obtener las tarjetas");
   return cards || [];
 };
@@ -24,24 +32,23 @@ const getBalance = async (id_customer: number): Promise<Balance[]> => {
 
 const getTransactionsTypes = async ({
   id_customer,
-  type_transaction
-}: TypesTransactions): Promise<Transactions[]> => {
+  type_transaction,
+  first_date,
+  last_date
+}: TypesTransactions): Promise<number> => {
   
-  if (type_transaction == 'Credit') {
-    TABLE = VIEWS.TRANSACTION_CREDIT;
-  }else{
-    TABLE = VIEWS.TRANSACTION_DEBIT;
+  if (type_transaction == TYPE_TRANSACTIONS.CREDIT) {
+    FUNCTION = FUNCTIONS.GETTRANSACTIONCREDIT;
+  } else {
+    FUNCTION = FUNCTIONS.GETTRANSACTIONDEBIT;
   }
 
-  const { data: card_transaction, error } = await supabase
-    .from(TABLE)
-    .select("*")
-    .eq(COLUMNS.CUSTOM_ID_TRANSFERED, id_customer);
-    console.log(card_transaction);
-
-    console.log(card_transaction);
-    
-    
+  const { data: card_transaction, error } = await supabase.rpc(FUNCTION, {
+    id_cliente: id_customer,
+    fecha_inicio: first_date,
+    fecha_fin: last_date
+  })
+  
   if (error) throw new Error("Error al obtener los movimientos del cliente");
   return card_transaction || null;
 };

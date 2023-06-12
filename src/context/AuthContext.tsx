@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { AuthContext } from "../interfaces/authContext.types";
 interface Props {
   children: React.ReactElement;
@@ -19,28 +19,18 @@ const INITIAL_VALUE = {
 
 const Context = createContext<AuthContext>({
   auth: [INITIAL_VALUE],
-  //changeAuth: () => void {}
+  setAuth: () => {}
 });
 
+const useAuthContext = () : AuthContext => useContext(Context);
+
 const AuthContext = ({ children }: Props) => {
-  const [auth, setAuth] = useState<AuthContext['auth']>(
-    JSON.parse(localStorage.getItem("userData") as string)
-  );    
-  /* useEffect(() => {
-    setAuth({
-      auth: JSON.parse(localStorage.getItem("userData") as string)
-    })
-  }, []) */
-
-  /* const changeState = (): void => setAuth({
-    auth: [INITIAL_VALUE]
-  }); */
-
+  const [auth, setAuth] = useState<AuthContext['auth']>(JSON.parse(sessionStorage.getItem('userData') as string));      
   return (
-    <Context.Provider value={auth}>
+    <Context.Provider value={{auth, setAuth}}>
       {children}
     </Context.Provider>
   );
 };
 
-export { AuthContext, Context };
+export { AuthContext, useAuthContext };

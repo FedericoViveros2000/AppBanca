@@ -1,16 +1,16 @@
-import './styles/navbarUser.css';
+import "./styles/navbarUser.css";
 
 import { useState, useEffect } from "react";
 import { AiFillBell } from "react-icons/ai";
 
 interface Props {
-  name: string
+  name: string;
 }
 
-const NavBarDetailUser = ({name}: Props) => {
-  const [greeting, setGreeting] = useState(""); 
+function NavBarDetailUser({ name }: Props) {
+  const [greeting, setGreeting] = useState("");
 
-  useEffect(() => {   
+  useEffect(() => {
     const currentHour = new Date().getHours();
     if (currentHour >= 6 && currentHour < 12) {
       setGreeting("Good Morning");
@@ -28,9 +28,7 @@ const NavBarDetailUser = ({name}: Props) => {
       <ul className="container__header--info">
         <li>
           <span className="font-regular fw-thin font-grey">{greeting}</span>
-          <p className="fw-bold font-regular-text-bold font-name">
-            {name}
-          </p>
+          <p className="fw-bold font-regular-text-bold font-name">{name}</p>
         </li>
         <li className="container__header--notification">
           <p className="icons">
@@ -46,6 +44,6 @@ const NavBarDetailUser = ({name}: Props) => {
       </ul>
     </header>
   );
-};
+}
 
-export default NavBarDetailUser;
+export { NavBarDetailUser };

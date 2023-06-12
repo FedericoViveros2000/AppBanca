@@ -28,7 +28,7 @@
     align-items: center;
     width: 100%;
     padding: 10px 0px;
-    margin-top: 15px;
+    gap: 1rem;
     border-radius: 10px;
     line-height: 1.5;
 }
