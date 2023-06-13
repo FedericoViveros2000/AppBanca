@@ -20,6 +20,7 @@
     --spending-color: #d9f4fd;
     --income-color: #e5ecf9;
 
+    --bg-input-dark: #023db4;
     --font-light: #ffffff;
     --font-dark: #082755;
     --font-name: #17224f;
@@ -29,6 +30,10 @@
 
 .bg-principal{
     background: var(--principal-color);
+}
+
+.bg-principal-dark{
+    background: var(--bg-input-dark);
 }
 
 .bg-light{

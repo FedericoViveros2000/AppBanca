@@ -20,11 +20,6 @@
     display: none;
 }
 
-.scroll-none{
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
 .container__target--card{
     flex-shrink: 0;
     scroll-snap-align: center;
