@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { AppState } from "../interfaces/userInterface";
 import { useAuthContext } from "../context/AuthContext";
 import { useCustomer } from "./useCustomer";
-import {generateServerKey} from "../../webAuth/server/Auth"
 
 const useLogin = () => {
   const { auth } = useAuthContext();

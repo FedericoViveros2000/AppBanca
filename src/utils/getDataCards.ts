@@ -12,7 +12,6 @@ let FUNCTION = "";
 
 //Metodo mediante el cual obtenemos las tarjetas
 const getCards = async (id_customer: number): Promise<Cards[]> => {
-  //const { data: cards, error } = await supabase.from(TABLES.CARDS).select("*");
   const { data: cards, error } = await supabase.rpc(FUNCTIONS.GETCARDS, {
     id_cliente: id_customer,
   });

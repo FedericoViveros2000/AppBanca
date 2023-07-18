@@ -9,7 +9,7 @@ export interface UserData {
   fecha_nacimiento?: string | null
   created_at: string
   telefono: string | null
-
+  currentChallenge: string | undefined;
   /* apellido: null,
   created_at: "00000000",
   direccion: null,

@@ -39,8 +39,6 @@ const useCreateAccount = () => {
     if (isAccept) {
       try {
         setLoading(true)
-        console.log(newUser)
-
         const { error } = await supabase
           .from('clientes')
           .insert(newUser)
