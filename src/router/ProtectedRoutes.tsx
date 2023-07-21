@@ -6,9 +6,7 @@ interface Props {
   redirectTo?: string;
 }
 
-const ProtectedRoutes = ({ children, userAuth, redirectTo = "/" }: Props) => {   
-  console.log(!userAuth);
-   
+const ProtectedRoutes = ({ children, userAuth, redirectTo = "/" }: Props) => {      
   if (!userAuth) {    
     return <Navigate to={redirectTo}></Navigate>;
   }

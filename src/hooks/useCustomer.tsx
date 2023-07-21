@@ -3,8 +3,12 @@ import { AppState } from "../interfaces/userInterface";
 import { getUserData } from "../utils/getUserData";
 import { useAuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { registerNewUser, verifyAuthenticationUser } from "../server/index";
-import { startRegistration } from "@simplewebauthn/browser";
+import {startAuthentication, startRegistration} from "@simplewebauthn/browser";
+
+/* import { registerNewUser, verifyAuthenticationUser } from "../server/index";
+import { startRegistration } from "@simplewebauthn/browser"; */
+import { verificationFinalUser, verifyAuthUser } from "../server/auth";
+import { registerNewUser, verifyAuthenticationUser } from "../server";
 
 export interface fetchData {
   data: AppState["data"];
@@ -30,7 +34,7 @@ const useCustomer = () => {
         password,
       });
       if (response.length > 0) {
-        registerNewUser({
+        /* registerNewUser({
           id: response[0]?.nro_documento as unknown as string,
           username: response[0]?.nombre,
           currentChallenge: response[0]?.currentChallenge,
@@ -43,7 +47,22 @@ const useCustomer = () => {
               console.log(prueba);
             });
           });
-        });
+        }); */
+        verifyAuthUser({
+          id: response[0]?.nro_documento as unknown as string,
+          username: response[0]?.nombre,
+          currentChallenge: response[0]?.currentChallenge,
+        }).then((resp) => {          
+          startAuthentication(resp).then(respStart => {
+            verificationFinalUser({
+              idUser: response[0]?.nro_documento as unknown as string,
+              body: respStart,
+              currentChallenge: resp.challenge
+            }).then(prueba => {
+              console.log(prueba);
+            })
+          })
+        })
         sessionStorage.setItem("userData", JSON.stringify(response));
         navigate("/Home");
       }
