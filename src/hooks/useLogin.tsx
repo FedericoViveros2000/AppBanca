@@ -33,11 +33,16 @@ const useLogin = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { user, password } = formLogin;
+    console.log(auth);
+    
     if (!auth) {
-      getData({
+      /* {
         nro_documento: user,
         password: password,
-      }) 
+      } */
+      getData({
+        nro_documento: user
+      } ) 
     }
   };
 

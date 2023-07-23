@@ -5,7 +5,7 @@ import {
 import { AuthenticationResponseJSON } from "@simplewebauthn/typescript-types";
 import { Authenticator, UserModel } from "./types/types.webauthN";
 
-import { getUserAuthenticators, getUserAuthenticatorsAuth } from "./utils";
+import { getUserAuthenticators, getUserAuthenticatorsAuth, updateUserCounter } from "./utils";
 
 let userAuthenticators: Authenticator[] = [];
 
@@ -37,29 +37,22 @@ const verifyAuthUser = async (user: UserModel) => {
   return options;
 };
 interface finalUser {
-  idUser: string;
   body: AuthenticationResponseJSON;
   currentChallenge: string;
 }
 
 const verificationFinalUser = async ({
-  idUser,
   body,
   currentChallenge,
 }: finalUser) => {
-  //const { body } = req;
 
-  // (Pseudocode) Retrieve the logged-in user
-  //const user: UserModel = getUserFromDB(loggedInUserId);
-  // (Pseudocode) Get `options.challenge` that was saved above
-  //const expectedChallenge: string = getUserCurrentChallenge(user);
-  // (Pseudocode} Retrieve an authenticator from the DB that
-  // should match the `id` in the returned credential
-  const authenticator = await getUserAuthenticatorsAuth(idUser);
+  const {rawId} = body;
+
+  const authenticator = await getUserAuthenticatorsAuth(rawId);  
 
   if (!authenticator) {
     throw new Error(
-      `Could not find authenticator ${body.id} for user ${idUser}`
+      `Could not find authenticator ${rawId} for user`
     );
   }
 
@@ -77,12 +70,19 @@ const verificationFinalUser = async ({
     console.error(error);
   }
 
+  
   if (verification) {
-    const { verified } = verification;
-    console.log(verified);
-  }
+    const { verified, authenticationInfo } = verification;
 
-  return verification;
+    if (verified) {
+      updateUserCounter(authenticationInfo.newCounter, rawId);
+      return verified;
+    }
+
+    
+  }
+  
+  return false;
 };
 
 export { verifyAuthUser, verificationFinalUser };

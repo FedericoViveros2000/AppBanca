@@ -42,6 +42,7 @@ const LoginPage = () => {
         </label>
         <div className="container__messages my-1">
           <InputPassword
+          disabled={true}
             handleChange={handleChangeLogin}
             handleChangeTypeInput={handleChangeTypeInput}
             type_input={type_input}

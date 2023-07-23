@@ -2,6 +2,7 @@ import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 
 interface Props {
   type_input: string;
+  disabled?: boolean;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleChangeTypeInput: () => void;
 }
@@ -9,6 +10,7 @@ function InputPassword({
   type_input,
   handleChange,
   handleChangeTypeInput,
+  disabled = false
 }: Props) {
   return (
     <>
@@ -18,7 +20,7 @@ function InputPassword({
         name="password"
         id="password"
         type={type_input}
-        //disabled={isFetching}
+        disabled={disabled}
         placeholder="Enter your password"
         onChange={handleChange}
       />

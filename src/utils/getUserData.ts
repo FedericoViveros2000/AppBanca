@@ -8,10 +8,11 @@ interface customParams {
 }
 
 // Funcion mediante la cual obtenemos los datos del usuario que intenta Iniciar Sesion
-const getUserData = async ({
-  nro_documento,
-  password,
-}: customParams): Promise<AppState["data"]> => {
+/* {
+  nro_documento
+ password,
+}: customParams */
+const getUserData = async (nro_documento: number): Promise<AppState["data"]> => {
   const userData = JSON.parse(localStorage.getItem("userData") as string);
   if (userData !== null) {
     return userData;
@@ -20,7 +21,7 @@ const getUserData = async ({
     .from(TABLES.CUSTOMERS)
     .select()
     .eq(COLUMNS.DOCUMENT, nro_documento)
-    .eq(COLUMNS.PASSWORD, password);
+    //.eq(COLUMNS.PASSWORD, password);
   if (error) throw new Error("Error al obtener el cliente solicitado");
   return data || [];
 };

@@ -76,19 +76,18 @@ export const verifyAuthenticationUser = async (
     });
 
     const { verified, registrationInfo } = verification;
+    
 
     if (registrationInfo) {
       const newAuthenticator = {
         credentialID: btoa(String.fromCharCode(...registrationInfo.credentialID)),
-        credentialPublicKey: registrationInfo.credentialPublicKey,
+        credentialPublicKey: btoa(String.fromCharCode(...registrationInfo.credentialPublicKey)),
         counter: registrationInfo?.counter,
       };
 
       const { data, error } = await supabase.from("webauthn").insert([newAuthenticator]).select();
   
-      if (error) throw error;
-      console.log(data);
-      
+      if (error) throw error;      
     }
 
     return verified;
