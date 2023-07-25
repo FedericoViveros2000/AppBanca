@@ -31,27 +31,37 @@ const CreateAccount = ({ handleCreateAccount, handleIsAccept, newUser, error }: 
           </p>
         </div>
         <label htmlFor='user' className='label__login'>
-          Email address
+          Nro Documento
         </label>
-        <div className='container__messages'>
-          {/* <input
+        <input
+            type='text'
+            autoComplete='off'
+            className='input__login'
+            name='nro_documento'
+            id='nro_documento'
+            value={newUser?.nro_documento}
+            onChange={handleCreateAccount}
+            placeholder='Enter your email address'
+          />
+       {/*  <div className='container__messages'>
+          <input
             type='text'
             autoComplete='off'
             className='input__login'
             name='email'
             id='email'
-            value={newUser.email}
+            value={newUser?.email}
             onChange={handleCreateAccount}
             placeholder='Enter your email address'
-          /> */}
+          />
           <p className='btn-check'>
             <i className='fa-solid fa-check' />
           </p>
-        </div>
-        <label htmlFor='password' className='label__login'>
+        </div> */}
+          <div className='container__messages'>
+        {/* <label htmlFor='password' className='label__login'>
           Enter your password
         </label>
-        <div className='container__messages'>
           <input
             type='text'
             autoComplete='off'
@@ -64,7 +74,7 @@ const CreateAccount = ({ handleCreateAccount, handleIsAccept, newUser, error }: 
           />
           <p className='btn-check'>
             <i className='fa-solid fa-check' />
-          </p>
+          </p> */}
         </div>
         <label htmlFor='accept' className='container__accept'>
           <input

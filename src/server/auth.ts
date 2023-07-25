@@ -9,7 +9,7 @@ import { getUserAuthenticators, getUserAuthenticatorsAuth, updateUserCounter } f
 
 let userAuthenticators: Authenticator[] = [];
 
-const { VITE_rpID: rpID } = import.meta.env;
+const rpID = window.location.hostname;
 
 const verifyAuthUser = async (user: UserModel) => {
   // (Pseudocode) Retrieve the logged-in user
@@ -65,7 +65,6 @@ const verificationFinalUser = async ({
       expectedRPID: rpID,
       authenticator,
     });
-    console.log(verification);
   } catch (error) {
     console.error(error);
   }
@@ -73,13 +72,10 @@ const verificationFinalUser = async ({
   
   if (verification) {
     const { verified, authenticationInfo } = verification;
-
     if (verified) {
       updateUserCounter(authenticationInfo.newCounter, rawId);
       return verified;
-    }
-
-    
+    }    
   }
   
   return false;

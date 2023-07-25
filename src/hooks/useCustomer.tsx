@@ -34,7 +34,7 @@ const useCustomer = () => {
       setIsFetching(true);
       const response = await getUserData(nro_documento);
       if (response.length > 0) {
-        /* registerNewUser({
+        registerNewUser({
           id: response[0]?.nro_documento as unknown as string,
           username: response[0]?.nombre,
           currentChallenge: response[0]?.currentChallenge,
@@ -43,31 +43,34 @@ const useCustomer = () => {
             verifyAuthenticationUser(
               respAuth,
               resp.challenge
-            ).then((prueba) => {
+            ).then(prueba => {
               console.log(prueba);
-            });
-          });
-        }); */
-        verifyAuthUser({
-          id: response[0]?.nro_documento as unknown as string,
-          username: response[0]?.nombre,
-          currentChallenge: response[0]?.currentChallenge,
-        }).then((resp) => {
-          startAuthentication(resp).then((respStart) => {
-            verificationFinalUser({
-              body: respStart,
-              currentChallenge: resp.challenge,
-            }).then((verified) => {
-              console.log(verified);
-              if (verified) {
-                
-                sessionStorage.setItem("userData", JSON.stringify(response));
-                navigate("/Home");
-                setAuth(response);
-              }
-            });
+              verifyAuthUser({
+                id: response[0]?.nro_documento as unknown as string,
+                username: response[0]?.nombre,
+                currentChallenge: response[0]?.currentChallenge,
+              }).then((resp) => {
+                startAuthentication(resp).then((respStart) => {
+                  verificationFinalUser({
+                    body: respStart,
+                    currentChallenge: resp.challenge,
+                  }).then((verified) => {
+                    console.log(verified);
+                    if (verified) {
+                      sessionStorage.setItem("userData", JSON.stringify(response));
+                      navigate("/Home");
+      
+                      if (setAuth) {
+                        setAuth(response);
+                      }
+                    }
+                  });
+                });
+              });
+            })
           });
         });
+        
         /* sessionStorage.setItem("userData", JSON.stringify(response));
         navigate("/Home"); */
       }

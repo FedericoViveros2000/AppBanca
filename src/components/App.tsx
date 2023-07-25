@@ -15,9 +15,9 @@ import { lazy, Suspense } from "react";
 
 const HomePage = lazy(() => import("../views/HomePage"));
 //const LoginPage = lazy(() => import('../views/LoginPage'));
-const CreateAccountPage = lazy(() => import('../views/CreateAccountPage'));
+const CreateAccountPage = lazy(() => import("../views/CreateAccountPage"));
 const SendMoneyPage = lazy(() => import("../views/SendMoney/SendMoneyPage"));
-const HistoryPage = lazy(() => import("../views/HistoryPage"))
+const HistoryPage = lazy(() => import("../views/HistoryPage"));
 
 const App = () => {
   const { auth } = useAuthContext();
@@ -26,12 +26,12 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LoginPage />} />
+          <Route path="/CreateAccount" element={<CreateAccountPage />} />
           <Route element={<ProtectedRoutes userAuth={!!auth} redirectTo="/" />}>
-            <Route path="/CreateAccount" element={<CreateAccountPage />} />
             <Route path="/Home" element={<HomePage />} />
             <Route path="/SendMoney" element={<SendMoneyPage />} />
-          </Route>
           <Route path="/History" element={<HistoryPage />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </Suspense>

@@ -22,8 +22,8 @@ const useCreateAccount = () => {
   const [createdSuccess, setCreatedSuccess] = useState(false)
 
   const handleCreateAccount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-
+    const { name, value } = e.target;
+        
     setNewUser({
       ...newUser,
       [name]: value
@@ -39,6 +39,8 @@ const useCreateAccount = () => {
     if (isAccept) {
       try {
         setLoading(true)
+        console.log(newUser);
+        
         const { error } = await supabase
           .from('clientes')
           .insert(newUser)

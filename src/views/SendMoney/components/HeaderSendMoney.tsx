@@ -11,10 +11,10 @@ function HeaderSendMoney({ title, action }: Header) {
         <h1 className="font-light fs-normal-md">{title}</h1>
         <p className="font-light fw-normal">{action}</p>
       </nav>
-      <InputTextSearch
+      {/* <InputTextSearch
         id="search"
         className="bg-principal-dark p-1 my-1 font-light"
-      />
+      /> */}
     </header>
   );
 }

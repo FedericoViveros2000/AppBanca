@@ -36,7 +36,7 @@ const LoginPage = () => {
         <div className="container__messages my-1">
           <InputTextSearch id="user" handleChange={handleChangeLogin} />
         </div>
-        {errors.user && <p>{errors.user}</p>}
+        {/* {errors.user && <p>{errors.user}</p>} */}
         <label htmlFor="password" className="label__login">
           Password
         </label>
@@ -48,7 +48,7 @@ const LoginPage = () => {
             type_input={type_input}
           />
         </div>
-        {errors.password && <p>{errors.password}</p>}
+        {/* {errors.password && <p>{errors.password}</p>} */}
         <p className="font-active fw-bold my-1">Forgot your password?</p>
         <ButtonPrimary
           isFetching={isFetching}

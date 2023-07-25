@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { AuthContext } from "../interfaces/authContext.types";
+import { UserData } from "../interfaces/userInterface";
 interface Props {
   children: React.ReactElement;
 }
@@ -14,12 +15,13 @@ const INITIAL_VALUE = {
   nombre: '',
   nro_documento: 0,
   password: '',
-  telefono: null
+  telefono: null,
+  currentChallenge: undefined
 }
 
 const Context = createContext<AuthContext>({
   auth: [INITIAL_VALUE],
-  setAuth: () => {}
+  setAuth: undefined
 });
 
 const useAuthContext = () : AuthContext => useContext(Context);

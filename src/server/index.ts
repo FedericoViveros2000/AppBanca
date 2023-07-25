@@ -9,11 +9,12 @@ import { UserModel } from "./types/types.webauthN";
 import { RegistrationResponseJSON } from "@simplewebauthn/typescript-types";
 import { getUserAuthenticators } from "./utils";
 
-const { VITE_RP_NAME: rpENV, VITE_rpID: rpIDEnv } = import.meta.env;
+const { VITE_RP_NAME: rpENV } = import.meta.env;
 
 const rpName = rpENV;
-const rpID = rpIDEnv;
-const origin = `http://${rpID}:5173`;
+const rpID = window.location.hostname;
+//const origin = `http://${rpID}:5173`;
+const origin = `http://${window.location.hostname}`;
 let userAuthenticators: Authenticator[] = [];
 
 export const registerNewUser = async (user: UserModel) => {
