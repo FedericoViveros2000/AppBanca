@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { supabase } from '../supabase/index'
-import { AppState } from '../interfaces/userInterface'
+import { type AppState } from '../interfaces/userInterface'
+import { type PostgrestError } from '@supabase/supabase-js'
 
 const initialValue = {
   nombre: '',
@@ -12,50 +13,43 @@ const initialValue = {
   telefono: ''
 }
 
-/* 'nombre' | 'email' | 'apellido' |'direccion'| 'nro_documento' | 'telefono' */
-
 const useCreateAccount = () => {
   const [newUser, setNewUser] = useState<AppState['createAccount']>(initialValue)
   const [isAccept, setIsAccept] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState<PostgrestError | null | string>(null)
   const [isLoading, setLoading] = useState(false)
   const [createdSuccess, setCreatedSuccess] = useState(false)
 
-  const handleCreateAccount = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-        
+  const handleCreateAccount = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target
     setNewUser({
       ...newUser,
       [name]: value
     })
   }
 
-  const handleIsAccept = () => {
-    setIsAccept(!isAccept)
-  }
+  const handleIsAccept = (): void => { setIsAccept(!isAccept) }
 
-  const createAccount = async (e: React.SyntheticEvent) => {
+  const createAccount = async (e: React.SyntheticEvent): Promise<void> => {
     e.preventDefault()
     if (isAccept) {
       try {
         setLoading(true)
-        console.log(newUser);
-        
         const { error } = await supabase
           .from('clientes')
           .insert(newUser)
           .select()
-        if (error != null) throw error
+        if (error !== null) throw new Error(JSON.stringify(error))
         setCreatedSuccess(true)
         setNewUser(initialValue)
-        return
       } catch (err) {
         setCreatedSuccess(false)
+        setError(err as string)
         console.log(err)
       } finally {
         setLoading(false)
         setIsAccept(false)
-        setError('')
+        setError(null)
       }
     } else {
       setError('Acepte los terminos y condiciones')

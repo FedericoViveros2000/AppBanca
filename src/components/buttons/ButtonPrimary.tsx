@@ -1,8 +1,9 @@
+import React from 'react'
 interface Props {
-  title?: string;
-  isFetching: boolean;
+  title?: string
+  isFetching: boolean
 }
-function ButtonPrimary({ title = "Sign In", isFetching }: Props) {
+const ButtonPrimary: React.FC<Props> = ({ title = 'Sign In', isFetching }: Props) => {
   return (
     <button
       className="btn bg-principal font-light"
@@ -10,7 +11,7 @@ function ButtonPrimary({ title = "Sign In", isFetching }: Props) {
     >
       {title}
     </button>
-  );
+  )
 }
 
-export { ButtonPrimary };
+export { ButtonPrimary }

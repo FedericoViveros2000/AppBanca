@@ -1,60 +1,60 @@
-import React, { useState } from "react";
-import { AppState } from "../interfaces/userInterface";
-import { useAuthContext } from "../context/AuthContext";
-import { useCustomer } from "./useCustomer";
+import type React from 'react'
+import { useState } from 'react'
+import { type UserLogin } from '../interfaces/userInterface'
+import { useCustomer } from './useCustomer'
+import { type Login } from './types/hooks'
 
-const useLogin = () => {
-  const { auth } = useAuthContext();
-  const [type_input, setTypeInput] = useState('password');
-  const { getData, isFetching } = useCustomer();
-  const [formLogin, setFormLogin] = useState<AppState["form"]>({
+const useLogin = (): Login => {
+  const [typeInput, setTypeInput] = useState('password')
+  const [writePassword, setWritePassword] = useState(false)
+  const { getData, isFetching } = useCustomer()
+  const [formLogin, setFormLogin] = useState<UserLogin>({
     user: 0,
-    password: "",
-  });
+    password: ''
+  })
 
-  const [errors, setErrors] = useState({});
+  const [errors] = useState({})
 
-  const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const changeWritePassword = (): void => { setWritePassword(true) }
+
+  const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target
     setFormLogin({
       ...formLogin,
-      [name]: value,
-    });
-  };
-
-  const handleChangeTypeInput = () => {
-    if (type_input === 'text') {
-      setTypeInput('password');
-      return;
-    }
-    setTypeInput('text');
+      [name]: value
+    })
   }
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const { user, password } = formLogin;
-    console.log(auth);
-    
-    if (!auth) {
-      /* {
-        nro_documento: user,
-        password: password,
-      } */
-      getData({
-        nro_documento: user
-      } ) 
+  const handleChangeTypeInput = (): void => {
+    if (typeInput === 'text') {
+      setTypeInput('password')
+      return
     }
-  };
+    setTypeInput('text')
+  }
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
+    const { user, password } = formLogin
+    console.log(user)
+
+    getData({
+      nroDocumento: user,
+      password
+    }).then(() => {}).catch((err) => { console.log(err) })
+  }
 
   return {
     handleChangeLogin,
     handleLogin,
     isFetching,
     errors,
-    handleChangeTypeInput, 
-    type_input,
-    formLogin,
-  };
-};
+    writePassword,
+    handleChangeTypeInput,
+    changeWritePassword,
+    typeInput,
+    formLogin
+  }
+}
 
-export { useLogin };
+export { useLogin }

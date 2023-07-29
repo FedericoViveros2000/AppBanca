@@ -1,23 +1,15 @@
 import React from 'react'
-interface Props {
-  id: string
-  name: string
-  type?: 'text' | 'password'
-  placeholder?: string
-  className?: string
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
-const InputTextSearch: React.FC<Props> = ({
+import { type PropInput } from '../../../interfaces/input'
+export const InputDate: React.FC<PropInput> = ({
   id,
   name,
-  type = 'text',
   className = 'input',
   handleChange,
   placeholder = 'Enter your username or email'
-}: Props) => {
+}) => {
   return (
     <input
-      type={type}
+      type="date"
       autoComplete="off"
       className={`input ${className}`}
       name={name}
@@ -28,5 +20,3 @@ const InputTextSearch: React.FC<Props> = ({
     />
   )
 }
-
-export { InputTextSearch }

@@ -1,91 +1,101 @@
-import { useState } from "react";
-import { AppState } from "../interfaces/userInterface";
-import { getUserData } from "../utils/getUserData";
-import { useAuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react'
+import { type AppState } from '../interfaces/userInterface'
+import { getUserData } from '../utils/getUserData'
+import { useAuthContext } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 import {
   startAuthentication,
-  startRegistration,
-} from "@simplewebauthn/browser";
-
-/* import { registerNewUser, verifyAuthenticationUser } from "../server/index";
-import { startRegistration } from "@simplewebauthn/browser"; */
-import { verificationFinalUser, verifyAuthUser } from "../server/auth";
-import { registerNewUser, verifyAuthenticationUser } from "../server";
+  startRegistration
+} from '@simplewebauthn/browser'
+import { type Props, type Customers } from './types/hooks'
+import { verificationFinalUser, verifyAuthUser } from '../server/auth'
+import { registerNewUser, verifyAuthenticationUser } from '../server'
 
 export interface fetchData {
-  data: AppState["data"];
-  isFetching: boolean;
+  data: AppState['data']
+  isFetching: boolean
 }
 
-interface Props {
-  nro_documento: number;
-  //password: string;
-}
+const useCustomer = (): Customers => {
+  const navigate = useNavigate()
+  const { setAuth } = useAuthContext()
+  const [isFetching, setIsFetching] = useState<boolean>(false)
 
-const useCustomer = () => {
-  const navigate = useNavigate();
-  const { setAuth } = useAuthContext();
-  //const [data, setData] = useState<AppState["data"]>([]);
-  const [isFetching, setIsFetching] = useState<boolean>(false);
-
-  const getData = async ({ nro_documento }: Props) => {
+  const getData = async ({ nroDocumento, password = null }: Props): Promise<void> => {
     try {
-      setIsFetching(true);
-      const response = await getUserData(nro_documento);
-      if (response.length > 0) {
+      setIsFetching(true)
+      const response = await getUserData(nroDocumento)
+      if (response !== null) {
         registerNewUser({
           id: response[0]?.nro_documento as unknown as string,
           username: response[0]?.nombre,
-          currentChallenge: response[0]?.currentChallenge,
-        }).then((resp) => {
-          startRegistration(resp).then((respAuth) => {
-            verifyAuthenticationUser(
-              respAuth,
-              resp.challenge
-            ).then(prueba => {
-              console.log(prueba);
-              verifyAuthUser({
-                id: response[0]?.nro_documento as unknown as string,
-                username: response[0]?.nombre,
-                currentChallenge: response[0]?.currentChallenge,
-              }).then((resp) => {
-                startAuthentication(resp).then((respStart) => {
-                  verificationFinalUser({
-                    body: respStart,
-                    currentChallenge: resp.challenge,
-                  }).then((verified) => {
-                    console.log(verified);
-                    if (verified) {
-                      sessionStorage.setItem("userData", JSON.stringify(response));
-                      navigate("/Home");
-      
-                      if (setAuth) {
-                        setAuth(response);
-                      }
-                    }
-                  });
-                });
-              });
-            })
-          });
-        });
-        
-        /* sessionStorage.setItem("userData", JSON.stringify(response));
-        navigate("/Home"); */
+          currentChallenge: response[0]?.currentChallenge
+        })
+          .then((resp) => {
+            startRegistration(resp)
+              .then((respAuth) => {
+                verifyAuthenticationUser(respAuth, resp.challenge)
+                  .then(() => {
+                    verifyAuthUser({
+                      id: response[0]?.nro_documento as unknown as string,
+                      username: response[0]?.nombre,
+                      currentChallenge: response[0]?.currentChallenge
+                    })
+                      .then((resp) => {
+                        startAuthentication(resp)
+                          .then((respStart) => {
+                            verificationFinalUser({
+                              body: respStart,
+                              currentChallenge: resp.challenge
+                            })
+                              .then((verified) => {
+                                if (verified) {
+                                  sessionStorage.setItem(
+                                    'userData',
+                                    JSON.stringify(response)
+                                  )
+                                  navigate('/Home')
+                                  if (setAuth != null) {
+                                    setAuth(response)
+                                  }
+                                }
+                              })
+                              .catch((err) => {
+                                console.log(err)
+                              })
+                          })
+                          .catch((err) => {
+                            console.log(err)
+                          })
+                      })
+                      .catch((err) => {
+                        console.log(err)
+                      })
+                  })
+                  .catch((err) => {
+                    console.log(err)
+                  })
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+          })
+          .catch((err) => {
+            console.log(err)
+          })
       }
     } catch (error) {
-      console.log(error);
+      console.log(error)
     } finally {
-      setIsFetching(false);
+      setIsFetching(false)
     }
-  };
+  }
 
   return {
-    //data,
+    // data,
     isFetching,
-    getData,
-  };
-};
+    getData
+  }
+}
 
-export { useCustomer };
+export { useCustomer }

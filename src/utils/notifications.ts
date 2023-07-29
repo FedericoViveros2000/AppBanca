@@ -1,26 +1,26 @@
-import react from "../assets/success_img.png";
-import { debitTrans } from "./movements";
+import react from '../assets/success_img.png'
+import { debitTrans } from './movements'
 import {
   NOTIFICATIONS,
-  TYPE_MOVEMENTS,
-} from "../interfaces/enums/Notifications";
+  TYPE_MOVEMENTS
+} from '../interfaces/enums/Notifications'
 
 interface Props {
-  card_balance: string;
-  type_movement: TYPE_MOVEMENTS.DEBIT | TYPE_MOVEMENTS.TRANSFER;
+  cardBalance: string
+  typeMovement: string
 }
 
-const notifications = ({ card_balance, type_movement }: Props) => {
+const notifications = async ({ cardBalance, typeMovement }: Props): Promise<void> => {
   Notification.requestPermission().then((result) => {
     if (result === NOTIFICATIONS.GRANTED) {
-      if (type_movement === TYPE_MOVEMENTS.DEBIT) {
+      if (typeMovement === TYPE_MOVEMENTS.DEBIT) {
         debitTrans({
           img: react,
-          text: `Se ha acreditado una transferencia de ${card_balance} a su cuenta`,
-        });
+          text: `Se ha acreditado una transferencia de ${cardBalance} a su cuenta`
+        })
       }
     }
-  });
-};
+  }).catch(err => { console.log(err) })
+}
 
-export { notifications };
+export { notifications }

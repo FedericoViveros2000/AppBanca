@@ -1,25 +1,27 @@
-import { Link, Navigate } from "react-router-dom";
-import BaseGenericForm from "../components/forms/BaseGenericForm";
-import { useLogin } from "../hooks/useLogin";
-import { useAuthContext } from "../context/AuthContext";
-import { InputTextSearch } from "../components/forms/inputs/InputTextSearch";
-import { InputPassword } from "../components/forms/inputs/InputPassword";
-import { ButtonPrimary } from "../components/buttons/ButtonPrimary";
+import React from 'react'
+import { Link, Navigate } from 'react-router-dom'
+import BaseGenericForm from '../components/forms/BaseGenericForm'
+import { useLogin } from '../hooks/useLogin'
+import { useAuthContext } from '../context/AuthContext'
+import { InputTextSearch } from '../components/forms/inputs/InputTextSearch'
+import { InputPassword } from '../components/forms/inputs/InputPassword'
+import { ButtonPrimary } from '../components/buttons/ButtonPrimary'
 
-const LoginPage = () => {
-  const { auth } = useAuthContext();
+const LoginPage: React.FC = () => {
+  const { auth } = useAuthContext()
   const {
     isFetching,
+    writePassword,
     handleChangeLogin,
-    type_input,
+    typeInput,
     handleChangeTypeInput,
     handleLogin,
-    errors,
-  } = useLogin();
+    changeWritePassword
+  } = useLogin()
 
-  //if (isFetching) return <Loader />;
+  // if (isFetching) return <Loader />;
 
-  if (auth) return <Navigate to="/Home"></Navigate>;
+  if (auth !== null) return <Navigate to="/Home"/>
 
   return (
     <BaseGenericForm
@@ -34,34 +36,37 @@ const LoginPage = () => {
           User or email
         </label>
         <div className="container__messages my-1">
-          <InputTextSearch id="user" handleChange={handleChangeLogin} />
+          <InputTextSearch id="user" name='user' handleChange={handleChangeLogin} />
         </div>
-        {/* {errors.user && <p>{errors.user}</p>} */}
-        <label htmlFor="password" className="label__login">
-          Password
-        </label>
-        <div className="container__messages my-1">
-          <InputPassword
-          disabled={true}
-            handleChange={handleChangeLogin}
-            handleChangeTypeInput={handleChangeTypeInput}
-            type_input={type_input}
-          />
-        </div>
-        {/* {errors.password && <p>{errors.password}</p>} */}
+        {
+          writePassword &&
+          <>
+            <label htmlFor="password" className="label__login">
+              Password
+            </label>
+            <div className="container__messages my-1">
+              <InputPassword
+                id='password'
+              // disabled={true}
+                handleChange={handleChangeLogin}
+                handleChangeTypeInput={handleChangeTypeInput}
+                typeInput={typeInput}
+              />
+            </div>
+          </>
+        }
         <p className="font-active fw-bold my-1">Forgot your password?</p>
-        <ButtonPrimary
-          isFetching={isFetching}
-        />
+        <ButtonPrimary isFetching={isFetching} />
         <p className="text-center my-1">
-          Don't have an account?{" "}
+          <span>Don&apos;t have an account?</span>
           <Link to="/createAccount" className="font-link">
             Sign up
           </Link>
         </p>
+        <p className="font-active fw-bold text-center" onClick={changeWritePassword}>Colocar contraseña</p>
       </>
     </BaseGenericForm>
-  );
-};
+  )
+}
 
-export default LoginPage;
+export default LoginPage

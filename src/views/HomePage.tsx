@@ -1,20 +1,21 @@
-import { BottomBar } from "../components/navigation/BottomBar";
-import { NavBarDetailUser } from "../components/navigation/NavBarDetailUser";
-import { TargetCards } from "../components/cards/TargetCards";
-import { Spending } from "../components/cards/Spending";
-import { ListTransaction } from "../components/transactions/ListTransactions";
-import { BudgetCard } from "../components/cards/BudgetCard";
-import { ContainerSlider } from "../components/cards/ContainerSlider";
-import { useGetBalance } from "../hooks/useGetBalance";
-import { useAuthContext } from "../context/AuthContext";
-import { TITLES } from "../utils/data/HomeData";
+import { BottomBar } from '../components/navigation/BottomBar'
+import React from 'react'
+import { NavBarDetailUser } from '../components/navigation/NavBarDetailUser'
+import { TargetCards } from '../components/cards/TargetCards'
+import { Spending } from '../components/cards/Spending'
+import { ListTransaction } from '../components/transactions/ListTransactions'
+import { BudgetCard } from '../components/cards/BudgetCard'
+import { ContainerSlider } from '../components/cards/ContainerSlider'
+import { useGetBalance } from '../hooks/useGetBalance'
+import { useAuthContext } from '../context/AuthContext'
+import { TITLES } from '../utils/data/HomeData'
 
-const HomePage = () => {
-  const { auth } = useAuthContext();
+const HomePage: React.FC = () => {
+  const { auth } = useAuthContext()
 
   const { balanceAmount, isFetching } = useGetBalance({
-    id_customer: auth[0]?.id,
-  });
+    id_customer: auth[0]?.id
+  })
 
   return (
     <>
@@ -27,14 +28,16 @@ const HomePage = () => {
             </ContainerSlider>
           </section>
           <section className="section__separator container__main--spending">
-            {isFetching ? (
+            {isFetching
+              ? (
               <p>Cargando mi gente</p>
-            ) : (
+                )
+              : (
               <Spending
                 spending={balanceAmount?.total_debit || 0}
                 income={balanceAmount?.total_credit || 0}
               />
-            )}
+                )}
           </section>
           <section className="section__separator">
             <ListTransaction />
@@ -59,7 +62,7 @@ const HomePage = () => {
       </section>
       <BottomBar />
     </>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

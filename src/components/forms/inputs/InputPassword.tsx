@@ -1,42 +1,51 @@
-import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import React from 'react'
+import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs'
 
 interface Props {
-  type_input: string;
-  disabled?: boolean;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleChangeTypeInput: () => void;
+  id: string
+  name?: string
+  typeInput?: string
+  disabled?: boolean
+  placeholder?: string
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleChangeTypeInput: () => void
 }
-function InputPassword({
-  type_input,
+const InputPassword: React.FC<Props> = ({
+  id,
+  typeInput = 'password',
+  placeholder = 'Enter your password',
   handleChange,
+  name = 'password',
   handleChangeTypeInput,
   disabled = false
-}: Props) {
+}) => {
   return (
     <>
       <input
+        id={id}
         className="input input__password"
         autoComplete="off"
-        name="password"
-        id="password"
-        type={type_input}
+        name={name}
+        type="password"
         disabled={disabled}
-        placeholder="Enter your password"
+        placeholder={placeholder}
         onChange={handleChange}
       />
-      {type_input === "text" ? (
+      {typeInput === 'text'
+        ? (
         <BsEyeSlashFill
           className="fs-icon fw-normal"
           onClick={handleChangeTypeInput}
         />
-      ) : (
+          )
+        : (
         <BsEyeFill
           className="fs-icon fw-normal"
           onClick={handleChangeTypeInput}
         />
-      )}
+          )}
     </>
-  );
+  )
 }
 
-export { InputPassword };
+export { InputPassword }

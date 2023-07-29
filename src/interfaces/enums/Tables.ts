@@ -1,23 +1,20 @@
-enum VIEWS {
-    TRANSACTION_DEBIT = 'total_transaction_debit',
-    TRANSACTION_CREDIT = 'total_transaction_credit'
-}
-enum TABLES {
-    CUSTOMERS = 'clientes',
-    CARD_BALANCE = 'card_balance',
-    CARDS = 'cards',
-    TRANSACTIONS = 'transactions'
-}
+const VIEWS = {
+  TRANSACTION_DEBIT: "total_transaction_debit",
+  TRANSACTION_CREDIT: "total_transaction_credit",
+} as const;
 
-enum COLUMNS{
-    DOCUMENT = 'nro_documento',
-    ID_CUSTOM = 'id_custom',
-    CUSTOM_ID_TRANSFERED = 'custom_id',
-    PASSWORD = 'password'
-}
+const TABLES = {
+  CUSTOMERS: "clientes",
+  CARD_BALANCE: "card_balance",
+  CARDS: "cards",
+  TRANSACTIONS: "transactions",
+} as const;
 
-export {
-    TABLES,
-    COLUMNS,
-    VIEWS
-}
+const COLUMNS = {
+  DOCUMENT: "nro_documento",
+  ID_CUSTOM: "id_custom",
+  CUSTOM_ID_TRANSFERED: "custom_id",
+  PASSWORD: "password",
+} as const;
+
+export { TABLES, COLUMNS, VIEWS };
