@@ -2,13 +2,13 @@ export interface UserData {
   id: number
   nro_documento: number
   nombre: string
-  apellido: string | null
-  email: string | null
+  apellido: string 
+  email: string 
   password: string
-  direccion: string | null
-  fecha_nacimiento?: string | null
+  direccion: string 
+  fecha_nacimiento?: string 
   created_at: string
-  telefono: string | null
+  telefono: string 
   currentChallenge: string | undefined
 }
 

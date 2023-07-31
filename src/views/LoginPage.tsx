@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
       handleSubmit={handleLogin}
     >
       <>
-        <label htmlFor="user" className="label__login">
+        <label htmlFor="user" className="label">
           User or email
         </label>
         <div className="container__messages my-1">
@@ -41,7 +41,7 @@ const LoginPage: React.FC = () => {
         {
           writePassword &&
           <>
-            <label htmlFor="password" className="label__login">
+            <label htmlFor="password" className="label">
               Password
             </label>
             <div className="container__messages my-1">
@@ -58,7 +58,7 @@ const LoginPage: React.FC = () => {
         <p className="font-active fw-bold my-1">Forgot your password?</p>
         <ButtonPrimary isFetching={isFetching} />
         <p className="text-center my-1">
-          <span>Don&apos;t have an account?</span>
+          <span>Don&apos;t have an account? </span>
           <Link to="/createAccount" className="font-link">
             Sign up
           </Link>

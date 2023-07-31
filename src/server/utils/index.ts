@@ -34,13 +34,16 @@ const base64ToUint8 = (base64String: string): Uint8Array => {
 const getUserAuthenticatorsAuth = async (
   credentialID: string
 ): Promise<AuthenticatorDevice> => {
+  console.log(credentialID);
+  
   try {
     const { data: webAuthN, error } = await supabase
       .from('webauthn')
       .select('credentialPublicKey, credentialID, counter, transports')
       .like('credentialID', `${credentialID}%`)
     if (error != null) throw new Error('Error al obtener el WebAuthN del usuario')
-
+    console.log(webAuthN);
+    
     return {
       credentialPublicKey: base64ToUint8(webAuthN[0].credentialPublicKey),
       credentialID: base64ToUint8(webAuthN[0].credentialID),

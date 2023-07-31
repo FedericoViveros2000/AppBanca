@@ -87,7 +87,7 @@ input[type="checkbox"]{
     margin-top: 10px;
 }
 
-.label__login{
+.label{
     display: block;
     margin: 5px 0px;
     font-size: var(--font-size-regular-normal);

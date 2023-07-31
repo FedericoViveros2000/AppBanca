@@ -19,5 +19,5 @@ export interface Hooks {
   newUser: UserRegister
 }
 
-export type Login = Omit<Hooks, 'getData'>
+export type Login = Omit<Hooks, 'getData' | 'newUser'>
 export type Customers = Pick<Hooks, 'isFetching' | 'getData'>

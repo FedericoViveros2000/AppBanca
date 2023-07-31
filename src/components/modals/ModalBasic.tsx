@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './styles/modal.css'
 interface Props {
   children: JSX.Element
 }

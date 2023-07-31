@@ -29,8 +29,8 @@ const useRealtime = ({
             card_balance: payload.new?.card_balance
           })
           notifications({
-            card_balance: formatCurrency(payload.new?.card_balance),
-            type_movement: TYPE_MOVEMENTS.DEBIT
+            cardBalance: formatCurrency(payload.new?.card_balance),
+            typeMovement: TYPE_MOVEMENTS.DEBIT
           })
         }
       )

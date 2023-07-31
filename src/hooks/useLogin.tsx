@@ -36,8 +36,6 @@ const useLogin = (): Login => {
   const handleLogin = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
     const { user, password } = formLogin
-    console.log(user)
-
     getData({
       nroDocumento: user,
       password

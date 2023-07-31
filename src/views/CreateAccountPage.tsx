@@ -6,6 +6,7 @@ import ModalBasic from '../components/modals/ModalBasic'
 import ModalSuccess from '../components/modals/ModalSuccess'
 import successImg from '../assets/success_img.png'
 import Loader from '../components/loaders/Loader'
+import { Link } from 'react-router-dom'
 
 const CreateAccountPage: React.FC = () => {
   const {
@@ -29,12 +30,15 @@ const CreateAccountPage: React.FC = () => {
             title='El nuevo usuario se ha creado exitosamente'
             image={successImg}
           >
-            <button
-              className='btn btn-success'
-              onClick={() => { setCreatedSuccess(false) }}
+            <Link
+              className='btn btn-success link'
+              to="/"
+              onClick={() => { 
+                setCreatedSuccess(false) 
+              }}
             >
               Done
-            </button>
+            </Link>
           </ModalSuccess>
         </ModalBasic>
       )}

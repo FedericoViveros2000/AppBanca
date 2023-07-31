@@ -43,7 +43,7 @@ const verificationFinalUser = async ({
 
   const authenticator: AuthenticatorDevice = await getUserAuthenticatorsAuth(rawId)
 
-  if (authenticator.credentialPublicKey !== null && authenticator.credentialID !== null) {
+  if (!authenticator) {
     throw new Error(
       `Could not find authenticator ${rawId} for user`
     )
