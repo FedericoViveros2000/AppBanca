@@ -33,8 +33,8 @@ const CreateAccountPage: React.FC = () => {
             <Link
               className='btn btn-success link'
               to="/"
-              onClick={() => { 
-                setCreatedSuccess(false) 
+              onClick={() => {
+                setCreatedSuccess(false)
               }}
             >
               Done

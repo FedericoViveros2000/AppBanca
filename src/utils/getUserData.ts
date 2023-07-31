@@ -12,6 +12,7 @@ const getUserData = async (nroDocumento: number): Promise<UserData[] | null> => 
     .from(TABLES.CUSTOMERS)
     .select()
     .eq(COLUMNS.DOCUMENT, nroDocumento)
+
   // .eq(COLUMNS.PASSWORD, password);
   if (error !== null) throw new Error('Error al obtener el cliente solicitado')
   if (status === 200) {

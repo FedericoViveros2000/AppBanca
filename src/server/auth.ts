@@ -17,9 +17,9 @@ const rpID = window.location.hostname
 
 const verifyAuthUser = async (user: UserModel): Promise<PublicKeyCredentialRequestOptionsJSON> => {
   // (Pseudocode) Retrieve the logged-in user
-  getUserAuthenticators(user.id).then((resp) => {
-    userAuthenticators = resp
-  }).catch(err => { console.log(err) })
+  userAuthenticators = await getUserAuthenticators(user.id)
+
+  console.log(userAuthenticators)
 
   const options = generateAuthenticationOptions({
     // Require users to use a previously-registered authenticator
@@ -43,7 +43,7 @@ const verificationFinalUser = async ({
 
   const authenticator: AuthenticatorDevice = await getUserAuthenticatorsAuth(rawId)
 
-  if (!authenticator) {
+  if (authenticator.credentialPublicKey === null && authenticator.credentialID === null) {
     throw new Error(
       `Could not find authenticator ${rawId} for user`
     )

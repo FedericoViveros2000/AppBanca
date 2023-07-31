@@ -4,10 +4,11 @@ import { getUserData } from '../utils/getUserData'
 import { useAuthContext } from '../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
 import {
-  startAuthentication
+  startAuthentication, startRegistration
 } from '@simplewebauthn/browser'
 import { type Props, type Customers } from './types/hooks'
 import { verificationFinalUser, verifyAuthUser } from '../server/auth'
+import { registerNewUser, verifyAuthenticationUser } from '../server'
 
 export interface fetchData {
   data: AppState['data']
@@ -23,42 +24,20 @@ const useCustomer = (): Customers => {
     try {
       setIsFetching(true)
       const response = await getUserData(nroDocumento)
+
       if (response !== null) {
-          verifyAuthUser({
-            id: response[0]?.nro_documento as unknown as string,
-            username: response[0]?.nombre,
-            currentChallenge: response[0]?.currentChallenge
-          })
-            .then((resp) => {
-              startAuthentication(resp)
-                .then((respStart) => {
-                  verificationFinalUser({
-                    body: respStart,
-                    currentChallenge: resp.challenge
-                  })
-                    .then((verified) => {
-                      if (verified) {
-                        sessionStorage.setItem(
-                          'userData',
-                          JSON.stringify(response)
-                        )
-                        navigate('/Home')
-                        if (setAuth != null) {
-                          setAuth(response)
-                        }
-                      }
-                    })
-                    .catch((err) => {
-                      console.log(err)
-                    })
-                })
-                .catch((err) => {
-                  console.log(err)
-                })
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+        const register = await registerNewUser({
+          id: response[0]?.nro_documento as unknown as string,
+          username: response[0]?.nombre,
+          currentChallenge: response[0]?.currentChallenge
+        })
+        const registrationStart = await startRegistration(register)
+        const verifyAuthetication = await verifyAuthenticationUser({
+          idUser: response[0]?.nro_documento as unknown as string,
+          body: registrationStart,
+          currentChallenge: register.challenge
+        })
+        console.log(verifyAuthetication)
       }
     } catch (error) {
       console.log(error)
