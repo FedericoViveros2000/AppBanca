@@ -1,16 +1,19 @@
 import { type AuthenticatorDevice } from '@simplewebauthn/typescript-types'
 import { supabase } from '../../supabase/index'
 import { type Authenticator } from '../types/types.webauthN'
+import { base64ToUint8 } from './base64'
+import { TABLES } from '../../interfaces/enums/database/tables'
+import { COLUMNS } from '../../interfaces/enums/database/columns'
 
 const getUserAuthenticators = async (
   idUser: string
 ): Promise<Authenticator[]> => {
   try {
     const { data: webAuthN, error } = await supabase
-      .from('webauthn')
-      .select('*')
-      .eq('idUsername', idUser)
-    if (error != null) throw new Error('Error al obtener el WebAuthN del usuario')
+      .from(TABLES.WEBAUTHN)
+      .select(COLUMNS.ALL)
+      .eq(COLUMNS.IDUSERNAME, idUser)
+    if (error !== null) throw new Error('Error al obtener el WebAuthN del usuario')
     return webAuthN
   } catch (error) {
     console.log(error)
@@ -20,30 +23,16 @@ const getUserAuthenticators = async (
 
 let authN: AuthenticatorDevice
 
-const base64ToUint8 = (base64String: string): Uint8Array => {
-  const binaryString = atob(base64String)
-  const buffer = new Uint8Array(binaryString.length)
-
-  for (let i = 0; i < binaryString.length; i++) {
-    buffer[i] = binaryString.charCodeAt(i)
-  }
-
-  return buffer
-}
-
 const getUserAuthenticatorsAuth = async (
   credentialID: string
 ): Promise<AuthenticatorDevice> => {
-  console.log(credentialID);
-  
   try {
     const { data: webAuthN, error } = await supabase
-      .from('webauthn')
-      .select('credentialPublicKey, credentialID, counter, transports')
-      .like('credentialID', `${credentialID}%`)
+      .from(TABLES.WEBAUTHN)
+      .select(`${COLUMNS.CREDENTIALID}, ${COLUMNS.CREDENTIALPUBLICKEY}, ${COLUMNS.COUNTER}, ${COLUMNS.TRANSPORTS}`)
+      .like(COLUMNS.CREDENTIALID, `${credentialID}%`)
     if (error != null) throw new Error('Error al obtener el WebAuthN del usuario')
-    console.log(webAuthN);
-    
+
     return {
       credentialPublicKey: base64ToUint8(webAuthN[0].credentialPublicKey),
       credentialID: base64ToUint8(webAuthN[0].credentialID),
@@ -59,9 +48,9 @@ const getUserAuthenticatorsAuth = async (
 const updateUserCounter = async (newCounter: number, credentialID: string): Promise<void> => {
   try {
     const { error } = await supabase
-      .from('webauthn')
+      .from(TABLES.WEBAUTHN)
       .update({ counter: newCounter })
-      .like('credentialID', `${credentialID}%`)
+      .like(COLUMNS.CREDENTIALID, `${credentialID}%`)
     if (error != null) throw new Error('Ha ocurrido un error')
   } catch (error) {
     console.log(error)

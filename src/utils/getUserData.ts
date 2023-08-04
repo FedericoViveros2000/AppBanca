@@ -1,6 +1,7 @@
 import { supabase } from '../supabase/index'
 import { type UserData } from '../interfaces/userInterface'
-import { TABLES, COLUMNS } from '../interfaces/enums/Tables'
+import { TABLES } from '../interfaces/enums/database/tables'
+import { COLUMNS } from '../interfaces/enums/database/columns'
 
 // Funcion mediante la cual obtenemos los datos del usuario que intenta Iniciar Sesion
 let returnedData: UserData[] = []

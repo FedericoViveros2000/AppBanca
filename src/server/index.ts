@@ -1,26 +1,27 @@
-import { supabase } from "../supabase/index";
+import { supabase } from '../supabase/index'
 import {
   type GenerateRegistrationOptionsOpts,
   generateRegistrationOptions,
-  verifyRegistrationResponse,
-} from "@simplewebauthn/server";
-import { type Authenticator, type UserModel } from "./types/types.webauthN";
+  verifyRegistrationResponse
+} from '@simplewebauthn/server'
+import { type Authenticator, type UserModel } from './types/types.webauthN'
+import { TABLES } from '../interfaces/enums/database/tables'
+import { COLUMNS } from '../interfaces/enums/database/columns'
 
-import { type RegistrationResponseJSON } from "@simplewebauthn/typescript-types";
-import { getUserAuthenticators } from "./utils";
+import { type PublicKeyCredentialCreationOptionsJSON, type RegistrationResponseJSON } from '@simplewebauthn/typescript-types'
+import { getUserAuthenticators } from './utils'
+import { base64ToUint8 } from './utils/base64'
 
-const { VITE_RP_NAME: rpENV } = import.meta.env;
+const { VITE_RP_NAME: rpENV } = import.meta.env
 
-const rpName = rpENV;
-const rpID = window.location.hostname;
-// const origin = `http://${rpID}:5173`;
-const origin = `http://${window.location.hostname}`;
-let userAuthenticators: Authenticator[] = [];
+const rpName = rpENV
+const rpID = window.location.hostname
+// const origin = `http://${rpID}:5173`
+const origin = `https://${window.location.hostname}`
+let userAuthenticators: Authenticator[] = []
 
-export const registerNewUser = async (user: UserModel) => {
-  getUserAuthenticators(user.id).then((resp) => {
-    userAuthenticators = resp;
-  });
+export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredentialCreationOptionsJSON> => {
+  userAuthenticators = await getUserAuthenticators(user.id)
 
   const opts: GenerateRegistrationOptionsOpts = {
     rpName,
@@ -28,64 +29,61 @@ export const registerNewUser = async (user: UserModel) => {
     userID: user.id,
     userName: user.username,
     timeout: 60000,
-    attestationType: "none",
+    attestationType: 'none',
 
     excludeCredentials: userAuthenticators?.map((dev) => ({
-      id: dev.credentialID,
-      type: "public-key",
-      transports: dev.transports,
+      id: base64ToUint8(dev.credentialID as unknown as string),
+      type: 'public-key',
+      transports: dev.transports
     })),
-    supportedAlgorithmIDs: [-7, -257],
-  };
+    supportedAlgorithmIDs: [-7, -257]
+  }
 
-  const options = generateRegistrationOptions(opts);
+  const options = generateRegistrationOptions(opts)
 
   await updateUserChallenge(options.challenge, user.id)
 
-  return options;
-};
+  return options
+}
 
-const updateUserChallenge = async (challenge: string, userId: string) => {
+const updateUserChallenge = async (challenge: string, userId: string): Promise<void> => {
   try {
-     const { error } = await supabase
-      .from('clientes')
+    const { error } = await supabase
+      .from(TABLES.CUSTOMERS)
       .update({ currentChallenge: challenge })
-      .eq('nro_documento', userId)
-    /* const { error } = await supabase
-      .from("webauthn")
-      .update({ idUsername: userId })
-      .eq("credentialID", challenge); */
+      .eq(COLUMNS.DOCUMENT, userId)
+
     if (error != null) {
-      throw new Error("Ha ocurrido un error al actualizar el challenge");
+      throw new Error('Ha ocurrido un error al actualizar el challenge')
     }
-    console.log("Challenge actualizado correctamente");
+    console.log('Challenge actualizado correctamente')
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-};
+}
 
 interface UserRegister {
-  idUser: string;
-  body: RegistrationResponseJSON;
-  currentChallenge?: string;
+  idUser: string
+  body: RegistrationResponseJSON
+  currentChallenge: string
 }
 
 export const verifyAuthenticationUser = async ({
   idUser,
   body,
-  currentChallenge,
-}: UserRegister) => {
-  let verification;
+  currentChallenge
+}: UserRegister): Promise<boolean> => {
+  let verification
 
   try {
     verification = await verifyRegistrationResponse({
       response: body,
       expectedChallenge: `${currentChallenge}`,
       expectedOrigin: origin,
-      expectedRPID: rpID,
-    });
+      expectedRPID: rpID
+    })
 
-    const { verified, registrationInfo } = verification;
+    const { verified, registrationInfo } = verification
 
     if (registrationInfo != null) {
       const newAuthenticator = {
@@ -96,19 +94,19 @@ export const verifyAuthenticationUser = async ({
         credentialPublicKey: btoa(
           String.fromCharCode(...registrationInfo.credentialPublicKey)
         ),
-        counter: registrationInfo?.counter,
-      };
+        counter: registrationInfo?.counter
+      }
 
-      const { data, error } = await supabase
-        .from("webauthn")
+      await supabase
+        .from(TABLES.WEBAUTHN)
         .insert([newAuthenticator])
-        .select();
-
-      if (error != null) throw error;
+        .select()
     }
 
-    return verified;
+    return verified
   } catch (error) {
-    console.error(error);
+    console.error(error)
   }
-};
+
+  return false
+}

@@ -24,41 +24,26 @@ const useCustomer = (): Customers => {
       setIsFetching(true)
       const response = await getUserData(nroDocumento)
       if (response !== null) {
-          verifyAuthUser({
-            id: response[0]?.nro_documento as unknown as string,
-            username: response[0]?.nombre,
-            currentChallenge: response[0]?.currentChallenge
-          })
-            .then((resp) => {
-              startAuthentication(resp)
-                .then((respStart) => {
-                  verificationFinalUser({
-                    body: respStart,
-                    currentChallenge: resp.challenge
-                  })
-                    .then((verified) => {
-                      if (verified) {
-                        sessionStorage.setItem(
-                          'userData',
-                          JSON.stringify(response)
-                        )
-                        navigate('/Home')
-                        if (setAuth != null) {
-                          setAuth(response)
-                        }
-                      }
-                    })
-                    .catch((err) => {
-                      console.log(err)
-                    })
-                })
-                .catch((err) => {
-                  console.log(err)
-                })
-            })
-            .catch((err) => {
-              console.log(err)
-            })
+        const respAuthUser = await verifyAuthUser({
+          id: response[0]?.nro_documento as unknown as string,
+          username: response[0]?.nombre,
+          currentChallenge: response[0]?.currentChallenge
+        })
+        const startAuth = await startAuthentication(respAuthUser)
+        const verified = await verificationFinalUser({
+          body: startAuth,
+          currentChallenge: respAuthUser.challenge
+        })
+        if (verified) {
+          sessionStorage.setItem(
+            'userData',
+            JSON.stringify(response)
+          )
+          navigate('/Home')
+          if (setAuth != null) {
+            setAuth(response)
+          }
+        }
       }
     } catch (error) {
       console.log(error)

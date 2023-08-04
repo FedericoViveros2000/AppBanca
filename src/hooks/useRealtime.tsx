@@ -35,6 +35,7 @@ const useRealtime = ({
         }
       )
       .subscribe()
+
     return realtimeBalance
   }
 

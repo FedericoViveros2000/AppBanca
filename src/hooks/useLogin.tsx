@@ -3,9 +3,10 @@ import { useState } from 'react'
 import { type UserLogin } from '../interfaces/userInterface'
 import { useCustomer } from './useCustomer'
 import { type Login } from './types/hooks'
+import { INPUTS } from './types/inputs'
 
 const useLogin = (): Login => {
-  const [typeInput, setTypeInput] = useState('password')
+  const [typeInput, setTypeInput] = useState<string>(INPUTS.PASSWORD)
   const [writePassword, setWritePassword] = useState(false)
   const { getData, isFetching } = useCustomer()
   const [formLogin, setFormLogin] = useState<UserLogin>({
@@ -26,11 +27,11 @@ const useLogin = (): Login => {
   }
 
   const handleChangeTypeInput = (): void => {
-    if (typeInput === 'text') {
-      setTypeInput('password')
+    if (typeInput === INPUTS.TEXT) {
+      setTypeInput(INPUTS.PASSWORD)
       return
     }
-    setTypeInput('text')
+    setTypeInput(INPUTS.TEXT)
   }
 
   const handleLogin = (e: React.FormEvent<HTMLFormElement>): void => {
