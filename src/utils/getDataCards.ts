@@ -1,13 +1,13 @@
 import { supabase } from '../supabase'
-import { FUNCTIONS } from '../interfaces/enums/Functions'
-import { type Cards } from '../interfaces/cards.types'
+import { FUNCTIONS } from '../interfaces/enums/functions'
+import { type Cards } from '../interfaces/cards'
 import {
   type Balance,
   type TypesTransactions
-} from '../interfaces/balance.types'
+} from '../interfaces/balance'
 import { TABLES } from '../interfaces/enums/database/tables'
 import { COLUMNS } from '../interfaces/enums/database/columns'
-import { TYPE_TRANSACTIONS } from '../interfaces/enums/Transactions'
+import { TYPE_TRANSACTIONS } from '../interfaces/enums/transactions.d.ts'
 
 let FUNCTION = ''
 

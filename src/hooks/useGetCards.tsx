@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Cards } from "../interfaces/cards.types";
-import { Balance } from "../interfaces/balance.types";
+import { Cards } from "../interfaces/cards";
+import { Balance } from "../interfaces/balance";
 import { getCards, getBalance } from "../utils/getDataCards";
 
 type params = {

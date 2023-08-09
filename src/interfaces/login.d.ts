@@ -1,4 +1,4 @@
-import { AppState } from './userInterface'
+import { type AppState } from './userInterface'
 
 export interface Form {
   handleChangeLogin: (e: React.ChangeEvent<HTMLInputElement>) => void

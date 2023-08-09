@@ -3,6 +3,7 @@ import { supabase } from '../supabase/index'
 import { notifications } from '../utils/notifications'
 import { TYPE_MOVEMENTS } from '../interfaces/enums/Notifications'
 import { formatCurrency } from '../utils/formatCurrency'
+import { type RealtimeChannel } from '@supabase/supabase-js'
 interface realtimeProps {
   table: string
 }
@@ -14,7 +15,7 @@ const useRealtime = ({
     card_balance: 0
   })
 
-  const realtime = () => {
+  const realtime = (): RealtimeChannel => {
     const realtimeBalance = supabase
       .channel('table-db-changes')
       .on(
@@ -31,7 +32,8 @@ const useRealtime = ({
           notifications({
             cardBalance: formatCurrency(payload.new?.card_balance),
             typeMovement: TYPE_MOVEMENTS.DEBIT
-          })
+          }).then(res => { console.log(res) }).catch(err => { console.log(err) }
+          )
         }
       )
       .subscribe()

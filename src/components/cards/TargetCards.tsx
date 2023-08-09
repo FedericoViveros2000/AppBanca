@@ -2,7 +2,7 @@ import './styles/card.css'
 import React from 'react'
 import { useGetCards } from '../../hooks/useGetCards'
 import TargetCardLoader from './TargetCardLoader'
-import { type Cards } from '../../interfaces/cards.types'
+import { type Cards } from '../../interfaces/cards'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { useRealtime } from '../../hooks/useRealtime'
 

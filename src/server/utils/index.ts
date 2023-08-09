@@ -1,9 +1,10 @@
 import { type AuthenticatorDevice } from '@simplewebauthn/typescript-types'
 import { supabase } from '../../supabase/index'
-import { type Authenticator } from '../types/types.webauthN'
+import { type Authenticator } from '../types/types'
 import { base64ToUint8 } from './base64'
-import { TABLES } from '../../interfaces/enums/database/tables'
-import { COLUMNS } from '../../interfaces/enums/database/columns'
+import { TABLES } from '../../interfaces/enums/database/tables.d.ts'
+import { COLUMNS } from '../../interfaces/enums/database/columns.d.ts'
+import { authenticatorAdapter } from '../../utils/adapters/service.authenticator.adapter'
 
 const getUserAuthenticators = async (
   idUser: string
@@ -14,7 +15,8 @@ const getUserAuthenticators = async (
       .select(COLUMNS.ALL)
       .eq(COLUMNS.IDUSERNAME, idUser)
     if (error !== null) throw new Error('Error al obtener el WebAuthN del usuario')
-    return webAuthN
+    const auth = authenticatorAdapter(webAuthN)
+    return auth
   } catch (error) {
     console.log(error)
   }
@@ -34,10 +36,10 @@ const getUserAuthenticatorsAuth = async (
     if (error != null) throw new Error('Error al obtener el WebAuthN del usuario')
 
     return {
-      credentialPublicKey: base64ToUint8(webAuthN[0].credentialPublicKey),
-      credentialID: base64ToUint8(webAuthN[0].credentialID),
-      counter: webAuthN[0].counter,
-      transports: webAuthN[0].transports
+      credentialPublicKey: base64ToUint8(webAuthN[0]?.credentialPublicKey),
+      credentialID: base64ToUint8(webAuthN[0]?.credentialID),
+      counter: webAuthN[0]?.counter,
+      transports: webAuthN[0]?.transports
     }
   } catch (error) {
     console.log(error)

@@ -2,13 +2,13 @@ export interface UserData {
   id: number
   nro_documento: number
   nombre: string
-  apellido: string 
-  email: string 
+  apellido: string
+  email: string
   password: string
-  direccion: string 
-  fecha_nacimiento?: string 
+  direccion: string
+  fecha_nacimiento?: string
   created_at: string
-  telefono: string 
+  telefono: string
   currentChallenge: string | undefined
 }
 
@@ -16,7 +16,7 @@ export type UserRegister = Pick<UserData, 'nombre' | 'password' | 'email' | 'ape
 
 export interface UserLogin {
   user: number
-  password?: string
+  password?: string | null
 }
 
 export interface AppState {

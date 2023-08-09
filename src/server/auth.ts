@@ -3,7 +3,7 @@ import {
   verifyAuthenticationResponse
 } from '@simplewebauthn/server'
 import { type PublicKeyCredentialRequestOptionsJSON, type AuthenticationResponseJSON, type AuthenticatorDevice } from '@simplewebauthn/typescript-types'
-import { type Authenticator, type UserModel } from './types/types.webauthN'
+import { type Authenticator, type UserModel } from './types/types'
 import { getUserAuthenticators, getUserAuthenticatorsAuth, updateUserCounter } from './utils'
 import { base64ToUint8 } from './utils/base64'
 

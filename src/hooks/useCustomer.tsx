@@ -22,7 +22,12 @@ const useCustomer = (): Customers => {
   const getData = async ({ nroDocumento, password = null }: Props): Promise<void> => {
     try {
       setIsFetching(true)
-      const response = await getUserData(nroDocumento)
+
+      const response = await getUserData({
+        user: nroDocumento,
+        password
+      })
+
       if (response !== null) {
         const respAuthUser = await verifyAuthUser({
           id: response[0]?.nro_documento as unknown as string,

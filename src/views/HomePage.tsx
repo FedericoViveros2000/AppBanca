@@ -12,7 +12,6 @@ import { TITLES } from '../utils/data/HomeData'
 
 const HomePage: React.FC = () => {
   const { auth } = useAuthContext()
-
   const { balanceAmount, isFetching } = useGetBalance({
     id_customer: auth[0]?.id
   })
@@ -28,7 +27,7 @@ const HomePage: React.FC = () => {
             </ContainerSlider>
           </section>
           <section className="section__separator container__main--spending">
-            {isFetching
+            {/* {isFetching
               ? (
               <p>Cargando mi gente</p>
                 )
@@ -37,7 +36,7 @@ const HomePage: React.FC = () => {
                 spending={balanceAmount?.total_debit || 0}
                 income={balanceAmount?.total_credit || 0}
               />
-                )}
+                )} */}
           </section>
           <section className="section__separator">
             <ListTransaction />

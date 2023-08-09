@@ -4,9 +4,9 @@ import {
   generateRegistrationOptions,
   verifyRegistrationResponse
 } from '@simplewebauthn/server'
-import { type Authenticator, type UserModel } from './types/types.webauthN'
-import { TABLES } from '../interfaces/enums/database/tables'
-import { COLUMNS } from '../interfaces/enums/database/columns'
+import { type Authenticator, type UserModel } from './types/types'
+import { TABLES } from '../interfaces/enums/database/tables.d.ts'
+import { COLUMNS } from '../interfaces/enums/database/columns.d.ts'
 
 import { type PublicKeyCredentialCreationOptionsJSON, type RegistrationResponseJSON } from '@simplewebauthn/typescript-types'
 import { getUserAuthenticators } from './utils'
@@ -16,8 +16,8 @@ const { VITE_RP_NAME: rpENV } = import.meta.env
 
 const rpName = rpENV
 const rpID = window.location.hostname
-// const origin = `http://${rpID}:5173`
-const origin = `https://${window.location.hostname}`
+const origin = `http://${rpID}:5173`
+// const origin = `https://${window.location.hostname}`
 let userAuthenticators: Authenticator[] = []
 
 export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredentialCreationOptionsJSON> => {

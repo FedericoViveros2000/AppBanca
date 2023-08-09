@@ -33,22 +33,12 @@ const LoginPage: React.FC = () => {
       handleSubmit={handleLogin}
     >
       <>
-       <InputsTextSet
-        label='User or email'
-        id='user'
-        name='user'
-        handleChange={handleChangeLogin}
-       />
-        {/* <label htmlFor="user" className="label">
-          User or email
-        </label>
-        <div className="container__messages my-1">
-          <InputTextSearch
-            id="user"
-            name="user"
-            handleChange={handleChangeLogin}
-          />
-        </div> */}
+        <InputsTextSet
+          label="User or email"
+          id="user"
+          name="user"
+          handleChange={handleChangeLogin}
+        />
         {writePassword && (
           <>
             <label htmlFor="password" className="label">

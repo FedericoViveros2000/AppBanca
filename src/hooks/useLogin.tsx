@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { type UserLogin } from '../interfaces/userInterface'
 import { useCustomer } from './useCustomer'
 import { type Login } from './types/hooks'
-import { INPUTS } from './types/inputs'
+import { INPUTS } from './types/inputs.d.ts'
 
 const useLogin = (): Login => {
   const [typeInput, setTypeInput] = useState<string>(INPUTS.PASSWORD)
