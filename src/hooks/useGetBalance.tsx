@@ -1,54 +1,53 @@
-import { useEffect, useState } from "react";
-import { getTransactionsTypes } from "../utils/getDataCards";
-import { TotalData } from "../interfaces/balance.types";
-import { TYPE_TRANSACTIONS } from "../interfaces/enums/Transactions";
-import { getDateDayMonth } from "../utils/Dates";
+import { useEffect, useState } from 'react'
+import { getTransactionsTypes } from '../utils/getDataCards'
+import { type TotalData } from '../interfaces/balance'
+import { TYPE_TRANSACTIONS } from '../interfaces/enums/transactions.d.ts'
+import { getDateDayMonth } from '../utils/Dates'
 interface PropsGetBalance {
-  id_customer: number;
+  idCustomer: number
 }
 
-const useGetBalance = ({ id_customer }: PropsGetBalance) => {
-  const [isFetching, setIsFeching] = useState(false);
+const useGetBalance = ({ idCustomer }: PropsGetBalance) => {
+  const [isFetching, setIsFeching] = useState(false)
   const [balanceAmount, setBalanceAmount] = useState<TotalData>({
-    total_credit: 0,
-    total_debit: 0,
-  });
+    totalCredit: 0,
+    totalDebit: 0
+  })
 
-  const transactionCredit = () => {
-    setIsFeching(true);
-
+  const transactionCredit = async (): Promise<void> => {
+    setIsFeching(true)
     getTransactionsTypes({
       type_transaction: TYPE_TRANSACTIONS.DEBIT,
-      id_customer: id_customer,
+      idCustomer,
       first_date: getDateDayMonth().first_date,
-      last_date: getDateDayMonth().last_date,
+      last_date: getDateDayMonth().last_date
     })
-      .then((total_debit) => {
+      .then((totalDebit) => {
         getTransactionsTypes({
           type_transaction: TYPE_TRANSACTIONS.CREDIT,
-          id_customer: id_customer,
+          idCustomer,
           first_date: getDateDayMonth().first_date,
-          last_date: getDateDayMonth().last_date,
-        }).then((total_credit) => {
+          last_date: getDateDayMonth().last_date
+        }).then((totalCredit) => {
           setBalanceAmount({
-            total_credit: total_credit,
-            total_debit: total_debit,
-          });
-        });
+            totalCredit,
+            totalDebit
+          })
+        }).catch(err => { console.log(err) })
       })
       .finally(() => {
-        setIsFeching(false);
-      });
-  };
+        setIsFeching(false)
+      })
+  }
 
   useEffect(() => {
-    transactionCredit();
-  }, []);
+    transactionCredit().then(() => { }).catch(err => { console.log(err) })
+  }, [])
 
   return {
     balanceAmount,
-    isFetching,
-  };
-};
+    isFetching
+  }
+}
 
-export { useGetBalance };
+export { useGetBalance }

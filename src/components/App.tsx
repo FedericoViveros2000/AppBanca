@@ -1,26 +1,21 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-//import SendMoneyPage from "../views/SendMoney/SendMoneyPage";
-import LoginPage from "../views/LoginPage";
-//import CreateAccountPage from "../views/CreateAccountPage";
-//import HomePage from "../views/HomePage";
-//import HistoryPage from "../views/HistoryPage";
-import { ProtectedRoutes } from "../router/ProtectedRoutes";
-import "./index.css";
-import { useAuthContext } from "../context/AuthContext";
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from 'react'
+import { Routes, Route, BrowserRouter } from 'react-router-dom'
+import LoginPage from '../views/LoginPage'
+import { ProtectedRoutes } from '../router/ProtectedRoutes'
+import './index.css'
+import { useAuthContext } from '../context/AuthContext'
 
-/* 
+/*
   Vistas con carga perezosa
 */
+const HomePage = lazy(async () => await import('../views/HomePage'))
+// const LoginPage = lazy(() => import('../views/LoginPage'));
+const CreateAccountPage = lazy(async () => await import('../views/CreateAccountPage'))
+const SendMoneyPage = lazy(async () => await import('../views/SendMoney/SendMoneyPage'))
+const HistoryPage = lazy(async () => await import('../views/HistoryPage'))
 
-const HomePage = lazy(() => import("../views/HomePage"));
-//const LoginPage = lazy(() => import('../views/LoginPage'));
-const CreateAccountPage = lazy(() => import("../views/CreateAccountPage"));
-const SendMoneyPage = lazy(() => import("../views/SendMoney/SendMoneyPage"));
-const HistoryPage = lazy(() => import("../views/HistoryPage"));
-
-const App = () => {
-  const { auth } = useAuthContext();
+const App = (): JSX.Element => {
+  const { auth } = useAuthContext()
   return (
     <Suspense fallback={<div>Cargando</div>}>
       <BrowserRouter>
@@ -35,7 +30,7 @@ const App = () => {
         </Routes>
       </BrowserRouter>
     </Suspense>
-  );
-};
+  )
+}
 
-export default App;
+export default App

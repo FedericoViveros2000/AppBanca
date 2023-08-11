@@ -1,18 +1,18 @@
 interface Props {
-    text: string;
-    img: string;
+  text: string
+  img: string
 }
 
 const debitTrans = ({
-    text,
-    img
+  text,
+  img
 }: Props) => {
-  new Notification("Transferencia Exitosa", {
+  new Notification('Transferencia Exitosa', {
     body: text,
-    icon: img,
-  });
-};
+    icon: img
+  })
+}
 
 export {
-    debitTrans
+  debitTrans
 }

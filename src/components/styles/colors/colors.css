@@ -1,6 +1,7 @@
 :root{
     --principal-color: #0041c4;
     --btn-inactive: #4f72b7;
+    --btn-fetching:#4f72b7;
     --background-light-color: #fff;
     --letter-gray-color: #969fb3;
     --input-background: #efeeee;
@@ -26,6 +27,7 @@
     --font-name: #17224f;
     --font-grey: #a1a9b7;
     --font-blue: #0b2957;
+    --font-danger: red;
 }
 
 .bg-principal{
@@ -81,6 +83,10 @@
 
 .bg-icon-plus{
     background-color: var(--icon-plus);
+}
+
+.bg-fetching{
+    background-color:var(--btn-fetching);
 }
 
 .bg-dark-transparent{

@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap");
 
-
 * {
     font-family: 'Rubik', sans-serif;
 }
@@ -11,6 +10,7 @@
     --font-size-regular-title: clamp(1.1rem, 1rem + .5vw, 2rem);
     --font-size-regular-title-large: clamp(1.5rem, 1rem + 1vw, 2rem);
     --font-size-bold: clamp(1.25rem, 1rem + 1vw, 2rem);
+    --font-fingerprint: clamp(2rem, 1vw + 3.5rem, 6rem);
     --font-weight-thin: 400;
     --font-weight-normal: 500;
     --font-weight-semibold: 600;
@@ -83,4 +83,16 @@
 
 .font-blue{
     color: var(--font-blue);
+}
+
+.font-danger{
+    color: var(--font-danger);
+}
+
+.font-fingerprint {
+    font-size: var(--font-fingerprint);
+}
+
+.lh-1{
+    line-height: normal;
 }
