@@ -37,6 +37,10 @@
   justify-content: space-between;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .items-center {
   width: 100%;
   align-items: center;
@@ -147,7 +151,11 @@ input[disabled] {
 }
 
 .mb-1 {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 @keyframes skeleton-loading {

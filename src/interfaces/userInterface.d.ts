@@ -12,12 +12,21 @@ export interface UserData {
   currentChallenge: string | undefined
 }
 
+/* export interface UserDataVerified extends UserData {
+  verified: boolean
+} */
+export interface UserDataVerified extends Partial<UserData> {
+  verified: boolean
+}
+
 export type UserRegister = Pick<UserData, 'nombre' | 'password' | 'email' | 'apellido' | 'direccion' | 'nro_documento' | 'telefono'>
 
 export interface UserLogin {
   user: number
-  password?: string
+  password?: string | null
 }
+
+export type sessionStorageUser = Omit<'created_at' | 'currentChallenge' | 'password', UserData>
 
 export interface AppState {
   data: UserLogin[]

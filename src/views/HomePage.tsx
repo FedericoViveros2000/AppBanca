@@ -14,7 +14,7 @@ const HomePage: React.FC = () => {
   const { auth } = useAuthContext()
 
   const { balanceAmount, isFetching } = useGetBalance({
-    id_customer: auth[0]?.id
+    idCustomer: auth[0]?.id
   })
 
   return (
@@ -24,7 +24,7 @@ const HomePage: React.FC = () => {
         <section className="container__section">
           <section className="section__separator container__cards scroll-none">
             <ContainerSlider>
-              <TargetCards id_customer={auth[0]?.id} />
+              <TargetCards idCustomer={auth[0]?.id} />
             </ContainerSlider>
           </section>
           <section className="section__separator container__main--spending">

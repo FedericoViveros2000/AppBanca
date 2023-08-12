@@ -3,7 +3,7 @@ import { debitTrans } from './movements'
 import {
   NOTIFICATIONS,
   TYPE_MOVEMENTS
-} from '../interfaces/enums/Notifications'
+} from '../interfaces/enums/notifications.d.ts'
 
 interface Props {
   cardBalance: string

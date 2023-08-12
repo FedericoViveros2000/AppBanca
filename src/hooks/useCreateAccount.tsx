@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { supabase } from '../supabase/index'
 import { type AppState } from '../interfaces/userInterface'
-import { type PostgrestError } from '@supabase/supabase-js'
-import { registerNewUser, verifyAuthenticationUser } from '../server'
 import {
   startRegistration,
   browserSupportsWebAuthn,
@@ -20,6 +18,7 @@ const initialValue = {
 }
 
 const actualInput: AppState['createAccount'] = initialValue
+
 const useCreateAccount = () => {
   const [newUser, setNewUser] =
     useState<AppState['createAccount']>(initialValue)
@@ -55,22 +54,26 @@ const useCreateAccount = () => {
         if (browserSupportsWebAuthn()) {
           const isAvaible = await platformAuthenticatorIsAvailable()
           if (isAvaible) {
-            const firstAuth = confirm(
+            const activate = confirm(
               'Desea registrar huella para ponerla como primer metodo de autenticacion'
             )
-            if (firstAuth) {
-              const register = await registerNewUser({
+            if (activate) {
+              const { registerNewUser, verifyAuthenticationUser } =
+                await import('../server')
+              const registerUser = await registerNewUser({
                 id: response[0]?.nro_documento as unknown as string,
                 username: response[0]?.nombre,
                 currentChallenge: response[0]?.currentChallenge
               })
-              const registrationStart = await startRegistration(register)
-              const verifyAuthetication = await verifyAuthenticationUser({
+              const startRegister = await startRegistration(registerUser)
+
+              await verifyAuthenticationUser({
                 idUser: response[0]?.nro_documento as unknown as string,
-                body: registrationStart,
-                currentChallenge: register.challenge
+                body: startRegister,
+                currentChallenge: registerUser.challenge
+              }).catch((err) => {
+                console.log(err)
               })
-              console.log(verifyAuthetication)
             }
           } else {
             alert('Su navegador no soporta la authenticacion biometrica')

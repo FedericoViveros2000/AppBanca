@@ -1,10 +1,12 @@
-export interface Base64Url {
-  (input: string | Buffer, encoding?: string): string;
-  encode(input: string | Buffer, encoding?: string): string;
-  decode(base64url: string, encoding?: string): string;
-  toBase64(base64url: string | Buffer): string;
-  fromBase64(base64: string): string;
-  toBuffer(base64url: string): Buffer;
+const base64ToUint8 = (base64String: string): Uint8Array => {
+  const binaryString = atob(base64String)
+  const buffer = new Uint8Array(binaryString.length)
+
+  for (let i = 0; i < binaryString.length; i++) {
+    buffer[i] = binaryString.charCodeAt(i)
+  }
+
+  return buffer
 }
-declare let base64url: Base64Url;
-export { base64url };
+
+export { base64ToUint8 }

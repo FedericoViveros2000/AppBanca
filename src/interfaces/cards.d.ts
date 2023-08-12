@@ -6,3 +6,5 @@ export interface Cards {
   card_balance: number
   error: string | null
 }
+
+export type CardBalance = Pick<Cards, 'card_balance'>

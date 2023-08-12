@@ -1,36 +1,38 @@
-import "./styles/card.css";
-import { useGetCards } from "../../hooks/useGetCards";
-import TargetCardLoader from "./TargetCardLoader";
-import { Cards } from "../../interfaces/cards.types";
-import { formatCurrency } from "../../utils/formatCurrency";
-import { useRealtime } from "../../hooks/useRealtime";
+import './styles/card.css'
+import React from 'react'
+import { useGetCards } from '../../hooks/useGetCards'
+import TargetCardLoader from './TargetCardLoader'
+import { type Cards } from '../../interfaces/cards'
+import { formatCurrency } from '../../utils/formatCurrency'
+import { useRealtime } from '../../hooks/useRealtime'
+import { TABLES } from '../../interfaces/enums/database/tables.d.ts'
 
 interface Data {
-  data: Cards[];
-  isLoading: boolean;
+  data: Cards[]
+  isLoading: boolean
 }
 
 interface Props {
-  id_customer: number;
+  idCustomer: number
 }
 
-function TargetCards({ id_customer }: Props) {
-  const { data: newBalance } = useRealtime({
-    table: "card_balance",
-  });
+export const TargetCards: React.FC<Props> = ({ idCustomer }) => {
+  const { card_balance, id_card_customer } = useRealtime({
+    table: TABLES.CARD_BALANCE
+  })
+  const { isLoading, data }: Data = useGetCards({ idCustomer, newBalance: card_balance, idCardCustomer: id_card_customer })
 
-  const { isLoading, data }: Data = useGetCards({ id_customer: id_customer });
-  if (isLoading) return <TargetCardLoader />;
+  if (isLoading) return <TargetCardLoader />
 
   return (
     <>
       {data?.map((card) => (
         <li
           style={{
-            backgroundColor: card.card_color || "blueviolet",
+            backgroundColor: card.card_color || 'blueviolet'
           }}
           className={`container__target--card relative target font-light ${
-            data.length === 1 ? "min-w-100" : "min-w-90"
+            data.length === 1 ? 'min-w-100' : 'min-w-90'
           }`}
           key={card.id}
         >
@@ -41,14 +43,11 @@ function TargetCards({ id_customer }: Props) {
           <div className="container__target--balance">
             <p className="title-balance font-light fw-normal">Balance</p>
             <h2 className="font-regular-title-large font-light fw-normal">
-              {/* formatCurrency(newBalance?.card_balance) ||  */}
               {formatCurrency(card?.card_balance)}
             </h2>
           </div>
         </li>
       ))}
     </>
-  );
+  )
 }
-
-export { TargetCards };

@@ -1,40 +1,52 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase/index'
 import { notifications } from '../utils/notifications'
-import { TYPE_MOVEMENTS } from '../interfaces/enums/Notifications'
+import { TYPE_MOVEMENTS } from '../interfaces/enums/notifications.d.ts'
 import { formatCurrency } from '../utils/formatCurrency'
+import { type RealtimeChannel } from '@supabase/supabase-js'
+import { TABLES } from '../interfaces/enums/database/tables.d.ts'
+import { REALTIME } from '../interfaces/enums/realtime.d.ts'
+
 interface realtimeProps {
   table: string
 }
 
+interface newBalance {
+  card_balance: number
+  id_card_customer: number
+}
+
 const useRealtime = ({
-  table = 'card_balance'
-}: realtimeProps) => {
-  const [data, setData] = useState({
-    card_balance: 0
+  table = TABLES.CARD_BALANCE
+}: realtimeProps): newBalance => {
+  const [cardBalance, setCardBalance] = useState<newBalance>({
+    card_balance: 0,
+    id_card_customer: 0
   })
 
-  const realtime = () => {
+  const realtime = (): RealtimeChannel => {
     const realtimeBalance = supabase
-      .channel('table-db-changes')
+      .channel(REALTIME.CHANNEL)
       .on(
-        'postgres_changes',
+        REALTIME.CHANGE,
         {
-          event: 'UPDATE',
-          schema: 'public',
+          event: REALTIME.UPDATE,
+          schema: REALTIME.SCHEMA,
           table
         },
         (payload) => {
-          setData({
-            card_balance: payload.new?.card_balance
+          setCardBalance({
+            card_balance: payload.new?.card_balance,
+            id_card_customer: payload.new?.id
           })
           notifications({
             cardBalance: formatCurrency(payload.new?.card_balance),
             typeMovement: TYPE_MOVEMENTS.DEBIT
-          })
+          }).then(res => { console.log(res) }).catch(err => { console.log(err) })
         }
       )
       .subscribe()
+
     return realtimeBalance
   }
 
@@ -42,9 +54,7 @@ const useRealtime = ({
     realtime()
   }, [])
 
-  return {
-    data
-  }
+  return cardBalance
 }
 
 export { useRealtime }

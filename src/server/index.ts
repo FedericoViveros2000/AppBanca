@@ -4,22 +4,24 @@ import {
   generateRegistrationOptions,
   verifyRegistrationResponse
 } from '@simplewebauthn/server'
-import { type Authenticator, type UserModel } from './types/types.webauthN'
+import { type Authenticator, type UserModel } from './types/types'
+import { TABLES } from '../interfaces/enums/database/tables.d.ts'
+import { COLUMNS } from '../interfaces/enums/database/columns.d.ts'
 
 import { type PublicKeyCredentialCreationOptionsJSON, type RegistrationResponseJSON } from '@simplewebauthn/typescript-types'
 import { getUserAuthenticators } from './utils'
+import { base64ToUint8 } from './utils/base64'
 
 const { VITE_RP_NAME: rpENV } = import.meta.env
 
 const rpName = rpENV
 const rpID = window.location.hostname
 const origin = `http://${rpID}:5173`
-// const origin = `http://${window.location.hostname}`
+// const origin = `https://${window.location.hostname}`
 let userAuthenticators: Authenticator[] = []
 
 export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredentialCreationOptionsJSON> => {
   userAuthenticators = await getUserAuthenticators(user.id)
-  console.log(userAuthenticators)
 
   const opts: GenerateRegistrationOptionsOpts = {
     rpName,
@@ -30,7 +32,7 @@ export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredent
     attestationType: 'none',
 
     excludeCredentials: userAuthenticators?.map((dev) => ({
-      id: dev.credentialID,
+      id: base64ToUint8(dev.credentialID as unknown as string),
       type: 'public-key',
       transports: dev.transports
     })),
@@ -47,10 +49,14 @@ export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredent
 const updateUserChallenge = async (challenge: string, userId: string): Promise<void> => {
   try {
     const { error } = await supabase
-      .from('clientes')
+      .from(TABLES.CUSTOMERS)
       .update({ currentChallenge: challenge })
-      .eq('nro_documento', userId)
-    if (error != null) throw new Error('Ha ocurrido un error al actualizar el challenge')
+      .eq(COLUMNS.DOCUMENT, userId)
+
+    if (error != null) {
+      throw new Error('Ha ocurrido un error al actualizar el challenge')
+    }
+    console.log('Challenge actualizado correctamente')
   } catch (error) {
     console.log(error)
   }
@@ -92,7 +98,7 @@ export const verifyAuthenticationUser = async ({
       }
 
       await supabase
-        .from('webauthn')
+        .from(TABLES.WEBAUTHN)
         .insert([newAuthenticator])
         .select()
     }

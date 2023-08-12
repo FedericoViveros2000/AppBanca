@@ -3,8 +3,9 @@ import {
   verifyAuthenticationResponse
 } from '@simplewebauthn/server'
 import { type PublicKeyCredentialRequestOptionsJSON, type AuthenticationResponseJSON, type AuthenticatorDevice } from '@simplewebauthn/typescript-types'
-import { type Authenticator, type UserModel } from './types/types.webauthN'
+import { type Authenticator, type UserModel } from './types/types'
 import { getUserAuthenticators, getUserAuthenticatorsAuth, updateUserCounter } from './utils'
+import { base64ToUint8 } from './utils/base64'
 
 interface finalUser {
   body: AuthenticationResponseJSON
@@ -19,15 +20,11 @@ const verifyAuthUser = async (user: UserModel): Promise<PublicKeyCredentialReque
   // (Pseudocode) Retrieve the logged-in user
   userAuthenticators = await getUserAuthenticators(user.id)
 
-  console.log(userAuthenticators)
-
   const options = generateAuthenticationOptions({
     // Require users to use a previously-registered authenticator
     allowCredentials: userAuthenticators?.map((authenticator) => ({
-      id: authenticator.credentialID,
-      type: 'public-key',
-      // Optional
-      transports: authenticator.transports
+      id: base64ToUint8(authenticator.credentialID as unknown as string),
+      type: 'public-key'
     })),
     userVerification: 'preferred'
   })
@@ -43,7 +40,7 @@ const verificationFinalUser = async ({
 
   const authenticator: AuthenticatorDevice = await getUserAuthenticatorsAuth(rawId)
 
-  if (authenticator.credentialPublicKey === null && authenticator.credentialID === null) {
+  if (authenticator.credentialID === null && authenticator.credentialPublicKey === null) {
     throw new Error(
       `Could not find authenticator ${rawId} for user`
     )

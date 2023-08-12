@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import { type AuthContext as AuthContextType } from '../interfaces/authContext.types'
+import { type AuthContext as AuthContextType } from '../interfaces/authContext'
 interface Props {
   children: React.ReactElement
 }
