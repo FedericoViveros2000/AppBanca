@@ -1,10 +1,10 @@
-import React from "react";
-import { BiArrowBack } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { BiArrowBack } from 'react-icons/bi'
+import { Link } from 'react-router-dom'
 
 interface Props {
-  title: string;
-  urlBack: string;
+  title: string
+  urlBack: string
 }
 
 const NavBar = ({ title, urlBack }: Props) => {
@@ -13,9 +13,9 @@ const NavBar = ({ title, urlBack }: Props) => {
       <Link to={urlBack} className="link">
         <BiArrowBack className="arrow-back font-light" />
       </Link>
-      <h1 className="title section__separator">{title}</h1>
+      <h1 className="title">{title}</h1>
     </section>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

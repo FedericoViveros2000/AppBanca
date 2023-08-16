@@ -1,27 +1,27 @@
-import "./styles/navbarUser.css";
-
-import { useState, useEffect } from "react";
-import { AiFillBell } from "react-icons/ai";
+import React, { useState, useEffect } from 'react'
+import './styles/navbarUser.css'
+import { Link } from 'react-router-dom'
+import { AiFillBell } from 'react-icons/ai'
 
 interface Props {
-  name: string;
+  name: string
 }
 
-function NavBarDetailUser({ name }: Props) {
-  const [greeting, setGreeting] = useState("");
+const NavBarDetailUser: React.FC<Props> = ({ name }) => {
+  const [greeting, setGreeting] = useState('')
 
   useEffect(() => {
-    const currentHour = new Date().getHours();
+    const currentHour = new Date().getHours()
     if (currentHour >= 6 && currentHour < 12) {
-      setGreeting("Good Morning");
+      setGreeting('Good Morning')
     } else if (currentHour >= 12 && currentHour < 18) {
-      setGreeting("Good Afternoon");
+      setGreeting('Good Afternoon')
     } else if (currentHour > 18 && currentHour < 21) {
-      setGreeting("Good Evening");
+      setGreeting('Good Evening')
     } else {
-      setGreeting("Good Night");
+      setGreeting('Good Night')
     }
-  }, []);
+  }, [])
 
   return (
     <header className="container__header bg-top-bar">
@@ -35,15 +35,17 @@ function NavBarDetailUser({ name }: Props) {
             <AiFillBell />
           </p>
           <figure className="img-user">
+          <Link to='/configuration'>
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbRQ__k2EYW6KuKOGDuoftyTVDlxJ_lFv8lzXrNixMg&s"
               alt=""
-            />
+              />
+              </Link>
           </figure>
         </li>
       </ul>
     </header>
-  );
+  )
 }
 
-export { NavBarDetailUser };
+export { NavBarDetailUser }

@@ -17,10 +17,10 @@ interface Props {
 }
 
 export const TargetCards: React.FC<Props> = ({ idCustomer }) => {
-  const { card_balance, id_card_customer } = useRealtime({
+  const { cardBalance, idCardCustomer } = useRealtime({
     table: TABLES.CARD_BALANCE
   })
-  const { isLoading, data }: Data = useGetCards({ idCustomer, newBalance: card_balance, idCardCustomer: id_card_customer })
+  const { isLoading, data }: Data = useGetCards({ idCustomer, newBalance: cardBalance, idCardCustomer })
 
   if (isLoading) return <TargetCardLoader />
 
@@ -29,7 +29,7 @@ export const TargetCards: React.FC<Props> = ({ idCustomer }) => {
       {data?.map((card) => (
         <li
           style={{
-            backgroundColor: card.card_color || 'blueviolet'
+            backgroundColor: card.card_color ?? 'blueviolet'
           }}
           className={`container__target--card relative target font-light ${
             data.length === 1 ? 'min-w-100' : 'min-w-90'

@@ -1,3 +1,4 @@
 export const ROUTE = {
-  HOME: '/Home'
+  HOME: '/Home',
+  LOGINPAGE: '/'
 } as const

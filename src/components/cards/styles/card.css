@@ -1,44 +1,42 @@
-.container__cards{
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+.container__cards {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
 }
-.container__target{
-    width: 100%;
-    min-height: 170px;
-    display: flex;
-}
-
-
-.target{
-    list-style: none;
-    margin-right: 10px;
-    border-radius: 20px;
-    padding: 20px;
+.container__target {
+  width: 100%;
+  min-height: 170px;
+  display: flex;
 }
 
-.scroll-none::-webkit-scrollbar{
-    display: none;
+.target {
+  list-style: none;
+  margin-right: 10px;
+  border-radius: 20px;
+  padding: 20px;
 }
 
-.container__target--card{
-    flex-shrink: 0;
-    scroll-snap-align: center;
+.scroll-none::-webkit-scrollbar {
+  display: none;
 }
 
-
-.container__target--balance{
-    position: absolute;
-    bottom: 20px;
+.container__target--card {
+  flex-shrink: 0;
+  scroll-snap-align: center;
 }
 
-.title-balance{
-    margin-bottom: 5px;
-    opacity: .5;
+.container__target--balance {
+  position: absolute;
+  bottom: 20px;
 }
 
-.container__target--subscriptions{
-    scroll-snap-align: center;
-    height: 250px;
-    min-width: 70%;
-    flex-shrink: 0;
+.title-balance {
+  margin-bottom: 5px;
+  opacity: 0.5;
+}
+
+.container__target--subscriptions {
+  scroll-snap-align: center;
+  height: 250px;
+  min-width: 70%;
+  flex-shrink: 0;
 }

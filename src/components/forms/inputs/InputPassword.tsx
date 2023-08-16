@@ -4,7 +4,7 @@ import { BsEyeSlashFill, BsEyeFill } from 'react-icons/bs'
 interface Props {
   id: string
   name?: string
-  typeInput?: string
+  typeInput?: boolean
   disabled?: boolean
   placeholder?: string
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
@@ -12,7 +12,7 @@ interface Props {
 }
 const InputPassword: React.FC<Props> = ({
   id,
-  typeInput = 'password',
+  typeInput = false,
   placeholder = 'Enter your password',
   handleChange,
   name = 'password',
@@ -26,12 +26,12 @@ const InputPassword: React.FC<Props> = ({
         className="input input__password"
         autoComplete="off"
         name={name}
-        type="password"
+        type={typeInput ? 'text' : 'password'}
         disabled={disabled}
         placeholder={placeholder}
         onChange={handleChange}
       />
-      {typeInput === 'text'
+      {typeInput
         ? (
         <BsEyeSlashFill
           className="fs-icon fw-normal"

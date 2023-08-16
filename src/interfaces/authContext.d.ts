@@ -1,5 +1,3 @@
-import { type UserData } from './userInterface'
-
 interface UserDataPrueba {
   id: number
   nro_documento: number | null
@@ -16,5 +14,5 @@ interface UserDataPrueba {
 
 export interface AuthContext {
   auth: UserDataPrueba[]
-  setAuth: ((prueba: UserData[]) => void) | undefined
+  setAuth: Dispatch<SetStateAction<UserDataPrueba[]>> | null
 }

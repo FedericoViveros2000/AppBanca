@@ -12,7 +12,7 @@ const CreateAccountPage: React.FC = () => {
   const {
     newUser,
     isLoading,
-    // error,
+    error,
     handleCreateAccount,
     handleIsAccept,
     createdSuccess,
@@ -54,7 +54,7 @@ const CreateAccountPage: React.FC = () => {
           handleCreateAccount={handleCreateAccount}
           handleIsAccept={handleIsAccept}
           newUser={newUser}
-          error={''}
+          error={error}
         />
       </BaseGenericForm>
     </>

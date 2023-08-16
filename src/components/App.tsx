@@ -6,12 +6,17 @@ import './index.css'
 import { useAuthContext } from '../context/AuthContext'
 
 /*
-  Vistas con carga perezosa
+Vistas con carga perezosa
 */
 const HomePage = lazy(async () => await import('../views/HomePage'))
 // const LoginPage = lazy(() => import('../views/LoginPage'));
-const CreateAccountPage = lazy(async () => await import('../views/CreateAccountPage'))
-const SendMoneyPage = lazy(async () => await import('../views/SendMoney/SendMoneyPage'))
+const CreateAccountPage = lazy(
+  async () => await import('../views/CreateAccountPage')
+)
+const SendMoneyPage = lazy(
+  async () => await import('../views/SendMoney/SendMoneyPage')
+)
+const ConfigurationPage = lazy(async () => await import('../views/ConfigurationPage'))
 const HistoryPage = lazy(async () => await import('../views/HistoryPage'))
 
 const App = (): JSX.Element => {
@@ -25,7 +30,8 @@ const App = (): JSX.Element => {
           <Route element={<ProtectedRoutes userAuth={!!auth} redirectTo="/" />}>
             <Route path="/Home" element={<HomePage />} />
             <Route path="/SendMoney" element={<SendMoneyPage />} />
-          <Route path="/History" element={<HistoryPage />} />
+            <Route path="/History" element={<HistoryPage />} />
+            <Route path="/configuration" element={<ConfigurationPage/>}/>
           </Route>
         </Routes>
       </BrowserRouter>

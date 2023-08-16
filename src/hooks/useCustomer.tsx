@@ -13,6 +13,8 @@ import {
 } from '@simplewebauthn/browser'
 import { type Props, type Customers } from './types/hooks'
 import { verificationFinalUser, verifyAuthUser } from '../server/auth'
+import { webAuthN } from '../utils/webAuthN'
+import { adapterUserData } from '../utils/adapters/service.user.adapter'
 // import { registerNewUser, verifyAuthenticationUser } from '../server'
 
 export interface fetchData {
@@ -35,31 +37,17 @@ const useCustomer = (): Customers => {
         user: nroDocumento,
         password
       })
+
+      // Si se quiere registrar con algun medio biometrico
+      if (response !== null && password === null) {
+        const data = await webAuthN(response)
+        return data
+      }
+
+      // Si se quiere registrar con su contraseñas
       if (response !== null) {
-        const respAuthUser = await verifyAuthUser({
-          id: response[0]?.nro_documento as unknown as string,
-          username: response[0]?.nombre,
-          currentChallenge: response[0]?.currentChallenge
-        })
-        const startAuth = await startAuthentication(respAuthUser)
-        const verified = await verificationFinalUser({
-          body: startAuth,
-          currentChallenge: respAuthUser.challenge
-        })
-        return [{
-          id: response[0]?.id,
-          nombre: response[0]?.nombre,
-          apellido: response[0].apellido,
-          email: response[0].email,
-          created_at: response[0].created_at,
-          currentChallenge: response[0]?.currentChallenge,
-          direccion: response[0]?.direccion,
-          nro_documento: response[0]?.nro_documento,
-          password: response[0]?.password,
-          telefono: response[0]?.telefono,
-          fecha_nacimiento: response[0]?.fecha_nacimiento,
-          verified
-        }]
+        const data = adapterUserData(response)
+        return [{ ...data[0], verified: true }]
       }
     } catch (error) {
       console.log(error)
@@ -67,9 +55,11 @@ const useCustomer = (): Customers => {
       setIsFetching(false)
     }
 
-    return [{
-      verified: false
-    }]
+    return [
+      {
+        verified: false
+      }
+    ]
   }
 
   return {

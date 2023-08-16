@@ -12,16 +12,16 @@ interface realtimeProps {
 }
 
 interface newBalance {
-  card_balance: number
-  id_card_customer: number
+  cardBalance: number
+  idCardCustomer: number
 }
 
 const useRealtime = ({
   table = TABLES.CARD_BALANCE
 }: realtimeProps): newBalance => {
   const [cardBalance, setCardBalance] = useState<newBalance>({
-    card_balance: 0,
-    id_card_customer: 0
+    cardBalance: 0,
+    idCardCustomer: 0
   })
 
   const realtime = (): RealtimeChannel => {

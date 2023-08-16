@@ -22,6 +22,8 @@ export interface Hooks {
   getData: ({ nroDocumento }: Props) => Promise<UserDataVerified[]>
   newUser: UserRegister
   isRememberID: boolean
+  showPassword: boolean
+  handleShowPassword: () => void
   handleRememberID: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>
 }
 

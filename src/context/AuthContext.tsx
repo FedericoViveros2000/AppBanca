@@ -20,7 +20,7 @@ const INITIAL_VALUE = {
 
 const Context = createContext<AuthContextType>({
   auth: [INITIAL_VALUE],
-  setAuth: undefined
+  setAuth: null
 })
 
 const useAuthContext = (): AuthContextType => useContext(Context)

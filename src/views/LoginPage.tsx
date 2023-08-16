@@ -14,15 +14,13 @@ const LoginPage: React.FC = () => {
   const { auth } = useAuthContext()
   const {
     isFetching,
-    writePassword,
+    showPassword,
+    handleShowPassword,
     handleChangeLogin,
-    typeInput,
     isRememberID,
     errors,
-    handleChangeTypeInput,
     handleLogin,
-    handleRememberID,
-    changeWritePassword
+    handleRememberID
   } = useLogin()
 
   // if (isFetching) return <Loader />;
@@ -53,10 +51,6 @@ const LoginPage: React.FC = () => {
               handleChange={handleChangeLogin}
             />
             {errors?.user !== null && <Error message={errors.user} />}
-          </>
-            )}
-        {writePassword && (
-          <>
             <label htmlFor="password" className="label">
               Password
             </label>
@@ -64,20 +58,21 @@ const LoginPage: React.FC = () => {
               <InputPassword
                 id="password"
                 // disabled={true}
+                typeInput={showPassword}
+                handleChangeTypeInput={handleShowPassword}
                 handleChange={handleChangeLogin}
-                handleChangeTypeInput={handleChangeTypeInput}
-                typeInput={typeInput}
               />
             </div>
           </>
-        )}
+            )}
+
         {!isRememberID && (
           <InputCheckbox
             id="remember"
             name="remember"
             label="Remember ID"
             disabled={isRememberID}
-            handleChange={handleRememberID}
+            handleChange={() => handleRememberID}
           />
         )}
 
@@ -89,12 +84,6 @@ const LoginPage: React.FC = () => {
             Sign up
           </Link>
         </p>
-        {/* <p
-          className="font-active fw-bold text-center"
-          onClick={changeWritePassword}
-        >
-          Colocar contraseña
-        </p> */}
       </>
     </BaseGenericForm>
   )

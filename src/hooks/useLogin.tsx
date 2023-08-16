@@ -7,15 +7,18 @@ import { INPUTS } from './types/inputs.d.ts'
 import { getUserDataExists } from '../utils/getUserData'
 import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
-import { adapterUserData } from '../utils/adapters/service.user.adapter'
 import { ROUTE } from '../interfaces/enums/routes/index.d.ts'
 import { ERROR } from '../interfaces/enums/errors/index.d.ts'
-import { LOCALSTORAGE, SESSIONSTORAGE } from '../interfaces/enums/storage/index.d.ts'
+import {
+  LOCALSTORAGE,
+  SESSIONSTORAGE
+} from '../interfaces/enums/storage/index.d.ts'
 import { adapterSessionStorageData } from '../utils/adapters/service.user.sessionstorage'
 
 const useLogin = (): Login => {
   const [typeInput, setTypeInput] = useState<string>(INPUTS.PASSWORD)
   const [isRememberID, setIsRememberID] = useState<boolean>(false)
+  const [showPassword, setShowPassword] = useState<boolean>(false)
   const [writePassword, setWritePassword] = useState(false)
   const { getData, isFetching } = useCustomer()
   const [formLogin, setFormLogin] = useState<UserLogin>({
@@ -28,6 +31,8 @@ const useLogin = (): Login => {
   const [errors, setError] = useState<errors>({
     user: null
   })
+
+  const handleShowPassword = (): void => { setShowPassword(!showPassword) }
 
   const changeWritePassword = (): void => {
     setWritePassword(true)
@@ -59,7 +64,10 @@ const useLogin = (): Login => {
       .then((user) => {
         if (user[0]?.verified) {
           const userAdapter = adapterSessionStorageData(user)
-          sessionStorage.setItem(SESSIONSTORAGE.USER_DATA, JSON.stringify(userAdapter))
+          sessionStorage.setItem(
+            SESSIONSTORAGE.USER_DATA,
+            JSON.stringify(userAdapter)
+          )
           navigate(ROUTE.HOME)
           if (setAuth != null) {
             setAuth(userAdapter)
@@ -122,6 +130,8 @@ const useLogin = (): Login => {
     changeWritePassword,
     typeInput,
     formLogin,
+    showPassword,
+    handleShowPassword,
     isRememberID,
     handleRememberID
   }

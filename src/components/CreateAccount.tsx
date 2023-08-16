@@ -1,24 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { type AppState } from "../interfaces/userInterface";
-import { InputTextSearch } from "./forms/inputs/InputTextSearch";
-import { ButtonPrimary } from "./buttons/ButtonPrimary";
-import { InputEmail } from "./forms/inputs/InputEmail";
-import { InputDate } from "./forms/inputs/InputDate";
-import { InputPassword } from "./forms/inputs/InputPassword";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { type AppState } from '../interfaces/userInterface'
+import { InputTextSearch } from './forms/inputs/InputTextSearch'
+import { ButtonPrimary } from './buttons/ButtonPrimary'
+import { InputEmail } from './forms/inputs/InputEmail'
+import { InputDate } from './forms/inputs/InputDate'
+import { InputPassword } from './forms/inputs/InputPassword'
+import { type UserRegisterValidations } from './validations/types/validationRegister'
+import { Error } from './errors/Error'
 
 interface Props {
-  newUser: AppState["createAccount"];
-  handleCreateAccount: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleIsAccept: () => void;
-  error: string;
+  newUser: AppState['createAccount']
+  handleCreateAccount: (e: React.ChangeEvent<HTMLInputElement>) => void
+  handleIsAccept: () => void
+  error: UserRegisterValidations
 }
 
 const CreateAccount: React.FC<Props> = ({
   handleCreateAccount,
   handleIsAccept,
   newUser,
-  error,
+  error
 }: Props) => {
   return (
     <div className="container__create">
@@ -32,15 +34,17 @@ const CreateAccount: React.FC<Props> = ({
           placeholder="Enter your name"
           handleChange={handleCreateAccount}
         />
-        {newUser?.nombre.length > 3 && (
+        {error.nombre === undefined && (
           <p className="btn-check">
             <i className="fa-solid fa-check" />
           </p>
         )}
       </div>
+      {error.nombre !== undefined && <Error message={error.nombre} />}
       <label htmlFor="lastName" className="label">
         Last name
       </label>
+      {/* {typeof (error.apellido)?.toString()} */}
       <div className="container__messages my-sm-1">
         <InputTextSearch
           id="lastName"
@@ -48,12 +52,13 @@ const CreateAccount: React.FC<Props> = ({
           placeholder="Enter your last name"
           handleChange={handleCreateAccount}
         />
-          {newUser?.apellido.length > 3 && (
+        {error.apellido === undefined && (
           <p className="btn-check">
             <i className="fa-solid fa-check" />
           </p>
         )}
       </div>
+      {error.apellido !== undefined && <Error message={error.apellido} />}
       <label htmlFor="email" className="label">
         Email
       </label>
@@ -64,12 +69,13 @@ const CreateAccount: React.FC<Props> = ({
           placeholder="Enter your email"
           handleChange={handleCreateAccount}
         />
-        {newUser.email.length > 3 && (
+        {error.email === undefined && (
           <p className="btn-check">
             <i className="fa-solid fa-check" />
           </p>
         )}
       </div>
+      {error.email !== undefined && <Error message={error.email} />}
       <label htmlFor="nro_documento" className="label">
         Nro Documento
       </label>
@@ -80,12 +86,15 @@ const CreateAccount: React.FC<Props> = ({
           placeholder="Enter your document ID"
           handleChange={handleCreateAccount}
         />
-        {newUser.nro_documento > 10000 && (
+        {error.nro_documento === undefined && (
           <p className="btn-check">
             <i className="fa-solid fa-check" />
           </p>
         )}
       </div>
+      {error.nro_documento !== undefined && (
+        <Error message={error.nro_documento} />
+      )}
       <label htmlFor="phone" className="label">
         Phone:
       </label>
@@ -96,12 +105,13 @@ const CreateAccount: React.FC<Props> = ({
           placeholder="Enter your telephone"
           handleChange={handleCreateAccount}
         />
-        {newUser.telefono.length > 3 && (
+        {error.telefono === undefined && (
           <p className="btn-check">
             <i className="fa-solid fa-check" />
           </p>
         )}
       </div>
+      {error.telefono !== undefined && <Error message={error.telefono} />}
       <label htmlFor="address" className="label">
         Address:
       </label>
@@ -112,12 +122,13 @@ const CreateAccount: React.FC<Props> = ({
           placeholder="Enter your telephone"
           handleChange={handleCreateAccount}
         />
-        {newUser.direccion.length > 3 && (
+        {error.direccion === undefined && (
           <p className="btn-check">
             <i className="fa-solid fa-check" />
           </p>
         )}
       </div>
+      {error.direccion !== undefined && <Error message={error.direccion} />}
       <label htmlFor="birthday" className="label">
         Birthday:
       </label>
@@ -128,7 +139,15 @@ const CreateAccount: React.FC<Props> = ({
           placeholder="Enter your birthday"
           handleChange={handleCreateAccount}
         />
+        {/* {error.fecha_nacimiento === undefined && (
+          <p className="btn-check">
+            <i className="fa-solid fa-check" />
+          </p>
+        )} */}
       </div>
+      {error.fecha_nacimiento !== undefined && (
+        <Error message={error.fecha_nacimiento} />
+      )}
       <label htmlFor="password" className="label">
         Password:
       </label>
@@ -139,12 +158,13 @@ const CreateAccount: React.FC<Props> = ({
           handleChange={handleCreateAccount}
           handleChangeTypeInput={() => {}}
         />
-        {newUser.password.length > 6 && (
+        {/* {error.password === undefined && (
           <p className="btn-check">
             <i className="fa-solid fa-check" />
           </p>
-        )}
+        )} */}
       </div>
+      {error.password !== undefined && <Error message={error.password} />}
       <label htmlFor="accept" className="container__accept">
         <input
           type="checkbox"
@@ -162,7 +182,7 @@ const CreateAccount: React.FC<Props> = ({
       </p>
       <ButtonPrimary isFetching={false} />
     </div>
-  );
-};
+  )
+}
 
-export default CreateAccount;
+export default CreateAccount

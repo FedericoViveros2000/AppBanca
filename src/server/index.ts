@@ -16,8 +16,8 @@ const { VITE_RP_NAME: rpENV } = import.meta.env
 
 const rpName = rpENV
 const rpID = window.location.hostname
-const origin = `http://${rpID}:5173`
-// const origin = `https://${window.location.hostname}`
+// const origin = `http://${rpID}:5173`
+const origin = `https://${window.location.hostname}`
 let userAuthenticators: Authenticator[] = []
 
 export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredentialCreationOptionsJSON> => {

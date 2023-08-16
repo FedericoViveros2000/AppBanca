@@ -104,9 +104,17 @@ input[disabled] {
   background-color: var(--btn-inactive);
 }
 
-.container__main {
+.container__view {
   position: relative;
+  /* padding: 0px 20px; */
+}
+
+.px-1-5 {
   padding: 0px 20px;
+}
+
+.p-1-5{
+  padding: 20px;
 }
 
 .container__header{
@@ -136,6 +144,22 @@ input[disabled] {
   padding: 20px;
   margin-top: 15px;
   margin-bottom: 50px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.bottom-2 {
+  bottom: 20px;
+}
+
+.right-0 {
+  right: 0;
+}
+
+.left-0{
+  left: 0;
 }
 
 .icons {

@@ -8,7 +8,7 @@ interface Props {
   titleForm: string
   subTitleForm: string
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void | Promise<void>
-  children?: JSX.Element
+  children?: React.ReactElement
 }
 
 const BaseGenericForm: React.FC<Props> = ({

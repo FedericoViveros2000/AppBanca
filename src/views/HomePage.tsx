@@ -1,5 +1,5 @@
-import { BottomBar } from '../components/navigation/BottomBar'
 import React from 'react'
+import { BottomBar } from '../components/navigation/BottomBar'
 import { NavBarDetailUser } from '../components/navigation/NavBarDetailUser'
 import { TargetCards } from '../components/cards/TargetCards'
 import { Spending } from '../components/cards/Spending'
@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      <main className="container__main">
+      <main className="container__view px-1-5">
         <NavBarDetailUser name={auth[0]?.nombre} />
         <section className="container__section">
           <section className="section__separator container__cards scroll-none">
@@ -34,8 +34,8 @@ const HomePage: React.FC = () => {
                 )
               : (
               <Spending
-                spending={balanceAmount?.total_debit || 0}
-                income={balanceAmount?.total_credit || 0}
+                spending={balanceAmount?.totalDebit || 0}
+                income={balanceAmount?.totalCredit || 0}
               />
                 )}
           </section>
@@ -44,7 +44,7 @@ const HomePage: React.FC = () => {
           </section>
         </section>
       </main>
-      <section className="section__separator container__main bg-light">
+      <section className="section__separator container__view px-1-5 bg-light">
         <h3 className="font-dark fs-normal-md">{TITLES.MONTHLY_SUSCRIPTIONS}</h3>
         <article className="container__cards section__separator scroll-none">
           <ContainerSlider>
