@@ -5,7 +5,6 @@ import { useCustomer } from './useCustomer'
 import { type errors, type Login } from './types/hooks'
 import { INPUTS } from './types/inputs.d.ts'
 import { getUserDataExists } from '../utils/getUserData'
-import { useNavigate } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
 import { ROUTE } from '../interfaces/enums/routes/index.d.ts'
 import { ERROR } from '../interfaces/enums/errors/index.d.ts'
@@ -14,6 +13,7 @@ import {
   SESSIONSTORAGE
 } from '../interfaces/enums/storage/index.d.ts'
 import { adapterSessionStorageData } from '../utils/adapters/service.user.sessionstorage'
+import { useViewTransition } from './viewTransitions/useViewTransition'
 
 const useLogin = (): Login => {
   const [typeInput, setTypeInput] = useState<string>(INPUTS.PASSWORD)
@@ -25,7 +25,7 @@ const useLogin = (): Login => {
     user: 0,
     password: ''
   })
-  const navigate = useNavigate()
+  const { viewNavigate } = useViewTransition()
   const { setAuth } = useAuthContext()
 
   const [errors, setError] = useState<errors>({
@@ -68,10 +68,10 @@ const useLogin = (): Login => {
             SESSIONSTORAGE.USER_DATA,
             JSON.stringify(userAdapter)
           )
-          navigate(ROUTE.HOME)
           if (setAuth != null) {
             setAuth(userAdapter)
           }
+          viewNavigate(ROUTE.HOME)
         } else {
           setError({
             user: ERROR.INVALID_DOCUMENT

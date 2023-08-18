@@ -190,3 +190,50 @@ input[disabled] {
     background-color: hsl(200, 20%, 95%);
   }
 }
+
+/* Views Animation */
+::view-transition-old(root) {
+  animation: fade-and-scale-out 200ms linear 1 forwards;
+}
+
+::view-transition-new(root) {
+  animation: fade-and-scale-in 300ms linear 1 forwards;
+}
+
+@keyframes fade-and-scale-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes fade-and-scale-out {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+/* Second animation */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}

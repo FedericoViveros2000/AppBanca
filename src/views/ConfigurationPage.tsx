@@ -5,20 +5,20 @@ import {
   LOCALSTORAGE,
   SESSIONSTORAGE
 } from '../interfaces/enums/storage/index.d.ts'
-import { useNavigate } from 'react-router-dom'
 import { ROUTE } from '../interfaces/enums/routes/index.d.ts'
 import { useAuthContext } from '../context/AuthContext'
+import { useViewTransition } from '../hooks/viewTransitions/useViewTransition'
 
 const ConfigurationPage: React.FC = () => {
   const { setAuth } = useAuthContext()
 
-  const navigate = useNavigate()
+  const { viewNavigate } = useViewTransition()
 
   const closeSession = (): void => {
     sessionStorage.removeItem(SESSIONSTORAGE.USER_DATA)
     localStorage.removeItem(LOCALSTORAGE.ID_USER)
     setAuth(null)
-    navigate(ROUTE.LOGINPAGE)
+    viewNavigate(ROUTE.LOGINPAGE)
   }
 
   return (

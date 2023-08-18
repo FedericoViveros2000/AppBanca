@@ -4,6 +4,7 @@ import LoginPage from '../views/LoginPage'
 import { ProtectedRoutes } from '../router/ProtectedRoutes'
 import './index.css'
 import { useAuthContext } from '../context/AuthContext'
+import { BottomBar } from './navigation/BottomBar'
 
 /*
 Vistas con carga perezosa
@@ -21,6 +22,7 @@ const HistoryPage = lazy(async () => await import('../views/HistoryPage'))
 
 const App = (): JSX.Element => {
   const { auth } = useAuthContext()
+
   return (
     <Suspense fallback={<div>Cargando</div>}>
       <BrowserRouter>
@@ -28,10 +30,11 @@ const App = (): JSX.Element => {
           <Route path="/" element={<LoginPage />} />
           <Route path="/CreateAccount" element={<CreateAccountPage />} />
           <Route element={<ProtectedRoutes userAuth={!!auth} redirectTo="/" />}>
-            <Route path="/Home" element={<HomePage />} />
+            <Route path="/Home" element={<HomePage />} >
             <Route path="/SendMoney" element={<SendMoneyPage />} />
             <Route path="/History" element={<HistoryPage />} />
             <Route path="/configuration" element={<ConfigurationPage/>}/>
+          <BottomBar/>
           </Route>
         </Routes>
       </BrowserRouter>

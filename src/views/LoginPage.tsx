@@ -72,7 +72,7 @@ const LoginPage: React.FC = () => {
             name="remember"
             label="Remember ID"
             disabled={isRememberID}
-            handleChange={() => handleRememberID}
+            handleChange={handleRememberID}
           />
         )}
 

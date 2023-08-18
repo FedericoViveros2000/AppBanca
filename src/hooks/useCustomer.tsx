@@ -39,7 +39,7 @@ const useCustomer = (): Customers => {
       })
 
       // Si se quiere registrar con algun medio biometrico
-      if (response !== null && password === null) {
+      if (response !== null && password === '') {
         const data = await webAuthN(response)
         return data
       }
