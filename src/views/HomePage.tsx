@@ -1,5 +1,4 @@
 import React from 'react'
-import { BottomBar } from '../components/navigation/BottomBar'
 import { NavBarDetailUser } from '../components/navigation/NavBarDetailUser'
 import { TargetCards } from '../components/cards/TargetCards'
 import { Spending } from '../components/cards/Spending'
@@ -59,8 +58,8 @@ const HomePage: React.FC = () => {
             <BudgetCard bgColor="bg-light" />
           </ContainerSlider>
         </article>
-      </section>
-      <BottomBar />
+      </section>{/*
+      <BottomBar/> */}
     </>
   )
 }

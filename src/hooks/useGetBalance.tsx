@@ -16,28 +16,28 @@ const useGetBalance = ({ idCustomer }: PropsGetBalance) => {
 
   const transactionCredit = async (): Promise<void> => {
     setIsFeching(true)
-    getTransactionsTypes({
-      type_transaction: TYPE_TRANSACTIONS.DEBIT,
-      idCustomer,
-      first_date: getDateDayMonth().first_date,
-      last_date: getDateDayMonth().last_date
-    })
-      .then((totalDebit) => {
-        getTransactionsTypes({
-          type_transaction: TYPE_TRANSACTIONS.CREDIT,
-          idCustomer,
-          first_date: getDateDayMonth().first_date,
-          last_date: getDateDayMonth().last_date
-        }).then((totalCredit) => {
-          setBalanceAmount({
-            totalCredit,
-            totalDebit
-          })
-        }).catch(err => { console.log(err) })
+    try {
+      const [totalDebit, totalCredit] = await Promise.all([getTransactionsTypes({
+        type_transaction: TYPE_TRANSACTIONS.DEBIT,
+        idCustomer,
+        first_date: getDateDayMonth().first_date,
+        last_date: getDateDayMonth().last_date
+      }), getTransactionsTypes({
+        type_transaction: TYPE_TRANSACTIONS.CREDIT,
+        idCustomer,
+        first_date: getDateDayMonth().first_date,
+        last_date: getDateDayMonth().last_date
+      })]
+      )
+      setBalanceAmount({
+        totalCredit,
+        totalDebit
       })
-      .finally(() => {
-        setIsFeching(false)
-      })
+    } catch (error) {
+      console.log(error)
+    } finally {
+      setIsFeching(false)
+    }
   }
 
   useEffect(() => {

@@ -6,7 +6,7 @@ import { type errors, type Login } from './types/hooks'
 import { INPUTS } from './types/inputs.d.ts'
 import { getUserDataExists } from '../utils/getUserData'
 import { useAuthContext } from '../context/AuthContext'
-import { ROUTE } from '../interfaces/enums/routes/index.d.ts'
+import { ROUTE } from '../router/router.d.ts'
 import { ERROR } from '../interfaces/enums/errors/index.d.ts'
 import {
   LOCALSTORAGE,

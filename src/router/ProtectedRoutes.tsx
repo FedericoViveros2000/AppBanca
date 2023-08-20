@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet, Navigate } from 'react-router-dom'
+import { BottomBar } from '../components/navigation/BottomBar'
 
 interface Props {
   children?: React.ReactElement | null
@@ -12,7 +13,7 @@ const ProtectedRoutes: React.FC<Props> = ({ children, userAuth, redirectTo = '/'
     return <Navigate to={redirectTo}></Navigate>
   }
 
-  return (children != null) || <Outlet />
+  return (children != null) || <><Outlet /><BottomBar/></>
 }
 
 export { ProtectedRoutes }

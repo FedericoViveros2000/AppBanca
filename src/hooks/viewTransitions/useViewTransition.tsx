@@ -1,15 +1,17 @@
 import { useNavigate } from 'react-router-dom'
 
-export const useViewTransition = () => {
+interface Props {
+  viewNavigate: (newRoute: string) => void
+}
+
+export const useViewTransition = (): Props => {
   const navigate = useNavigate()
 
-  const viewNavigate = (newRoute: string) => {
+  const viewNavigate = (newRoute: string): void => {
     if (!document.startViewTransition) {
       navigate(newRoute); return
     }
-    return document.startViewTransition(() => {
-      navigate(newRoute)
-    })
+    return document.startViewTransition(() => { navigate(newRoute) })
   }
 
   return {

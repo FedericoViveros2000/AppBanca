@@ -7,6 +7,7 @@
     bottom: 0;
     left: 0;
     box-shadow: var(--shadow-bottom);
+    view-transition-name: container__navbarBottom;
 }
 
 .container__navbarBottom--icons {

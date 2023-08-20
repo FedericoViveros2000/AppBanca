@@ -13,6 +13,10 @@
   font-size: 16px;
 }
 
+li{
+  list-style: none;
+}
+
 .link {
   text-decoration: none;
 }
@@ -46,14 +50,19 @@
   align-items: center;
 }
 
-.relative {
+/* .relative {
   position: relative;
-}
+} */
 
 .container {
   width: 100%;
   position: relative;
   height: 100vh;
+}
+
+.relative{
+  width: 100%;
+  position: relative;
 }
 
 .container__section {
@@ -132,6 +141,7 @@ input[disabled] {
   width: 100%;
   height: 75%;
   padding: 20px;
+  position: relative;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
 }
@@ -148,6 +158,10 @@ input[disabled] {
 
 .absolute {
   position: absolute;
+}
+
+.fixed{
+  position: fixed;
 }
 
 .bottom-2 {
@@ -180,6 +194,10 @@ input[disabled] {
 
 .p-0 {
   padding: 0px;
+}
+
+.w-full{
+  width: 100%;
 }
 
 @keyframes skeleton-loading {

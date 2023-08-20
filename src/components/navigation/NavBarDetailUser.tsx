@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './styles/navbarUser.css'
 import { AiFillBell } from 'react-icons/ai'
 import { useViewTransition } from '../../hooks/viewTransitions/useViewTransition'
+import { ROUTE } from '../../router/router.d.ts'
 
 interface Props {
   name: string
@@ -37,7 +38,7 @@ const NavBarDetailUser: React.FC<Props> = ({ name }) => {
           </p>
           <figure
             className="img-user"
-            onClick={() => viewNavigate('/configuration')}
+            onClick={() => { viewNavigate(ROUTE.CONFIGURATION) }}
           >
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbRQ__k2EYW6KuKOGDuoftyTVDlxJ_lFv8lzXrNixMg&s"

@@ -1,11 +1,13 @@
-import "./styles/MenuTransactions.css";
-import { Link } from "react-router-dom";
-
+import './styles/MenuTransactions.css'
+import { ROUTE } from '../../router/router.d.ts'
+import React from 'react'
+import { useViewTransition } from '../../hooks/viewTransitions/useViewTransition'
 interface Props {
-  showMenu: string;
-  mostrarMenu: () => void;
+  showMenu: string
+  mostrarMenu: () => void
 }
-function MenuTransactions({ showMenu, mostrarMenu }: Props) {
+const MenuTransactions: React.FC<Props> = ({ showMenu, mostrarMenu }) => {
+  const { viewNavigate } = useViewTransition()
   return (
     <div className={`menu-transactions ${showMenu}`}>
       <article className={`menu-transaction ${showMenu}`}>
@@ -16,8 +18,8 @@ function MenuTransactions({ showMenu, mostrarMenu }: Props) {
           </p>
         </div>
         <ul className="grid">
-          <li className="item-menu bg-light-grey">
-            <Link to="/SendMoney">Enviar dinero</Link>
+          <li className="item-menu bg-light-grey" onClick={() => { viewNavigate(ROUTE.SENDMONEY) }}>
+            Enviar dinero
           </li>
           <li className="item-menu bg-light-grey"></li>
           <li className="item-menu bg-light-grey"></li>
@@ -25,7 +27,7 @@ function MenuTransactions({ showMenu, mostrarMenu }: Props) {
         </ul>
       </article>
     </div>
-  );
+  )
 }
 
-export { MenuTransactions };
+export { MenuTransactions }

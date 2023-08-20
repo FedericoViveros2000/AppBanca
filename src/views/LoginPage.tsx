@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import BaseGenericForm from '../components/forms/BaseGenericForm'
 import { useLogin } from '../hooks/useLogin'
 import { useAuthContext } from '../context/AuthContext'
@@ -9,9 +9,12 @@ import { InputPassword } from '../components/forms/inputs/InputPassword'
 import { ButtonPrimary } from '../components/buttons/ButtonPrimary'
 import { InputsTextSet } from '../components/forms/inputs/InputsTextSet'
 import { Error } from '../components/errors/Error'
+import { useViewTransition } from '../hooks/viewTransitions/useViewTransition'
+import { ROUTE } from '../router/router.d.ts'
 
 const LoginPage: React.FC = () => {
   const { auth } = useAuthContext()
+  const { viewNavigate } = useViewTransition()
   const {
     isFetching,
     showPassword,
@@ -80,9 +83,9 @@ const LoginPage: React.FC = () => {
         <ButtonPrimary isFetching={isFetching} />
         <p className="text-center my-1">
           <span>Don&apos;t have an account? </span>
-          <Link to="/createAccount" className="font-link">
+          <span onClick={() => { viewNavigate(ROUTE.CREATEACCOUNT) }} className="font-link">
             Sign up
-          </Link>
+          </span>
         </p>
       </>
     </BaseGenericForm>
