@@ -3,8 +3,8 @@ import { configuration } from '../components/data/configuration'
 import { ButtonSecondary } from '../components/buttons/ButtonSecondary'
 import {
   SESSIONSTORAGE
-} from '../interfaces/enums/storage/index.d.ts'
-import { ROUTE } from '../router/router.d.ts'
+} from '../interfaces/enums/storage/index.js'
+import { ROUTE } from '../router/router'
 import { useAuthContext } from '../context/AuthContext'
 import { useViewTransition } from '../hooks/viewTransitions/useViewTransition'
 import NavBar from '../components/navigation/NavBar'
@@ -17,7 +17,9 @@ const ConfigurationPage: React.FC = () => {
   const closeSession = (): void => {
     sessionStorage.removeItem(SESSIONSTORAGE.USER_DATA)
     // localStorage.removeItem(LOCALSTORAGE.ID_USER)
-    setAuth(null)
+    if (setAuth !== null) {
+      setAuth(null)
+    }
     viewNavigate(ROUTE.LOGIN)
   }
 

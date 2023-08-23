@@ -1,40 +1,40 @@
 .container__navbarBottom {
-    width: 100%;
-    display: flex; 
-    align-items: center;
-    background-color: var(--background-bottom-bar);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    box-shadow: var(--shadow-bottom);
-    view-transition-name: container__navbarBottom;
+  width: 100%;
+  display: flex;
+  view-transition-name: container__navbarBottom;
+  align-items: center;
+  background-color: var(--background-bottom-bar);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  box-shadow: var(--shadow-bottom);
 }
 
 .container__navbarBottom--icons {
-    width: 100%;
-    display: flex;
-    max-height: 50px;
-    justify-content: space-between;
-    padding: 5px 20px;
+  width: 100%;
+  display: flex;
+  max-height: 50px;
+  justify-content: space-between;
+  padding: 5px 20px;
 }
 
 .icons__navbarBottom {
-    font-size: 1.5625rem;
-    padding: 5px 8px 3px 8px;
-    border-radius: 10px;
+  font-size: 1.5625rem;
+  padding: 5px 8px 3px 8px;
+  border-radius: 10px;
 }
 
-.icons__navbarBottom--active{
-    font-size: 1.5625rem;
+.icons__navbarBottom--active {
+  font-size: 1.5625rem;
 }
 
-.bg-plus{
-    fill: var(--icon-plus);
-    font-size: 50px;
-    stroke-width: 50px;
-    stroke: #fff;
+.bg-plus {
+  fill: var(--icon-plus);
+  font-size: 50px;
+  stroke-width: 50px;
+  stroke: #fff;
 }
 
-.translateY{
- transform: translateY(-25px);
+.translateY {
+  transform: translateY(-25px);
 }

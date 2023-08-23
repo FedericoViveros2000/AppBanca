@@ -10,7 +10,7 @@ import { ButtonPrimary } from '../components/buttons/ButtonPrimary'
 import { InputsTextSet } from '../components/forms/inputs/InputsTextSet'
 import { Error } from '../components/errors/Error'
 import { useViewTransition } from '../hooks/viewTransitions/useViewTransition'
-import { ROUTE } from '../router/router.d.ts'
+import { ROUTE } from '../router/router'
 
 const LoginPage: React.FC = () => {
   const { auth } = useAuthContext()
@@ -48,6 +48,7 @@ const LoginPage: React.FC = () => {
           : (
           <>
             <InputsTextSet
+              disabled={isFetching}
               label="User or email"
               id="user"
               name="user"
@@ -59,8 +60,9 @@ const LoginPage: React.FC = () => {
             </label>
             <div className="container__messages my-1">
               <InputPassword
+                disabled={isFetching}
                 id="password"
-                // disabled={true}
+                 /* disabled={true} */
                 typeInput={showPassword}
                 handleChangeTypeInput={handleShowPassword}
                 handleChange={handleChangeLogin}
@@ -83,7 +85,12 @@ const LoginPage: React.FC = () => {
         <ButtonPrimary isFetching={isFetching} />
         <p className="text-center my-1">
           <span>Don&apos;t have an account? </span>
-          <span onClick={() => { viewNavigate(ROUTE.CREATEACCOUNT) }} className="font-link">
+          <span
+            onClick={() => {
+              viewNavigate(ROUTE.CREATEACCOUNT)
+            }}
+            className="font-link"
+          >
             Sign up
           </span>
         </p>

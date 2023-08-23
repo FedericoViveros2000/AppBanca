@@ -37,8 +37,16 @@ li{
   display: flex;
 }
 
+.flex-column{
+  flex-direction: column;
+}
+
 .space-between {
   justify-content: space-between;
+}
+
+.gap-1{
+  gap: 1rem;
 }
 
 .justify-center {
@@ -58,6 +66,14 @@ li{
   width: 100%;
   position: relative;
   height: 100vh;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-90{
+  height: 90vh;
 }
 
 .relative{
@@ -81,22 +97,42 @@ li{
   margin: 1rem 0px;
 }
 
+.block{
+  display: block;
+}
+
 .mx-1 {
   margin: 0px 1rem;
 }
+
+.sticky {
+  position: sticky;
+}
+
+.top-0 {
+  top: 0px;
+}
+
+.top-1-5{
+  top: 20px;
+}
+
 
 .title {
   margin-bottom: 15px;
 }
 
-.scroll-none{
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.scroll-none::-webkit-scrollbar {
+  display: none;
 }
 
-.overflow-auto{
+.overflow-y-auto{
   overflow-y: auto;
 }
+.overflow-x-auto{
+  overflow-x: auto;
+}
+
 
 .btn {
   width: 100%;
@@ -109,10 +145,6 @@ li{
   font-weight: var(--font-weight-semibold);
 }
 
-input[disabled] {
-  background-color: var(--btn-inactive);
-}
-
 .container__view {
   position: relative;
   /* padding: 0px 20px; */
@@ -120,6 +152,18 @@ input[disabled] {
 
 .px-1-5 {
   padding: 0px 20px;
+}
+
+.pb-2-5{
+  padding-bottom: 40px;
+}
+
+.pb-1-5{
+  padding-bottom: 20px;
+}
+
+.py-1{
+  padding: 1rem 0px;
 }
 
 .p-1-5{
@@ -146,6 +190,8 @@ input[disabled] {
   border-top-right-radius: 1rem;
 }
 
+
+
 .container__padding {
   padding: 0px 20px;
 }
@@ -166,6 +212,10 @@ input[disabled] {
 
 .bottom-2 {
   bottom: 20px;
+}
+
+.bottom-0{
+  bottom: 0;
 }
 
 .right-0 {
@@ -192,12 +242,50 @@ input[disabled] {
   margin-bottom: 1rem;
 }
 
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.pt-1-5 {
+  padding-top: 1.25rem;
+}
+
+.mr-1{
+  margin-right: 1rem;
+}
+
 .p-0 {
   padding: 0px;
 }
 
 .w-full{
   width: 100%;
+}
+
+.h-full{
+  height: 100%;
+}
+
+.max-h-full{
+  max-height: 100%;
+}
+
+.max-w-full{
+  max-width: 100%;
+}
+
+.image{
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.storie{
+  width: 60px;/* 
+  height: 70px; */
+}
+
+.rounded-full{
+  border-radius: 50%;
 }
 
 @keyframes skeleton-loading {
@@ -226,14 +314,16 @@ input[disabled] {
     transform: translateX(0);
   }
 }
+
 @keyframes fade-and-scale-out {
   from {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   to {
     transform: translateX(100%);
   }
 }
+
 /* Second animation */
 @keyframes slide-in {
   from {

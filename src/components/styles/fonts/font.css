@@ -6,6 +6,7 @@
 
 /* Tamanhos de fuente y negrita */
 :root{
+    --font-size-regular-small: 0.75rem;
     --font-size-regular-normal: 1rem;
     --font-size-regular-title: clamp(1.1rem, 1rem + .5vw, 2rem);
     --font-size-regular-title-large: clamp(1.5rem, 1rem + 1vw, 2rem);
@@ -18,6 +19,9 @@
 }
 
 /* Estilos para las fuentes principales de tamanhos*/
+.fs-normal-sm{
+    font-size: var(--font-size-regular-small);
+}
 .fs-normal{
     font-size: var(--font-size-regular-normal);
 }

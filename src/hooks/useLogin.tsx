@@ -1,17 +1,17 @@
 import type React from 'react'
 import { useState, useEffect } from 'react'
-import { type UserLogin } from '../interfaces/userInterface'
+import { type UserDataVerified, type UserLogin } from '../interfaces/userInterface'
 import { useCustomer } from './useCustomer'
 import { type errors, type Login } from './types/hooks'
-import { INPUTS } from './types/inputs.d.ts'
+import { INPUTS } from './types/inputs'
 import { getUserDataExists } from '../utils/getUserData'
 import { useAuthContext } from '../context/AuthContext'
-import { ROUTE } from '../router/router.d.ts'
-import { ERROR } from '../interfaces/enums/errors/index.d.ts'
+import { ROUTE } from '../router/router'
+import { ERROR } from '../interfaces/enums/errors/index'
 import {
   LOCALSTORAGE,
   SESSIONSTORAGE
-} from '../interfaces/enums/storage/index.d.ts'
+} from '../interfaces/enums/storage/index'
 import { adapterSessionStorageData } from '../utils/adapters/service.user.sessionstorage'
 import { useViewTransition } from './viewTransitions/useViewTransition'
 
@@ -68,8 +68,8 @@ const useLogin = (): Login => {
             SESSIONSTORAGE.USER_DATA,
             JSON.stringify(userAdapter)
           )
-          if (setAuth != null) {
-            setAuth(userAdapter)
+          if (setAuth !== null) {
+            setAuth(userAdapter as UserDataVerified[])
           }
           viewNavigate(ROUTE.HOME)
         } else {

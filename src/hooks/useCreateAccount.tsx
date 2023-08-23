@@ -8,7 +8,7 @@ import {
 } from '@simplewebauthn/browser'
 import { validationRegister } from '../components/validations/validationRegister'
 import { type UserRegisterValidations } from '../components/validations/types/validationRegister'
-import { TABLES } from '../interfaces/enums/tables.d.ts'
+import { TABLES } from '../interfaces/enums/tables'
 
 const initialValue = {
   nombre: '',

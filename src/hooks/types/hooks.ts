@@ -5,7 +5,7 @@ export interface Props {
   password?: string | null
 }
 
-interface errors {
+export interface errors {
   user: string | null
 }
 

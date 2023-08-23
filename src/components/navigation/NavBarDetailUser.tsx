@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './styles/navbarUser.css'
 import { AiFillBell } from 'react-icons/ai'
 import { useViewTransition } from '../../hooks/viewTransitions/useViewTransition'
-import { ROUTE } from '../../router/router.d.ts'
+import { ROUTE } from '../../router/router'
 
 interface Props {
   name: string

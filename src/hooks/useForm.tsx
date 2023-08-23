@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { AppState } from '../interfaces/userInterface'
+import type React from 'react'
+import { useState } from 'react'
+import { type AppState } from '../interfaces/userInterface'
 
 const useForm = () => {
   const [form, setForm] = useState<AppState['register']>({
@@ -8,7 +9,7 @@ const useForm = () => {
     direccion: '',
     password: '',
     email: '',
-    nro_documento: 0,
+    nro_documento: '',
     telefono: ''
   })
 
@@ -25,11 +26,11 @@ const useForm = () => {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     console.log(form)
-    const error = 'Error';
+    const error = 'Error'
     if (Object.entries(error).length === 0) {
-      //getUserData(form.user, form.password);
+      // getUserData(form.user, form.password);
     } else {
-      setErrors(error);
+      setErrors(error)
     }
   }
 

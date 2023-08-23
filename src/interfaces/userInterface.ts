@@ -19,14 +19,14 @@ export interface UserDataVerified extends Partial<UserData> {
   verified: boolean
 }
 
-export type UserRegister = Pick<UserData, 'nombre' | 'password' | 'nro_documento' | 'email' | 'apellido' | 'direccion' | 'nro_documento' | 'telefono' | 'fecha_nacimiento'>
+export type UserRegister = Pick<UserData, 'nombre' | 'password' | 'nro_documento' | 'email' | 'apellido' | 'direccion' | 'telefono' | 'fecha_nacimiento'>
 
 export interface UserLogin {
   user: number
   password?: string | null
 }
 
-export type sessionStorageUser = Omit<'created_at' | 'currentChallenge' | 'password', UserData>
+export type sessionStorageUser = Omit<Partial<UserData>, 'created_at' | 'currentChallenge' | 'password'>
 
 export interface AppState {
   data: UserLogin[]

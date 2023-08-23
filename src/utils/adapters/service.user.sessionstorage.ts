@@ -1,4 +1,4 @@
-import { type UserData, type UserDataVerified, type sessionStorageUser } from '../../interfaces/userInterface'
+import { type UserDataVerified, type sessionStorageUser } from '../../interfaces/userInterface'
 
 export const adapterSessionStorageData = (response: UserDataVerified[]): sessionStorageUser[] => {
   return [

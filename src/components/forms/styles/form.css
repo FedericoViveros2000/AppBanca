@@ -1,124 +1,128 @@
-.container__form{
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    padding: 25px;
-    max-height: 80%;
-    border-radius: 15px 15px 0px 0px;
-    line-height: 2;
+.container__form {
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 25px;
+  max-height: 80%;
+  border-radius: 15px 15px 0px 0px;
+  line-height: 2;
 }
 
-.input{
-    width: 100%;
-    padding: 15px 0px;
-    border: none;
-    background-color: var(--input-background);
-    border-radius: 10px;
-    outline: none;
-    border: none;
+.input {
+  width: 100%;
+  padding: 15px 0px;
+  border: none;
+  background-color: var(--input-background);
+  border-radius: 10px;
+  outline: none;
+  border: none;
 }
 
-.input__password{
-    padding: 15px 0px;
-    outline: none;
-    border: none;
+.input__password {
+  padding: 15px 0px;
+  outline: none;
+  border: none;
 }
 
-
-.container__create{
-    overflow: auto;
-    max-height: 400px;
+.container__create {
+  overflow: auto;
+  max-height: 400px;
 }
 
-.container__title{
-    line-height: 2;
-    font-size: var(--font-size-regular-title);
-    margin: 0px 20px;
-    padding-top: 15px;
-    color: var(--background-light-color);
+.container__title {
+  line-height: 2;
+  font-size: var(--font-size-regular-title);
+  margin: 0px 20px;
+  padding-top: 15px;
+  color: var(--background-light-color);
 }
 
-.container__accept{
-    display: flex;
-    align-items: center;
+.container__accept {
+  display: flex;
+  align-items: center;
 }
 
-.terms{
-    font-size: 0.875rem;
-    margin-left: 5px;
-    color: var(--letter-gray-color);
-    font-weight: var(--font-weight-semibold);
+.terms {
+  font-size: 0.875rem;
+  margin-left: 5px;
+  color: var(--letter-gray-color);
+  font-weight: var(--font-weight-semibold);
 }
 
-input[type="checkbox"]{
-    width: 16px;
-    height: 16px;
-    border-radius: 50px;
+input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  border-radius: 50px;
 }
 
-.font-link, .font-terms{
-    color: var(--principal-color);
-    font-weight: var(--font-weight-semibold);
-    text-decoration: none;
+.font-link,
+.font-terms {
+  color: var(--principal-color);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
 }
 
-.font-terms{
-    font-weight: normal;
-    font-size: 0.875rem;
-}
-    
-
-.arrow-back{
-    font-weight: var(--font-weight-bold);
-    font-size: 2.25rem;
+.font-terms {
+  font-weight: normal;
+  font-size: 0.875rem;
 }
 
-.container__password{
-    display: flex;
-    align-items: center;
-    background-color: var(--input-background);
-    border-radius: 10px; 
-    padding: 0px 15px;
+.arrow-back {
+  font-weight: var(--font-weight-bold);
+  font-size: 2.25rem;
 }
 
-.icon-custom{
-    font-size: 1.375rem;
-    margin-top: 10px;
+.container__password {
+  display: flex;
+  align-items: center;
+  background-color: var(--input-background);
+  border-radius: 10px;
+  padding: 0px 15px;
 }
 
-.label{
-    display: block;
-    margin: 5px 0px;
-    font-size: var(--font-size-regular-normal);
-    font-weight: var(--font-weight-semibold);
-    color: var(--letter-gray-color);
+.icon-custom {
+  font-size: 1.375rem;
+  margin-top: 10px;
 }
 
-.signup{
-    text-align: center;
+.label {
+  display: block;
+  margin: 5px 0px;
+  font-size: var(--font-size-regular-normal);
+  font-weight: var(--font-weight-semibold);
+  color: var(--letter-gray-color);
 }
 
-.forgot__password{
-    color: var(--principal-color);
-    text-decoration: none;
-    margin:10px 0px;
-    font-size: var(--font-size-regular-normal);
-    font-weight: var(--font-weight-semibold);
+.signup {
+  text-align: center;
 }
 
-.container__messages{
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    padding: 0px 15px;
-    background-color: var(--input-background);
-    border-radius: 10px;
+.forgot__password {
+  color: var(--principal-color);
+  text-decoration: none;
+  margin: 10px 0px;
+  font-size: var(--font-size-regular-normal);
+  font-weight: var(--font-weight-semibold);
 }
 
-.btn-check{
-    padding: .5px 6px;
-    background-color: var(--input-success);
-    border-radius: 50%;
-    color: #fff;
+.container__messages {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  padding: 0px 15px;
+  background-color: var(--input-background);
+  border-radius: 10px;
+}
+
+.btn-check {
+  padding: 0.5px 6px;
+  /* background-color: var(--input-success); */
+  border-radius: 50%;
+  color: #fff;
+}
+
+.btn-check-blue {
+  padding: 3px 5px;
+  background-color: var(--icon-active);
 }

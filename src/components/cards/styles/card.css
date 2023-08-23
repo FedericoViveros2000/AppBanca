@@ -15,10 +15,10 @@
   padding: 20px;
 }
 
-.scroll-none::-webkit-scrollbar {
+/* .scroll-none::-webkit-scrollbar {
   display: none;
 }
-
+ */
 .container__target--card {
   flex-shrink: 0;
   scroll-snap-align: center;

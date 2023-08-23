@@ -5,8 +5,8 @@ import {
   verifyRegistrationResponse
 } from '@simplewebauthn/server'
 import { type Authenticator, type UserModel } from './types/types'
-import { TABLES } from '../interfaces/enums/database/tables.d.ts'
-import { COLUMNS } from '../interfaces/enums/database/columns.d.ts'
+import { TABLES } from '../interfaces/enums/database/tables'
+import { COLUMNS } from '../interfaces/enums/database/columns'
 
 import { type PublicKeyCredentialCreationOptionsJSON, type RegistrationResponseJSON } from '@simplewebauthn/typescript-types'
 import { getUserAuthenticators } from './utils'

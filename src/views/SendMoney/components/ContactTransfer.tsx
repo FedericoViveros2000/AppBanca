@@ -1,27 +1,38 @@
 import React from 'react'
-import { ButtonPrimary } from '../../../components/buttons/ButtonPrimary'
-import { ButtonSecondary } from '../../../components/buttons/ButtonSecondary'
+// import { ButtonPrimary } from '../../../components/buttons/ButtonPrimary'
+import { ContactTransferItem } from './ContactTransferItem'
+
 interface Contacts {
   name: string
   email: string
 }
 
-interface Props {
-  contacts: Contacts[]
+interface Params {
+  index: number
+  contacts: Contacts
 }
 
-const ContactTransfer: React.FC<Props> = ({ contacts }) => {
+interface Props {
+  classSticky?: string
+  handleClick: ({ index, contacts }: Params) => void
+  paddingBottom?: string
+  contacts: Contacts[]
+  children: React.ReactElement
+  indexSelected: number | null
+}
+
+const ContactTransfer: React.FC<Props> = ({ classSticky, children, contacts, paddingBottom = 'pb-0', handleClick, indexSelected }) => {
   return (
-    <article className="bg-light container__contact scroll-none overflow-auto">
-      <ul>
-        {contacts?.map(({ name, email }) => (
-          <li key={email}>{name}</li>
-        ))}
-      </ul>
-      <section className='fixed left-0 bottom-2 w-full px-1-5'>
-        <ButtonSecondary isFetching={false} title='Transfer'/>
-      </section>
-    </article>
+    <section className={classSticky ?? ''}>
+      {children}
+      <div className={`max-h-full ${paddingBottom} scroll-none overflow-y-auto`}>
+        <ContactTransferItem
+          contacts={contacts}
+          indexSelected={indexSelected}
+          handleClick={handleClick}
+        />
+      </div>
+    </section>
   )
 }
 

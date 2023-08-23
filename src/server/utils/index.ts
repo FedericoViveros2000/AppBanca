@@ -2,8 +2,8 @@ import { type AuthenticatorDevice } from '@simplewebauthn/typescript-types'
 import { supabase } from '../../supabase/index'
 import { type Authenticator } from '../types/types'
 import { base64ToUint8 } from './base64'
-import { TABLES } from '../../interfaces/enums/database/tables.d.ts'
-import { COLUMNS } from '../../interfaces/enums/database/columns.d.ts'
+import { TABLES } from '../../interfaces/enums/database/tables'
+import { COLUMNS } from '../../interfaces/enums/database/columns'
 import { authenticatorAdapter } from '../../utils/adapters/service.authenticator.adapter'
 
 const getUserAuthenticators = async (

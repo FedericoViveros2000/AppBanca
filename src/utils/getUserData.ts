@@ -1,8 +1,8 @@
 import { supabase } from '../supabase/index'
 import { type UserData, type UserLogin } from '../interfaces/userInterface'
 import { adapterUserData } from './adapters/service.user.adapter'
-import { TABLES } from '../interfaces/enums/database/tables.d.ts'
-import { COLUMNS } from '../interfaces/enums/database/columns.d.ts'
+import { TABLES } from '../interfaces/enums/database/tables.js'
+import { COLUMNS } from '../interfaces/enums/database/columns'
 
 let returnedData: UserData[] = []
 // Funcion mediante la cual obtenemos los datos del usuario que intenta Iniciar Sesion

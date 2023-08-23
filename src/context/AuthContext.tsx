@@ -5,16 +5,17 @@ interface Props {
 }
 
 const INITIAL_VALUE = {
-  apellido: null,
-  created_at: '00000000',
-  direccion: null,
-  email: null,
-  fecha_nacimiento: null,
+  apellido: '',
+  created_at: '',
+  direccion: '',
+  email: '',
+  fecha_nacimiento: '',
   id: 0,
   nombre: '',
-  nro_documento: 0,
+  nro_documento: '',
   password: '',
-  telefono: null,
+  telefono: '',
+  verified: false,
   currentChallenge: undefined
 }
 

@@ -5,4 +5,4 @@ export const ROUTE = {
   HISTORY: '/History',
   CONFIGURATION: '/configuration',
   SENDMONEY: '/SendMoney'
-} as const
+}

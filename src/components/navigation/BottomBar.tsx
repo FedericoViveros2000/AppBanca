@@ -19,9 +19,7 @@ const BottomBar: React.FC = () => {
             id !== 3
               ? <li
               key={id}
-              onClick={() => {
-                viewNavigate(path)
-              }}
+              onClick={() => { viewNavigate(path) }}
               className={useMatch(path) !== null ? 'icons__navbarBottom bg-bottom-bar-icon font-active' : 'icons__navbarBottom font-inactive'}
             >
               {icon}

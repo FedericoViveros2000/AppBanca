@@ -1,4 +1,7 @@
-interface UserDataPrueba {
+import { type SetStateAction, type Dispatch } from 'react'
+import { type UserDataVerified } from './userInterface'
+
+/* interface UserDataAuth {
   id: number
   nro_documento: number | null
   nombre: string
@@ -10,9 +13,9 @@ interface UserDataPrueba {
   created_at: string | null
   telefono: string | null
   currentChallenge: string | undefined
-}
+} */
 
 export interface AuthContext {
-  auth: UserDataPrueba[]
-  setAuth: Dispatch<SetStateAction<UserDataPrueba[]>> | null
+  auth: UserDataVerified[]
+  setAuth: Dispatch<SetStateAction<UserDataVerified[] | null>> | null
 }

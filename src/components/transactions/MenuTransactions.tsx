@@ -1,5 +1,5 @@
 import './styles/MenuTransactions.css'
-import { ROUTE } from '../../router/router.d.ts'
+import { ROUTE } from '../../router/router'
 import React from 'react'
 import { useViewTransition } from '../../hooks/viewTransitions/useViewTransition'
 interface Props {

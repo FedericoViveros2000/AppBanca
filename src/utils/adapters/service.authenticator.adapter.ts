@@ -1,4 +1,4 @@
-import { type Authenticator } from '../../server/types/types.d.ts'
+import { type Authenticator } from '../../server/types/types'
 export const authenticatorAdapter = (data: Authenticator[]): Authenticator[] => {
   return [
     {

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase/index'
 import { notifications } from '../utils/notifications'
-import { TYPE_MOVEMENTS } from '../interfaces/enums/notifications.d.ts'
+import { TYPE_MOVEMENTS } from '../interfaces/enums/notifications'
 import { formatCurrency } from '../utils/formatCurrency'
 import { type RealtimeChannel } from '@supabase/supabase-js'
-import { TABLES } from '../interfaces/enums/database/tables.d.ts'
-import { REALTIME } from '../interfaces/enums/realtime.d.ts'
+import { TABLES } from '../interfaces/enums/database/tables'
+import { REALTIME } from '../interfaces/enums/realtime'
 
 interface realtimeProps {
   table: string
@@ -36,8 +36,8 @@ const useRealtime = ({
         },
         (payload) => {
           setCardBalance({
-            card_balance: payload.new?.card_balance,
-            id_card_customer: payload.new?.id
+            cardBalance: payload.new?.card_balance,
+            idCardCustomer: payload.new?.id
           })
           notifications({
             cardBalance: formatCurrency(payload.new?.card_balance),

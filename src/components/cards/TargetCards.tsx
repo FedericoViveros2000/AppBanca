@@ -5,7 +5,7 @@ import TargetCardLoader from './TargetCardLoader'
 import { type Cards } from '../../interfaces/cards'
 import { formatCurrency } from '../../utils/formatCurrency'
 import { useRealtime } from '../../hooks/useRealtime'
-import { TABLES } from '../../interfaces/enums/database/tables.d.ts'
+import { TABLES } from '../../interfaces/enums/database/tables'
 
 interface Data {
   data: Cards[]

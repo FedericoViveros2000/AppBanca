@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getTransactionsTypes } from '../utils/getDataCards'
 import { type TotalData } from '../interfaces/balance'
-import { TYPE_TRANSACTIONS } from '../interfaces/enums/transactions.d.ts'
+import { TYPE_TRANSACTIONS } from '../interfaces/enums/transactions'
 import { getDateDayMonth } from '../utils/Dates'
 interface PropsGetBalance {
   idCustomer: number
@@ -17,18 +17,20 @@ const useGetBalance = ({ idCustomer }: PropsGetBalance) => {
   const transactionCredit = async (): Promise<void> => {
     setIsFeching(true)
     try {
-      const [totalDebit, totalCredit] = await Promise.all([getTransactionsTypes({
-        type_transaction: TYPE_TRANSACTIONS.DEBIT,
-        idCustomer,
-        first_date: getDateDayMonth().first_date,
-        last_date: getDateDayMonth().last_date
-      }), getTransactionsTypes({
-        type_transaction: TYPE_TRANSACTIONS.CREDIT,
-        idCustomer,
-        first_date: getDateDayMonth().first_date,
-        last_date: getDateDayMonth().last_date
-      })]
-      )
+      const [totalDebit, totalCredit] = await Promise.all([
+        getTransactionsTypes({
+          type_transaction: TYPE_TRANSACTIONS.DEBIT,
+          idCustomer,
+          first_date: getDateDayMonth().first_date,
+          last_date: getDateDayMonth().last_date
+        }),
+        getTransactionsTypes({
+          type_transaction: TYPE_TRANSACTIONS.CREDIT,
+          idCustomer,
+          first_date: getDateDayMonth().first_date,
+          last_date: getDateDayMonth().last_date
+        })
+      ])
       setBalanceAmount({
         totalCredit,
         totalDebit
@@ -41,7 +43,11 @@ const useGetBalance = ({ idCustomer }: PropsGetBalance) => {
   }
 
   useEffect(() => {
-    transactionCredit().then(() => { }).catch(err => { console.log(err) })
+    transactionCredit()
+      .then(() => {})
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
 
   return {

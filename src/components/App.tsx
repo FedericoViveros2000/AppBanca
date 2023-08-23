@@ -4,7 +4,7 @@ import LoginPage from '../views/LoginPage'
 import { ProtectedRoutes } from '../router/ProtectedRoutes'
 import './index.css'
 import { useAuthContext } from '../context/AuthContext'
-import { ROUTE } from '../router/router.d.ts'
+import { ROUTE } from '../router/router'
 /*
 Vistas con carga perezosa
 */
@@ -16,7 +16,9 @@ const CreateAccountPage = lazy(
 const SendMoneyPage = lazy(
   async () => await import('../views/SendMoney/SendMoneyPage')
 )
-const ConfigurationPage = lazy(async () => await import('../views/ConfigurationPage'))
+const ConfigurationPage = lazy(
+  async () => await import('../views/ConfigurationPage')
+)
 const HistoryPage = lazy(async () => await import('../views/HistoryPage'))
 
 const App = (): JSX.Element => {
@@ -27,12 +29,16 @@ const App = (): JSX.Element => {
         <Routes>
           <Route path={ROUTE.LOGIN} element={<LoginPage />} />
           <Route path={ROUTE.CREATEACCOUNT} element={<CreateAccountPage />} />
-          <Route element={<ProtectedRoutes userAuth={!!auth} redirectTo={ROUTE.LOGIN}/>}>
+          <Route
+            element={
+              <ProtectedRoutes userAuth={auth !== null} redirectTo={ROUTE.LOGIN} />
+            }
+          >
             <Route path={ROUTE.HOME} element={<HomePage />} />
             <Route path={ROUTE.HISTORY} element={<HistoryPage />} />
-            <Route path={ROUTE.CONFIGURATION} element={<ConfigurationPage/>}/>
           </Route>
-            <Route path={ROUTE.SENDMONEY} element={<SendMoneyPage />} />
+          <Route path={ROUTE.CONFIGURATION} element={<ConfigurationPage />} />
+          <Route path={ROUTE.SENDMONEY} element={<SendMoneyPage />} />
         </Routes>
       </BrowserRouter>
     </Suspense>

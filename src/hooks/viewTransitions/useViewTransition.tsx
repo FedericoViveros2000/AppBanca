@@ -1,3 +1,4 @@
+import { flushSync } from 'react-dom'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
@@ -11,7 +12,7 @@ export const useViewTransition = (): Props => {
     if (!document.startViewTransition) {
       navigate(newRoute); return
     }
-    return document.startViewTransition(() => { navigate(newRoute) })
+    document.startViewTransition(() => { flushSync(() => { navigate(newRoute) }) })
   }
 
   return {
