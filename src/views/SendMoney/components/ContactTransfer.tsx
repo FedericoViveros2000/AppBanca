@@ -21,18 +21,27 @@ interface Props {
   indexSelected: number | null
 }
 
-const ContactTransfer: React.FC<Props> = ({ classSticky, children, contacts, paddingBottom = 'pb-0', handleClick, indexSelected }) => {
+const ContactTransfer: React.FC<Props> = ({
+  classSticky,
+  children,
+  contacts,
+  paddingBottom = 'pb-0',
+  handleClick,
+  indexSelected
+}) => {
   return (
-    <section className={classSticky ?? ''}>
+    <>
       {children}
-      <div className={`max-h-full ${paddingBottom} scroll-none overflow-y-auto`}>
+      <div
+        className={`max-h-full ${paddingBottom} scroll-none overflow-y-auto`}
+      >
         <ContactTransferItem
           contacts={contacts}
           indexSelected={indexSelected}
           handleClick={handleClick}
         />
       </div>
-    </section>
+    </>
   )
 }
 

@@ -20,7 +20,12 @@ export const TargetCards: React.FC<Props> = ({ idCustomer }) => {
   const { cardBalance, idCardCustomer } = useRealtime({
     table: TABLES.CARD_BALANCE
   })
-  const { isLoading, data }: Data = useGetCards({ idCustomer, newBalance: cardBalance, idCardCustomer })
+
+  const { isLoading, data }: Data = useGetCards({
+    idCustomer,
+    newBalance: cardBalance,
+    idCardCustomer
+  })
 
   if (isLoading) return <TargetCardLoader />
 

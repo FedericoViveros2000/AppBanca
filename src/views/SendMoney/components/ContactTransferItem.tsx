@@ -24,7 +24,7 @@ export const ContactTransferItem: React.FC<Props> = ({
     <ul className="flex flex-column">
       {contacts?.map(({ name, email }, index) => (
         <li
-          className="flex space-between items-center"
+          className="flex space-between items-center py-1"
           key={email}
           onClick={() => {
             handleClick({
@@ -33,14 +33,16 @@ export const ContactTransferItem: React.FC<Props> = ({
             })
           }}
         >
-          <div className='py-1'>
-            <p>{name}</p>
-          </div>
-          {indexSelected === index && (
-            <p className="btn-check-blue fs-normal-sm btn-check">
-              <i className="fa-solid fa-check" />
-            </p>
-          )}
+          <p>{name}</p>
+          {/* {indexSelected === index && ( */}
+          <p
+            className={`${
+              indexSelected === index ? 'opacity-1' : 'opacity-0'
+            } btn-check-blue fs-normal-sm btn-check animation`}
+          >
+            <i className="fa-solid fa-check" />
+          </p>
+          {/* )} */}
         </li>
       ))}
     </ul>

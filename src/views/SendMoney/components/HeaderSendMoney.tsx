@@ -9,8 +9,8 @@ interface Header {
 }
 const HeaderSendMoney: React.FC<Header> = ({ title, action, handleSearch, handleCancel }) => {
   return (
-    <header className="container__padding container__header--transfer">
-      <nav className="flex pt-1 space-between  items-center ">
+    <header className="p-1 container__header--transfer">
+      <nav className="flex py-1 space-between  items-center ">
         <h1 className="font-light fs-normal-md">{title}</h1>
         <p className="font-light fw-normal" onClick={handleCancel}>{action}</p>
       </nav>

@@ -1,10 +1,7 @@
 import { supabase } from '../supabase'
 import { FUNCTIONS } from '../interfaces/enums/functions'
 import { type Cards } from '../interfaces/cards'
-import {
-  type Balance,
-  type TypesTransactions
-} from '../interfaces/balance'
+import { type Balance, type TypesTransactions } from '../interfaces/balance'
 import { TABLES } from '../interfaces/enums/database/tables'
 import { COLUMNS } from '../interfaces/enums/database/columns'
 import { TYPE_TRANSACTIONS } from '../interfaces/enums/transactions'
@@ -17,39 +14,39 @@ const getCards = async (idCustomer: number): Promise<Cards[]> => {
     id_cliente: idCustomer
   })
   if (error != null) throw new Error('Error al obtener las tarjetas')
-  return cards || []
+  return cards
 }
 
 // Metodo mediante el cual obtenemos los datos de las tarjetas relacionadas con el cliente
 const getBalance = async (idCustomer: number): Promise<Balance[]> => {
-  const { data: card_balance, error } = await supabase
+  const { data: cardBalance, error } = await supabase
     .from(TABLES.CARD_BALANCE)
     .select(COLUMNS.ALL)
     .eq(COLUMNS.ID_CUSTOM, idCustomer)
   if (error != null) throw new Error('Error al obtener el saldo de la tarjeta')
-  return card_balance || []
+  return cardBalance
 }
 
 const getTransactionsTypes = async ({
   idCustomer,
-  type_transaction,
-  first_date,
-  last_date
+  typeTransaction,
+  firstDate,
+  lastDate
 }: TypesTransactions): Promise<number> => {
-  if (type_transaction === TYPE_TRANSACTIONS.CREDIT) {
+  if (typeTransaction === TYPE_TRANSACTIONS.CREDIT) {
     FUNCTION = FUNCTIONS.GETTRANSACTIONCREDIT
   } else {
     FUNCTION = FUNCTIONS.GETTRANSACTIONDEBIT
   }
 
-  const { data: card_transaction, error } = await supabase.rpc(FUNCTION, {
+  const { data: cardTransaction, error } = await supabase.rpc(FUNCTION, {
     id_cliente: idCustomer,
-    fecha_inicio: first_date,
-    fecha_fin: last_date
+    fecha_inicio: firstDate,
+    fecha_fin: lastDate
   })
 
-  if (error != null) throw new Error('Error al obtener los movimientos del cliente')
-  return card_transaction || null
+  if (error != null) { throw new Error('Error al obtener los movimientos del cliente') }
+  return cardTransaction
 }
 
 export { getCards, getBalance, getTransactionsTypes }

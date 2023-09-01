@@ -7,12 +7,12 @@ import {
 import { getUserData } from '../utils/getUserData'
 // import { useAuthContext } from '../context/AuthContext'
 // import { useNavigate } from 'react-router-dom'
-import {
+/* import {
   startAuthentication
-  // startRegistration
-} from '@simplewebauthn/browser'
+  startRegistration
+} from '@simplewebauthn/browser' */
+// import { verificationFinalUser, verifyAuthUser } from '../server/auth'
 import { type Props, type Customers } from './types/hooks'
-import { verificationFinalUser, verifyAuthUser } from '../server/auth'
 import { webAuthN } from '../utils/webAuthN'
 import { adapterUserData } from '../utils/adapters/service.user.adapter'
 // import { registerNewUser, verifyAuthenticationUser } from '../server'

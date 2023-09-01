@@ -19,7 +19,10 @@ const HomePage: React.FC = () => {
   return (
     <>
       <main className="container__view px-1-5">
-        <NavBarDetailUser name={auth[0]?.nombre} />
+        <NavBarDetailUser
+          name={auth[0]?.nombre}
+          isLoading={auth?.length === 0}
+        />
         <section className="container__section">
           <section className="section__separator container__cards scroll-none">
             <ContainerSlider>
@@ -33,8 +36,8 @@ const HomePage: React.FC = () => {
                 )
               : (
               <Spending
-                spending={balanceAmount?.totalDebit || 0}
-                income={balanceAmount?.totalCredit || 0}
+                spending={balanceAmount?.totalDebit ?? 0}
+                income={balanceAmount?.totalCredit ?? 0}
               />
                 )}
           </section>
@@ -44,7 +47,9 @@ const HomePage: React.FC = () => {
         </section>
       </main>
       <section className="section__separator container__view px-1-5 bg-light">
-        <h3 className="font-dark fs-normal-md">{TITLES.MONTHLY_SUSCRIPTIONS}</h3>
+        <h3 className="font-dark fs-normal-md">
+          {TITLES.MONTHLY_SUSCRIPTIONS}
+        </h3>
         <article className="container__cards section__separator scroll-none">
           <ContainerSlider>
             <BudgetCard bgColor="bg-light-budget" />
@@ -52,13 +57,16 @@ const HomePage: React.FC = () => {
         </article>
       </section>
       <section className="container__section--budget bg-principal">
-        <h4 className="font-light fs-normal-md">{TITLES.MONTHLY_SUSCRIPTIONS}</h4>
+        <h4 className="font-light fs-normal-md">
+          {TITLES.MONTHLY_SUSCRIPTIONS}
+        </h4>
         <article className="container__cards section__separator scroll-none">
           <ContainerSlider>
             <BudgetCard bgColor="bg-light" />
           </ContainerSlider>
         </article>
-      </section>{/*
+      </section>
+      {/*
       <BottomBar/> */}
     </>
   )

@@ -1,15 +1,19 @@
 import React from 'react'
-import { AiOutlinePlus } from 'react-icons/ai'
+import { HiPlusSm } from 'react-icons/hi'
 interface Props {
   title?: string
+  handleClick: () => void
 }
-export const ButtonAdd: React.FC<Props> = ({ title }) => {
+export const ButtonAdd: React.FC<Props> = ({ title, handleClick }) => {
   return (
-    <div className="flex items-center py-1">
-      <span className="mr-1">
-        <AiOutlinePlus className='font-active fs-normal-md'/>
+    <div
+      className="flex items-center pb-1"
+      onClick={handleClick}
+    >
+      <span className="mr-1 bg-principal-light w-50 h-50 flex items-center justify-center rounded-full">
+        <HiPlusSm className="font-active fs-normal-xl" />
       </span>
-      <p className="font-active fw-bold ">{title}</p>
+      <p className="font-active fw-semibold">{title}</p>
     </div>
   )
 }

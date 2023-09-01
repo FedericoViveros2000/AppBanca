@@ -15,7 +15,7 @@ export interface UserData {
 /* export interface UserDataVerified extends UserData {
   verified: boolean
 } */
-export interface UserDataVerified extends Partial<UserData> {
+export interface UserDataVerified extends UserData {
   verified: boolean
 }
 

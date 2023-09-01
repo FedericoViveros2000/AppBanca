@@ -17,5 +17,5 @@ import { type UserDataVerified } from './userInterface'
 
 export interface AuthContext {
   auth: UserDataVerified[]
-  setAuth: Dispatch<SetStateAction<UserDataVerified[] | null>> | null
+  setAuth: Dispatch<SetStateAction<UserDataVerified[]>>
 }

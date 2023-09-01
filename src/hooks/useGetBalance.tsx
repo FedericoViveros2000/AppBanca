@@ -7,7 +7,12 @@ interface PropsGetBalance {
   idCustomer: number
 }
 
-const useGetBalance = ({ idCustomer }: PropsGetBalance) => {
+interface Props {
+  balanceAmount: TotalData
+  isFetching: boolean
+}
+
+const useGetBalance = ({ idCustomer }: PropsGetBalance): Props => {
   const [isFetching, setIsFeching] = useState(false)
   const [balanceAmount, setBalanceAmount] = useState<TotalData>({
     totalCredit: 0,
@@ -19,16 +24,16 @@ const useGetBalance = ({ idCustomer }: PropsGetBalance) => {
     try {
       const [totalDebit, totalCredit] = await Promise.all([
         getTransactionsTypes({
-          type_transaction: TYPE_TRANSACTIONS.DEBIT,
+          typeTransaction: TYPE_TRANSACTIONS.DEBIT,
           idCustomer,
-          first_date: getDateDayMonth().first_date,
-          last_date: getDateDayMonth().last_date
+          firstDate: getDateDayMonth().first_date,
+          lastDate: getDateDayMonth().last_date
         }),
         getTransactionsTypes({
-          type_transaction: TYPE_TRANSACTIONS.CREDIT,
+          typeTransaction: TYPE_TRANSACTIONS.CREDIT,
           idCustomer,
-          first_date: getDateDayMonth().first_date,
-          last_date: getDateDayMonth().last_date
+          firstDate: getDateDayMonth().first_date,
+          lastDate: getDateDayMonth().last_date
         })
       ])
       setBalanceAmount({

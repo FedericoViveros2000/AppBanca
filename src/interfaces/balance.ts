@@ -18,8 +18,8 @@ export interface TotalData {
 export type TypeTransaction = 'Credit' | 'Debit'
 
 export interface TypesTransactions {
-  type_transaction: TypeTransaction
+  typeTransaction: TypeTransaction
   idCustomer: number
-  first_date: string
-  last_date: string
+  firstDate: string
+  lastDate: string
 }

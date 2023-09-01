@@ -7,6 +7,7 @@ import { ButtonSecondary } from '../../components/buttons/ButtonSecondary'
 import { ROUTE } from '../../router/router'
 import { ButtonAdd } from '../../components/buttons/ButtonAdd'
 import { Stories } from '../../components/stories/Stories'
+import { shareData } from '../../utils/share'
 
 interface contacts {
   name: string
@@ -49,25 +50,24 @@ const SendMoneyPage: React.FC = () => {
           viewNavigate(ROUTE.HOME)
         }}
       />
-      <section className="h-90  bg-light container__contact pt-1-5">
-        <div className='sticky top-1-5'>
+      <section className="h-98 bg-light radius-top-left radius-top-right">
+        <div className="sticky top-0 container__contact pt-1-5">
           <ContactTransfer
-            paddingBottom="pb-2-5"
+            paddingBottom="pb-4-5"
             contacts={contacts}
             handleClick={handleClick}
             indexSelected={isSelected}
           >
-            <>
-              <section className="bg-light sticky top-0 my-1 scroll-none ">
-                <div className="pt-1-5">
-                  <Stories title="Recent" />
-                </div>
-                <ButtonAdd title={'Invite a friend'} />
-              </section>
-            </>
+            <section className="bg-light scroll-none ">
+              <Stories title="Recent" />
+              <p className="my-1 font-blue fw-bold fs-normal-md">
+                Your Contacts
+              </p>
+              <ButtonAdd title={'Invite a friend'} handleClick={shareData}/>
+            </section>
           </ContactTransfer>
         </div>
-        <section className="fixed left-0 bottom-0 w-full px-1-5 pb-1-5">
+        <section className="fixed bg-light bottom-0 w-full p-1-5">
           <ButtonSecondary
             isFetching={isSelected === null}
             title="Next"

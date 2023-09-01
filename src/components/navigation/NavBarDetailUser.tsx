@@ -3,27 +3,25 @@ import './styles/navbarUser.css'
 import { AiFillBell } from 'react-icons/ai'
 import { useViewTransition } from '../../hooks/viewTransitions/useViewTransition'
 import { ROUTE } from '../../router/router'
+import { greeting as gree } from '../../utils/greetings'
+import { NavBarDetailSkeleton } from './NavBarDetailSkeleton'
 
 interface Props {
   name: string
+  isLoading: boolean
 }
 
-const NavBarDetailUser: React.FC<Props> = ({ name }) => {
+const NavBarDetailUser: React.FC<Props> = ({ name, isLoading }) => {
   const [greeting, setGreeting] = useState('')
 
   const { viewNavigate } = useViewTransition()
+
   useEffect(() => {
-    const currentHour = new Date().getHours()
-    if (currentHour >= 6 && currentHour < 12) {
-      setGreeting('Good Morning')
-    } else if (currentHour >= 12 && currentHour < 18) {
-      setGreeting('Good Afternoon')
-    } else if (currentHour > 18 && currentHour < 21) {
-      setGreeting('Good Evening')
-    } else {
-      setGreeting('Good Night')
-    }
+    const hello = gree()
+    setGreeting(hello)
   }, [])
+
+  if (isLoading) return <NavBarDetailSkeleton />
 
   return (
     <header className="container__header bg-top-bar">
@@ -38,7 +36,9 @@ const NavBarDetailUser: React.FC<Props> = ({ name }) => {
           </p>
           <figure
             className="img-user"
-            onClick={() => { viewNavigate(ROUTE.CONFIGURATION) }}
+            onClick={() => {
+              viewNavigate(ROUTE.CONFIGURATION)
+            }}
           >
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEbRQ__k2EYW6KuKOGDuoftyTVDlxJ_lFv8lzXrNixMg&s"

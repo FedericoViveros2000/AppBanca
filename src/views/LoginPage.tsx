@@ -62,7 +62,7 @@ const LoginPage: React.FC = () => {
               <InputPassword
                 disabled={isFetching}
                 id="password"
-                 /* disabled={true} */
+                /* disabled={true} */
                 typeInput={showPassword}
                 handleChangeTypeInput={handleShowPassword}
                 handleChange={handleChangeLogin}
@@ -77,7 +77,7 @@ const LoginPage: React.FC = () => {
             name="remember"
             label="Remember ID"
             disabled={isRememberID}
-            handleChange={handleRememberID}
+            handleChange={() => handleRememberID}
           />
         )}
 
