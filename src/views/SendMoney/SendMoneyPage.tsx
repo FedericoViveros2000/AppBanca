@@ -50,32 +50,34 @@ const SendMoneyPage: React.FC = () => {
           viewNavigate(ROUTE.HOME)
         }}
       />
-      <section className="h-98 bg-light radius-top-left radius-top-right">
-        <div className="sticky top-0 container__contact pt-1-5">
-          <ContactTransfer
-            paddingBottom="pb-4-5"
-            contacts={contacts}
-            handleClick={handleClick}
-            indexSelected={isSelected}
-          >
-            <section className="bg-light scroll-none ">
-              <Stories title="Recent" />
-              <p className="my-1 font-blue fw-bold fs-normal-md">
-                Your Contacts
-              </p>
-              <ButtonAdd title={'Invite a friend'} handleClick={shareData}/>
-            </section>
-          </ContactTransfer>
+      <section className="h-98">
+        <div className="h-90 bg-light sticky top-1-5  radius-top-left radius-top-right ">
+          <div className="container__contact pt-1-5">
+            <ContactTransfer
+              paddingBottom="pb-4-5"
+              contacts={contacts}
+              handleClick={handleClick}
+              indexSelected={isSelected}
+            >
+              <section className="bg-light scroll-none ">
+                <Stories title="Recent" />
+                <p className="my-1 font-blue fw-bold fs-normal-md">
+                  Your Contacts
+                </p>
+                <ButtonAdd title={'Invite a friend'} handleClick={shareData} />
+              </section>
+            </ContactTransfer>
+          </div>
+          <section className="fixed bg-light bottom-0 w-full p-1-5">
+            <ButtonSecondary
+              isFetching={isSelected === null}
+              title="Next"
+              handleChange={() => {
+                viewNavigate(ROUTE.HOME)
+              }}
+            />
+          </section>
         </div>
-        <section className="fixed bg-light bottom-0 w-full p-1-5">
-          <ButtonSecondary
-            isFetching={isSelected === null}
-            title="Next"
-            handleChange={() => {
-              viewNavigate(ROUTE.HOME)
-            }}
-          />
-        </section>
       </section>
     </main>
   )

@@ -72,6 +72,10 @@ li{
   height: 100vh;
 }
 
+.h-90{
+  height: 90%;
+}
+
 .h-95{
   height: 95vh;
 }
@@ -129,6 +133,8 @@ li{
 .top-0 {
   top: 0px;
 }
+
+
 
 .top-1-5{
   top: 20px;
@@ -214,7 +220,7 @@ li{
   width: 100%;
   height: 75%;
   padding: 20px;
-  position: relative;
+  /* position: relative; */
 }
 
 .radius-sm {
@@ -317,6 +323,10 @@ li{
 
 .h-full{
   height: 100%;
+}
+
+.max-h-screen{
+  max-height: 100vh;
 }
 
 .max-h-full{
