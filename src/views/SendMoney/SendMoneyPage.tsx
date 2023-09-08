@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { ContactTransfer } from './components/ContactTransfer'
 import { HeaderSendMoney } from './components/HeaderSendMoney'
 import { Contacts } from './components/data/Contacts'
@@ -8,6 +8,8 @@ import { ROUTE } from '../../router/router'
 import { ButtonAdd } from '../../components/buttons/ButtonAdd'
 import { Stories } from '../../components/stories/Stories'
 import { shareData } from '../../utils/share'
+import { getDataContacts } from '../../utils/getDataContacts'
+import { useAuthContext } from '../../context/AuthContext'
 
 interface contacts {
   name: string
@@ -22,6 +24,8 @@ interface Params {
 const SendMoneyPage: React.FC = () => {
   const [contacts, setContacts] = useState(Contacts)
 
+  const { auth } = useAuthContext()
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const contactsFiltered = Contacts.filter((contact) =>
       contact.name
@@ -32,13 +36,16 @@ const SendMoneyPage: React.FC = () => {
     )
     setContacts(contactsFiltered)
   }
-
   const { viewNavigate } = useViewTransition()
   const [isSelected, setIsSelected] = useState<number | null>(null)
 
   const handleClick = ({ contacts, index }: Params): void => {
     setIsSelected(index)
   }
+
+  useEffect(() => {
+    getDataContacts(auth[0]?.id)
+  }, [])
 
   return (
     <main className="bg-principal">

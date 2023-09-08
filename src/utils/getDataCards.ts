@@ -45,7 +45,9 @@ const getTransactionsTypes = async ({
     fecha_fin: lastDate
   })
 
-  if (error != null) { throw new Error('Error al obtener los movimientos del cliente') }
+  if (error != null) {
+    throw new Error('Error al obtener los movimientos del cliente')
+  }
   return cardTransaction
 }
 
