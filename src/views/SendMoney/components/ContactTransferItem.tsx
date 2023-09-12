@@ -1,16 +1,12 @@
 import React from 'react'
-interface Contacts {
-  name: string
-  email: string
-}
-
+import { type ContactAdapter } from '../../../interfaces/contacts'
 interface Params {
   index: number
-  contacts: Contacts
+  contacts: ContactAdapter
 }
 
 interface Props {
-  contacts: Contacts[]
+  contacts: ContactAdapter[]
   indexSelected: number | null
   handleClick: ({ index, contacts }: Params) => void
 }
@@ -22,10 +18,10 @@ export const ContactTransferItem: React.FC<Props> = ({
 }) => {
   return (
     <ul className="flex flex-column">
-      {contacts?.map(({ name, email }, index) => (
+      {contacts?.map(({ nombre, account, nroDocumento }, index) => (
         <li
           className="flex space-between items-center py-1"
-          key={email}
+          key={account}
           onClick={() => {
             handleClick({
               contacts: contacts[index],
@@ -33,8 +29,7 @@ export const ContactTransferItem: React.FC<Props> = ({
             })
           }}
         >
-          <p>{name}</p>
-          {/* {indexSelected === index && ( */}
+          <p>{nombre}</p>
           <p
             className={`${
               indexSelected === index ? 'opacity-1' : 'opacity-0'
@@ -42,7 +37,6 @@ export const ContactTransferItem: React.FC<Props> = ({
           >
             <i className="fa-solid fa-check" />
           </p>
-          {/* )} */}
         </li>
       ))}
     </ul>

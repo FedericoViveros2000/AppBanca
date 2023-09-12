@@ -1,6 +1,7 @@
 import React from 'react'
 // import { ButtonPrimary } from '../../../components/buttons/ButtonPrimary'
 import { ContactTransferItem } from './ContactTransferItem'
+import { type ContactAdapter } from '../../../interfaces/contacts'
 
 interface Contacts {
   name: string
@@ -16,13 +17,12 @@ interface Props {
   classSticky?: string
   handleClick: ({ index, contacts }: Params) => void
   paddingBottom?: string
-  contacts: Contacts[]
+  contacts: ContactAdapter[]
   children: React.ReactElement
   indexSelected: number | null
 }
 
 const ContactTransfer: React.FC<Props> = ({
-  classSticky,
   children,
   contacts,
   paddingBottom = 'pb-0',

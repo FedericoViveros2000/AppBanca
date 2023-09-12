@@ -18,7 +18,7 @@ const MenuTransactions: React.FC<Props> = ({ showMenu, mostrarMenu }) => {
           </p>
         </div>
         <ul className="grid">
-          <li className="item-menu bg-light-grey" onClick={() => { viewNavigate(ROUTE.SENDMONEY) }}>
+          <li className="item-menu bg-light-grey" onClick={() => { viewNavigate(ROUTE.CONTACTSSENDMONEY) }}>
             Enviar dinero
           </li>
           <li className="item-menu bg-light-grey"></li>

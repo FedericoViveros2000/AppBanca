@@ -9,5 +9,5 @@ export interface ContactAdapter {
   account: number
   entity: string
   nombre: string
-  nro_documento: number
+  nroDocumento: number
 }

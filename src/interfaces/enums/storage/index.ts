@@ -3,5 +3,6 @@ export const LOCALSTORAGE = {
 } as const
 
 export const SESSIONSTORAGE = {
-  USER_DATA: 'userData'
+  USER_DATA: 'userData',
+  USER_TRANSFER: 'userTransfer'
 } as const

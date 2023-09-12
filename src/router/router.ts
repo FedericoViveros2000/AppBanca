@@ -4,5 +4,6 @@ export const ROUTE = {
   CREATEACCOUNT: '/CreateAccount',
   HISTORY: '/History',
   CONFIGURATION: '/configuration',
-  SENDMONEY: '/SendMoney'
+  CONTACTSSENDMONEY: '/Contacts',
+  TRANSFERMONEY: '/TransferMoney'
 }

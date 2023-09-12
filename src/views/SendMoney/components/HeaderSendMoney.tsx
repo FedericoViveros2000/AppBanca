@@ -1,5 +1,5 @@
-import './styles/HeaderSendMoney.css'
 import React from 'react'
+import './styles/HeaderSendMoney.css'
 import { InputTextSearch } from '../../../components/forms/inputs/InputTextSearch'
 interface Header {
   title?: string
@@ -7,7 +7,7 @@ interface Header {
   handleCancel: () => void
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
-const HeaderSendMoney: React.FC<Header> = ({ title, action, handleSearch, handleCancel }) => {
+const HeaderContactsSendMoney: React.FC<Header> = ({ title, action, handleSearch, handleCancel }) => {
   return (
     <header className="p-1 container__header--transfer">
       <nav className="flex py-1 space-between  items-center ">
@@ -26,4 +26,4 @@ const HeaderSendMoney: React.FC<Header> = ({ title, action, handleSearch, handle
   )
 }
 
-export { HeaderSendMoney }
+export { HeaderContactsSendMoney }

@@ -49,6 +49,10 @@ li{
   gap: 1rem;
 }
 
+.gap-0{
+  gap: 0;
+}
+
 .justify-center {
   justify-content: center;
 }
@@ -205,6 +209,10 @@ li{
   padding: 20px;
 }
 
+.pe-1 {
+  padding-right: 16px;
+}
+
 .container__header{
   width: 100%;  
 }
@@ -277,12 +285,24 @@ li{
   display: grid;
 }
 
+.grid-columns-3{
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .place-center{
   place-items: center;
 }
 
 .h-50{
   height: 40px;
+}
+
+.max-h-50 {
+  max-height: 50%;
+}
+
+.h-1-2 {
+  height: 50%;
 }
 
 /* .p-0-5{

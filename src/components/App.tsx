@@ -13,9 +13,11 @@ const HomePage = lazy(async () => await import('../views/HomePage'))
 const CreateAccountPage = lazy(
   async () => await import('../views/CreateAccountPage')
 )
-const SendMoneyPage = lazy(
-  async () => await import('../views/SendMoney/SendMoneyPage')
+const ContactsMoneyPage = lazy(
+  async () => await import('../views/SendMoney/ContactsMoney/ContactsMoneyPage')
 )
+
+const TransferMoneyPage = lazy(async () => await import('../views/SendMoney/TransferMoney/TransferMoneyPage'))
 const ConfigurationPage = lazy(
   async () => await import('../views/ConfigurationPage')
 )
@@ -38,7 +40,8 @@ const App = (): JSX.Element => {
             <Route path={ROUTE.HISTORY} element={<HistoryPage />} />
           </Route>
           <Route path={ROUTE.CONFIGURATION} element={<ConfigurationPage />} />
-          <Route path={ROUTE.SENDMONEY} element={<SendMoneyPage />} />
+          <Route path={ROUTE.CONTACTSSENDMONEY} element={<ContactsMoneyPage />} />
+          <Route path={ROUTE.TRANSFERMONEY} element={<TransferMoneyPage />} />
         </Routes>
       </BrowserRouter>
     </Suspense>

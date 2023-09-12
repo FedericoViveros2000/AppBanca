@@ -1,9 +1,12 @@
 import { type Contacts, type ContactAdapter } from '../../interfaces/contacts'
-export const adapterContacts = (data: Contacts[]): ContactAdapter => {
-  return {
-    account: data[0].account_number,
-    entity: data[0].entity_name,
-    nombre: data[0].nombre,
-    nro_documento: data[0].nro_documento
-  }
+export const adapterContacts = (data: Contacts[]): ContactAdapter[] => {
+  const contact: ContactAdapter[] = data.map((contact) => {
+    return {
+      account: contact.account_number,
+      entity: contact.entity_name,
+      nombre: contact.nombre,
+      nro_documento: contact.nro_documento
+    }
+  })
+  return contact
 }
