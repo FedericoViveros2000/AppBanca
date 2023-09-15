@@ -1,13 +1,13 @@
 export interface Contacts {
-  account_number: number
+  account: number
   entity_name: string
-  nombre: string
-  nro_documento: number
+  name: string
+  lastname: string
 }
 
 export interface ContactAdapter {
   account: number
   entity: string
-  nombre: string
-  nroDocumento: number
+  name: string
+  lastname: string
 }

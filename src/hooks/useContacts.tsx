@@ -13,7 +13,7 @@ export const useContacts = (idCustomer: number): Props => {
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const contactsFiltered = contact.filter((contact) =>
-      contact.nombre
+      contact.name
         .toLowerCase()
         .split(' ')
         .join('')

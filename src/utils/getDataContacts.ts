@@ -10,8 +10,8 @@ export const getDataContacts = async (
     {
       account: 0,
       entity: '',
-      nombre: '',
-      nroDocumento: 0
+      name: '',
+      lastname: ''
     }
   ]
   const { data, error } = await supabase.rpc(FUNCTIONS.GETCONTACTS, {

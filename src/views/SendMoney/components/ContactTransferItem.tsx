@@ -6,30 +6,32 @@ interface Params {
 }
 
 interface Props {
-  contacts: ContactAdapter[]
+  index: number
+  contact: ContactAdapter
   indexSelected: number | null
   handleClick: ({ index, contacts }: Params) => void
 }
 
 export const ContactTransferItem: React.FC<Props> = ({
-  contacts,
+  index,
+  contact,
   indexSelected,
   handleClick
 }) => {
   return (
     <ul className="flex flex-column">
-      {contacts?.map(({ nombre, account, nroDocumento }, index) => (
+      {/* {contact?.map(con => ( */}
         <li
           className="flex space-between items-center py-1"
-          key={account}
+          key={contact.account}
           onClick={() => {
             handleClick({
-              contacts: contacts[index],
+              contacts: contact,
               index
             })
           }}
         >
-          <p>{nombre}</p>
+          <p>{contact.name}</p>
           <p
             className={`${
               indexSelected === index ? 'opacity-1' : 'opacity-0'
@@ -38,7 +40,7 @@ export const ContactTransferItem: React.FC<Props> = ({
             <i className="fa-solid fa-check" />
           </p>
         </li>
-      ))}
+      {/* ))} */}
     </ul>
   )
 }

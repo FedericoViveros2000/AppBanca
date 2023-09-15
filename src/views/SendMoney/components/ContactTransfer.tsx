@@ -35,11 +35,15 @@ const ContactTransfer: React.FC<Props> = ({
       <div
         className={`max-h-full ${paddingBottom} scroll-none overflow-y-auto`}
       >
-        <ContactTransferItem
-          contacts={contacts}
-          indexSelected={indexSelected}
-          handleClick={handleClick}
-        />
+        {contacts?.map((contact, index) => (
+          <ContactTransferItem
+            index={index}
+            key={contact.account}
+            contact={contact}
+            indexSelected={indexSelected}
+            handleClick={handleClick}
+          />
+        ))}
       </div>
     </>
   )
