@@ -297,6 +297,10 @@ li{
   height: 40px;
 }
 
+.h-2-4{
+  height: 30%;
+}
+
 .max-h-50 {
   max-height: 50%;
 }
@@ -304,10 +308,6 @@ li{
 .h-1-2 {
   height: 50%;
 }
-
-/* .p-0-5{
-  padding: 10px 10px;
-} */
 
 .p-1 {
   padding: 1rem;

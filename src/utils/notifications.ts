@@ -8,15 +8,16 @@ import {
 interface Props {
   cardBalance: string
   typeMovement: string
+  message?: string
 }
 
-const notifications = async ({ cardBalance, typeMovement }: Props): Promise<void> => {
+const notifications = async ({ cardBalance, typeMovement, message }: Props): Promise<void> => {
   Notification.requestPermission().then((result) => {
     if (result === NOTIFICATIONS.GRANTED) {
       if (typeMovement === TYPE_MOVEMENTS.DEBIT) {
         debitTrans({
           img: react,
-          text: `Se ha acreditado una transferencia de ${cardBalance} a su cuenta`
+          text: message ?? `Se ha acreditado una transferencia de ${cardBalance} a su cuenta`
         })
       }
     }

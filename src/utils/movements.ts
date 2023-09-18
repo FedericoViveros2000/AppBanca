@@ -3,16 +3,11 @@ interface Props {
   img: string
 }
 
-const debitTrans = ({
-  text,
-  img
-}: Props) => {
+const debitTrans = ({ text, img }: Props) => {
   new Notification('Transferencia Exitosa', {
     body: text,
     icon: img
   })
 }
 
-export {
-  debitTrans
-}
+export { debitTrans }
