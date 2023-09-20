@@ -5,6 +5,11 @@ import { ProtectedRoutes } from '../router/ProtectedRoutes'
 import './index.css'
 import { useAuthContext } from '../context/AuthContext'
 import { ROUTE } from '../router/router'
+import { ProtectedRoutesAnothers } from '../router/ProtectedRoutesAnothers'
+// import { SESSIONSTORAGE } from '../interfaces/enums/storage'
+const ReviewMoneyPage = lazy(
+  async () => await import('../views/SendMoney/ReviewMoney/ReviewMoneyPage')
+)
 /*
 Vistas con carga perezosa
 */
@@ -17,7 +22,9 @@ const ContactsMoneyPage = lazy(
   async () => await import('../views/SendMoney/ContactsMoney/ContactsMoneyPage')
 )
 
-const TransferMoneyPage = lazy(async () => await import('../views/SendMoney/TransferMoney/TransferMoneyPage'))
+const TransferMoneyPage = lazy(
+  async () => await import('../views/SendMoney/TransferMoney/TransferMoneyPage')
+)
 const ConfigurationPage = lazy(
   async () => await import('../views/ConfigurationPage')
 )
@@ -33,15 +40,44 @@ const App = (): JSX.Element => {
           <Route path={ROUTE.CREATEACCOUNT} element={<CreateAccountPage />} />
           <Route
             element={
-              <ProtectedRoutes userAuth={auth !== null} redirectTo={ROUTE.LOGIN} />
+              <ProtectedRoutes
+                userAuth={auth !== null}
+                redirectTo={ROUTE.LOGIN}
+              />
             }
           >
             <Route path={ROUTE.HOME} element={<HomePage />} />
             <Route path={ROUTE.HISTORY} element={<HistoryPage />} />
           </Route>
-          <Route path={ROUTE.CONFIGURATION} element={<ConfigurationPage />} />
-          <Route path={ROUTE.CONTACTSSENDMONEY} element={<ContactsMoneyPage />} />
-          <Route path={ROUTE.TRANSFERMONEY} element={<TransferMoneyPage />} />
+
+          <Route
+            element={
+              <ProtectedRoutesAnothers
+                userAuth={auth !== null}
+                redirectTo={ROUTE.LOGIN}
+              />
+            }
+          >
+            <Route
+              path={ROUTE.CONTACTSSENDMONEY}
+              element={<ContactsMoneyPage />}
+            />
+            <Route path={ROUTE.CONFIGURATION} element={<ConfigurationPage />} />
+          </Route>
+
+          {/* <Route
+            element={
+              <ProtectedRoutesAnothers
+                userAuth={
+                  sessionStorage.getItem(SESSIONSTORAGE.USER_TRANSFER) !== null
+                }
+                redirectTo={ROUTE.CONTACTSSENDMONEY}
+              />
+            }
+          > */}
+            <Route path={ROUTE.TRANSFERMONEY} element={<TransferMoneyPage />} />
+            <Route path={ROUTE.REVIEWMONEYPAGE} element={<ReviewMoneyPage />} />
+          {/* </Route> */}
         </Routes>
       </BrowserRouter>
     </Suspense>

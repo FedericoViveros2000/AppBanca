@@ -13,6 +13,7 @@ export interface UserData {
 }
 
 export interface UserDataVerified extends UserData {
+  account: string[]
   verified: boolean
 }
 

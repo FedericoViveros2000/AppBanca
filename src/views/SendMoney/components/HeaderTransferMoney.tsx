@@ -3,7 +3,7 @@ import { BiArrowBack } from 'react-icons/bi'
 
 interface Props {
   title: string
-  handleBack: () => void
+  handleBack: () => void | Promise<void>
 }
 
 export const HeaderTransferMoney: React.FC<Props> = ({ title, handleBack }) => {

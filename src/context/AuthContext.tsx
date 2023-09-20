@@ -16,7 +16,8 @@ const INITIAL_VALUE = {
   password: '',
   telefono: '',
   verified: false,
-  currentChallenge: undefined
+  currentChallenge: undefined,
+  account: []
 }
 
 const Context = createContext<AuthContextType>({

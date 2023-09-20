@@ -5,9 +5,6 @@ import { HeaderTransferMoney } from '../components/HeaderTransferMoney'
 import { SESSIONSTORAGE } from '../../../interfaces/enums/storage'
 import { KeyBoard } from '../../../components/keyboard/Keyboard'
 import { ButtonPrimary } from '../../../components/buttons/ButtonPrimary'
-import { supabase } from '../../../supabase'
-import { notifications } from '../../../utils/notifications'
-import { TYPE_MOVEMENTS } from '../../../interfaces/enums/notifications'
 
 const key = [
   {
@@ -54,6 +51,7 @@ const TransferMoneyPage: React.FC = () => {
   const { viewNavigate } = useViewTransition()
   const handleBackCancel = (): void => {
     sessionStorage.removeItem(SESSIONSTORAGE.USER_TRANSFER)
+    sessionStorage.removeItem(SESSIONSTORAGE.AMOUNT_TRANSFER)
     viewNavigate(ROUTE.CONTACTSSENDMONEY)
   }
 
@@ -67,34 +65,42 @@ const TransferMoneyPage: React.FC = () => {
 
   const sendMoney = async (e: React.SyntheticEvent): Promise<void> => {
     e.preventDefault()
-    try {
-      const { data, error } = await supabase.rpc('fnc_upd_balance_credit', {
-        amount: amount.join('') as unknown as number,
-        account
+    console.log(sessionStorage.getItem(SESSIONSTORAGE.USER_TRANSFER))
+
+    sessionStorage.setItem(
+      SESSIONSTORAGE.AMOUNT_TRANSFER,
+      JSON.stringify({
+        accountTransfered: account,
+        amount: amount?.join('')
       })
-      if (error !== null) throw new Error(error as unknown as string)
-      if (data === true) {
-        await notifications({
-          cardBalance: amount.join(''),
-          typeMovement: TYPE_MOVEMENTS.DEBIT
-        })
-      }
-    } catch (error) {
-      console.log(error)
-    }
+    )
+
+    viewNavigate(ROUTE.REVIEWMONEYPAGE)
   }
 
   useEffect(() => {
+    console.log(sessionStorage.getItem(SESSIONSTORAGE.USER_TRANSFER))
     const sessionData = sessionStorage.getItem(SESSIONSTORAGE.USER_TRANSFER)
+    if (sessionData === null) {
+      viewNavigate(ROUTE.CONTACTSSENDMONEY)
+    }
+
+    const sessionAmount = sessionStorage.getItem(
+      SESSIONSTORAGE.AMOUNT_TRANSFER
+    )
     setAccount(JSON.parse(sessionData as string).account)
+    if (sessionAmount !== null) {
+      setAmount(JSON.parse(sessionAmount)?.amount)
+    }
   }, [])
+
   return (
     <main className="bg-principal h-screen">
       <HeaderTransferMoney
         title="Send money to"
         handleBack={handleBackCancel}
       />
-      <form onSubmit={sendMoney} className='h-full'>
+      <form onSubmit={sendMoney}>
         <section className="h-2-4 flex items-center justify-center">
           <p className="text-center font-light fs-normal-xl fw-semibold">
             {amount}

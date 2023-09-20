@@ -23,3 +23,8 @@ export interface TypesTransactions {
   firstDate: string
   lastDate: string
 }
+
+export interface TransactionSucess {
+  success: boolean
+  amount: string
+}

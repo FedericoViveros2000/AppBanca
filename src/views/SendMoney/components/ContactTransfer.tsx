@@ -1,7 +1,7 @@
 import React from 'react'
-// import { ButtonPrimary } from '../../../components/buttons/ButtonPrimary'
 import { ContactTransferItem } from './ContactTransferItem'
 import { type ContactAdapter } from '../../../interfaces/contacts'
+// import { ButtonPrimary } from '../../../components/buttons/ButtonPrimary'
 
 interface Contacts {
   name: string

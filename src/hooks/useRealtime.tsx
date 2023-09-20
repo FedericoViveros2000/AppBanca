@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../supabase/index'
-import { notifications } from '../utils/notifications'
-import { TYPE_MOVEMENTS } from '../interfaces/enums/notifications'
-import { formatCurrency } from '../utils/formatCurrency'
 import { type RealtimeChannel } from '@supabase/supabase-js'
 import { TABLES } from '../interfaces/enums/database/tables'
 import { REALTIME } from '../interfaces/enums/realtime'
+import { notifications } from '../utils/notifications'
+import { TYPE_MOVEMENTS } from '../interfaces/enums/notifications'
+import { transactionsRealTime } from '../utils/getTransactionsRealTime'
 
 interface realtimeProps {
   table: string
@@ -35,14 +35,12 @@ const useRealtime = ({
           table
         },
         (payload) => {
+          console.log(payload)
+
           setCardBalance({
             cardBalance: payload.new?.card_balance,
             idCardCustomer: payload.new?.id
           })
-          notifications({
-            cardBalance: formatCurrency(payload.new?.card_balance),
-            typeMovement: TYPE_MOVEMENTS.DEBIT
-          }).then(res => { console.log(res) }).catch(err => { console.log(err) })
         }
       )
       .subscribe()
@@ -51,8 +49,27 @@ const useRealtime = ({
   }
 
   useEffect(() => {
+    console.log(cardBalance.cardBalance)
+
+    if (cardBalance.cardBalance !== 0) {
+      console.log(sessionStorage.getItem('new_sended'))
+
+      transactionsRealTime()
+        .then(async (res) => {
+          console.log(res)
+          if (res.success) {
+            await notifications({
+              cardBalance: res.amount,
+              typeMovement: TYPE_MOVEMENTS.DEBIT
+            })
+          }
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
     realtime()
-  }, [])
+  }, [cardBalance])
 
   return cardBalance
 }

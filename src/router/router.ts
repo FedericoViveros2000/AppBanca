@@ -5,5 +5,6 @@ export const ROUTE = {
   HISTORY: '/History',
   CONFIGURATION: '/configuration',
   CONTACTSSENDMONEY: '/Contacts',
-  TRANSFERMONEY: '/TransferMoney'
+  TRANSFERMONEY: '/TransferMoney',
+  REVIEWMONEYPAGE: '/ReviewMoneyPage'
 }
