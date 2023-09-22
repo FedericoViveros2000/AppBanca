@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { SESSIONSTORAGE } from '../../../interfaces/enums/storage'
-// import { supabase } from '../../../supabase'
-// import { notifications } from '../../../utils/notifications'
-// import { TYPE_MOVEMENTS } from '../../../interfaces/enums/notifications'
 import { HeaderTransferMoney } from '../components/HeaderTransferMoney'
 import { ButtonPrimary } from '../../../components/buttons/ButtonPrimary'
 import { useViewTransition } from '../../../hooks/viewTransitions/useViewTransition'
-import '../../../components/cards/styles/card.css'
 import { ROUTE } from '../../../router/router'
 import { supabase } from '../../../supabase'
+import '../../../components/cards/styles/card.css'
+// import { supabase } from '../../../supabase'
+// import { notifications } from '../../../utils/notifications'
+// import { TYPE_MOVEMENTS } from '../../../interfaces/enums/notifications'
 // import { formatCurrency } from '../../../utils/formatCurrency'
 
 const ReviewMoneyPage: React.FC = () => {
@@ -36,12 +36,15 @@ const ReviewMoneyPage: React.FC = () => {
           {
             amount: dataToTransfer?.amount,
             type_transfer: 2,
-            account_to: 1,
-            account_from: dataToTransfer?.accountTransfered
+            account_from: 1,
+            account_to: dataToTransfer?.accountTransfered
           }
         ])
         .select()
-      if (error !== null) throw new Error(error as unknown as string)
+
+      if (error !== null) {
+        throw new Error(error as unknown as string)
+      }
       sessionStorage.setItem('new_sended', data[0]?.amount)
     } catch (error) {
       console.log(error)
@@ -49,6 +52,7 @@ const ReviewMoneyPage: React.FC = () => {
       setIsFetching(false)
     }
   }
+
   return (
     <main className="bg-principal min-h-screen pb-1-5">
       <HeaderTransferMoney

@@ -10,10 +10,9 @@ export const transactionsRealTime = async (): Promise<TransactionSucess> => {
       .limit(1)
 
     if (error !== null) throw new Error(error as unknown as string)
-    console.log(data)
     return {
       success: true,
-      amount: data[0]?.account as string
+      amount: data[0]?.amount as string
     }
   } catch (err) {
     console.log(err)

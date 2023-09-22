@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react'
 import { type Cards } from '../interfaces/cards'
-import { Balance } from '../interfaces/balance'
-import { getCards, getBalance } from '../utils/getDataCards'
+import { getCards } from '../utils/getDataCards'
 
 interface params {
   idCustomer: number
   newBalance: number
   idCardCustomer: number
+}
+
+interface Data {
+  data: Cards[]
+  isLoading: boolean
 }
 
 const INITIAL_VALUE = [
@@ -20,7 +24,7 @@ const INITIAL_VALUE = [
   }
 ]
 
-const useGetCards = ({ idCustomer, newBalance, idCardCustomer }: params) => {
+const useGetCards = ({ idCustomer, newBalance, idCardCustomer }: params): Data => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [data, setData] = useState<Cards[]>(INITIAL_VALUE)
   useEffect(() => {
@@ -41,8 +45,12 @@ const useGetCards = ({ idCustomer, newBalance, idCardCustomer }: params) => {
           })
           setData(data)
         })
-        .catch((err) => { console.log(err) })
-        .finally(() => { setIsLoading(false) })
+        .catch((err) => {
+          console.log(err)
+        })
+        .finally(() => {
+          setIsLoading(false)
+        })
     } else {
       const filteredData = data?.map((card) => {
         if (card.id === idCardCustomer) {

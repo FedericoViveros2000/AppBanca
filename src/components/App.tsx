@@ -6,7 +6,7 @@ import './index.css'
 import { useAuthContext } from '../context/AuthContext'
 import { ROUTE } from '../router/router'
 import { ProtectedRoutesAnothers } from '../router/ProtectedRoutesAnothers'
-// import { SESSIONSTORAGE } from '../interfaces/enums/storage'
+
 const ReviewMoneyPage = lazy(
   async () => await import('../views/SendMoney/ReviewMoney/ReviewMoneyPage')
 )
@@ -64,20 +64,8 @@ const App = (): JSX.Element => {
             />
             <Route path={ROUTE.CONFIGURATION} element={<ConfigurationPage />} />
           </Route>
-
-          {/* <Route
-            element={
-              <ProtectedRoutesAnothers
-                userAuth={
-                  sessionStorage.getItem(SESSIONSTORAGE.USER_TRANSFER) !== null
-                }
-                redirectTo={ROUTE.CONTACTSSENDMONEY}
-              />
-            }
-          > */}
-            <Route path={ROUTE.TRANSFERMONEY} element={<TransferMoneyPage />} />
-            <Route path={ROUTE.REVIEWMONEYPAGE} element={<ReviewMoneyPage />} />
-          {/* </Route> */}
+          <Route path={ROUTE.TRANSFERMONEY} element={<TransferMoneyPage />} />
+          <Route path={ROUTE.REVIEWMONEYPAGE} element={<ReviewMoneyPage />} />
         </Routes>
       </BrowserRouter>
     </Suspense>

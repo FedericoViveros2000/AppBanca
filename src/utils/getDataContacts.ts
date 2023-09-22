@@ -17,6 +17,8 @@ export const getDataContacts = async (
   const { data, error } = await supabase.rpc(FUNCTIONS.GETCONTACTS, {
     id_customer: idCustomer
   })
+  console.log(data)
+
   if (error != null) console.error(error)
   adapter = adapterContacts(data)
   return adapter

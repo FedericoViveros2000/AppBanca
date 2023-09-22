@@ -5,6 +5,9 @@ import {
   type UserDataVerified
 } from '../interfaces/userInterface'
 import { getUserData } from '../utils/getUserData'
+import { type Props, type Customers } from './types/hooks'
+import { webAuthN } from '../utils/webAuthN'
+import { adapterUserData } from '../utils/adapters/service.user.adapter'
 // import { useAuthContext } from '../context/AuthContext'
 // import { useNavigate } from 'react-router-dom'
 /* import {
@@ -12,9 +15,6 @@ import { getUserData } from '../utils/getUserData'
   startRegistration
 } from '@simplewebauthn/browser' */
 // import { verificationFinalUser, verifyAuthUser } from '../server/auth'
-import { type Props, type Customers } from './types/hooks'
-import { webAuthN } from '../utils/webAuthN'
-import { adapterUserData } from '../utils/adapters/service.user.adapter'
 // import { registerNewUser, verifyAuthenticationUser } from '../server'
 
 export interface fetchData {

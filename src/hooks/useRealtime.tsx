@@ -35,8 +35,6 @@ const useRealtime = ({
           table
         },
         (payload) => {
-          console.log(payload)
-
           setCardBalance({
             cardBalance: payload.new?.card_balance,
             idCardCustomer: payload.new?.id
@@ -49,14 +47,9 @@ const useRealtime = ({
   }
 
   useEffect(() => {
-    console.log(cardBalance.cardBalance)
-
     if (cardBalance.cardBalance !== 0) {
-      console.log(sessionStorage.getItem('new_sended'))
-
       transactionsRealTime()
         .then(async (res) => {
-          console.log(res)
           if (res.success) {
             await notifications({
               cardBalance: res.amount,
