@@ -49,7 +49,8 @@ const useCreateAccount = () => {
   const createAccount = async (e: React.SyntheticEvent): Promise<void> => {
     e.preventDefault()
     const validation = validationRegister(newUser)
-    if (Object.values(validation).length === 0) {
+    setCreatedSuccess(true)
+    /* if (Object.values(validation).length === 0) {
       if (isAccept) {
         try {
           setLoading(true)
@@ -67,6 +68,7 @@ const useCreateAccount = () => {
               if (activate) {
                 const { registerNewUser, verifyAuthenticationUser } =
                 await import('../server')
+
                 const registerUser = await registerNewUser({
                   id: response[0]?.nro_documento as unknown as string,
                   username: response[0]?.nombre,
@@ -102,7 +104,7 @@ const useCreateAccount = () => {
       }
     } else {
       setError(validation)
-    }
+    } */
   }
 
   return {

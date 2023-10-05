@@ -4,8 +4,6 @@ import { type UserRegisterValidations } from './types/validationRegister'
 let errors: UserRegisterValidations = {}
 const validRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 export const validationRegister = (newUser: UserRegister): UserRegisterValidations => {
-  console.log(newUser)
-
   errors = {}
   if (newUser.nombre === '') {
     errors = {

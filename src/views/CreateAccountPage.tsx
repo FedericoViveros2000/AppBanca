@@ -7,8 +7,11 @@ import ModalSuccess from '../components/modals/ModalSuccess'
 import successImg from '../assets/success_img.png'
 import Loader from '../components/loaders/Loader'
 import { Link } from 'react-router-dom'
+import { useViewTransition } from '../hooks/viewTransitions/useViewTransition'
+import { ROUTE } from '../router/router'
 
 const CreateAccountPage: React.FC = () => {
+  const { viewNavigate } = useViewTransition()
   const {
     newUser,
     isLoading,
@@ -35,6 +38,7 @@ const CreateAccountPage: React.FC = () => {
               to="/"
               onClick={() => {
                 setCreatedSuccess(false)
+                viewNavigate(ROUTE.LOGIN)
               }}
             >
               Done

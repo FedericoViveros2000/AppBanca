@@ -1,9 +1,7 @@
 import React from 'react'
 import { configuration } from '../components/data/configuration'
 import { ButtonSecondary } from '../components/buttons/ButtonSecondary'
-import {
-  SESSIONSTORAGE
-} from '../interfaces/enums/storage/index.js'
+import { SESSIONSTORAGE } from '../interfaces/enums/storage/index.js'
 import { ROUTE } from '../router/router'
 import { useAuthContext } from '../context/AuthContext'
 import { useViewTransition } from '../hooks/viewTransitions/useViewTransition'
@@ -23,22 +21,21 @@ const ConfigurationPage: React.FC = () => {
     viewNavigate(ROUTE.LOGIN)
   }
 
-  return (<>
-    <NavBar
-      title='Back'
-      urlBack={ROUTE.HOME}
-    />
-    <main className='px-1-5'>
-      <section className="container">
+  return (
+    <>
+      {/* <NavBar color='font-grey' title="Back" urlBack={ROUTE.HOME} /> */}
+      <main className="px-1-5">
+        <p className='my-1'>Habilitar desbloqueo biometrico</p>
+        <section className="container">
           <ButtonSecondary
             isFetching={false}
-            styleAdd='absolute left-0'
+            styleAdd="absolute left-0"
             title={configuration[0]?.title}
             handleChange={closeSession}
           />
-      </section>
-    </main>
-  </>
+        </section>
+      </main>
+    </>
   )
 }
 

@@ -11,7 +11,7 @@ const ReviewMoneyPage = lazy(
   async () => await import('../views/SendMoney/ReviewMoney/ReviewMoneyPage')
 )
 /*
-Vistas con carga perezosa
+  Vistas con carga perezosa
 */
 const HomePage = lazy(async () => await import('../views/HomePage'))
 // const LoginPage = lazy(() => import('../views/LoginPage'));
@@ -49,7 +49,6 @@ const App = (): JSX.Element => {
             <Route path={ROUTE.HOME} element={<HomePage />} />
             <Route path={ROUTE.HISTORY} element={<HistoryPage />} />
           </Route>
-
           <Route
             element={
               <ProtectedRoutesAnothers

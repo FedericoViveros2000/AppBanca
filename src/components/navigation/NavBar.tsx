@@ -6,16 +6,22 @@ import { useViewTransition } from '../../hooks/viewTransitions/useViewTransition
 interface Props {
   title: string
   urlBack: string
+  color?: string
 }
 
-const NavBar = ({ title, urlBack }: Props) => {
+const NavBar: React.FC<Props> = ({ title, urlBack, color }) => {
   const { viewNavigate } = useViewTransition()
   return (
     <section className="container__title">
-      <span onClick={() => { viewNavigate(urlBack) }} className="link">
+      <span
+        onClick={() => {
+          viewNavigate(urlBack)
+        }}
+        className="link"
+      >
         <BiArrowBack className="arrow-back font-light" />
       </span>
-      <h1 className="title">{title}</h1>
+      <h1 className={color} >{title}</h1>
     </section>
   )
 }
