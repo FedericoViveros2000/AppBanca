@@ -50,7 +50,7 @@ const useCreateAccount = () => {
     e.preventDefault()
     const validation = validationRegister(newUser)
     setCreatedSuccess(true)
-    /* if (Object.values(validation).length === 0) {
+    if (Object.values(validation).length === 0) {
       if (isAccept) {
         try {
           setLoading(true)
@@ -59,6 +59,13 @@ const useCreateAccount = () => {
             .insert(newUser)
             .select()
           if (error !== null) throw new Error(JSON.stringify(error))
+          /* console.log(response) */
+
+          localStorage.setItem('biometricData', JSON.stringify({
+            username: response[0].nombre,
+            nrodocumento: response[0]?.nro_documento as unknown as string
+          }))
+          /*
           if (browserSupportsWebAuthn()) {
             const isAvaible = await platformAuthenticatorIsAvailable()
             if (isAvaible) {
@@ -89,7 +96,7 @@ const useCreateAccount = () => {
             }
           } else {
             alert('Su navegador no soporta la authenticacion biometrica')
-          }
+          } */
           setCreatedSuccess(true)
           setNewUser(initialValue)
         } catch (err) {
@@ -104,7 +111,7 @@ const useCreateAccount = () => {
       }
     } else {
       setError(validation)
-    } */
+    }
   }
 
   return {

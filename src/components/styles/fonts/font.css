@@ -97,6 +97,10 @@
     font-size: var(--font-fingerprint);
 }
 
+.font-fingerprint--login{
+    font-size: 80px;
+}
+
 .lh-1{
     line-height: normal;
 }

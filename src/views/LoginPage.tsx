@@ -13,6 +13,10 @@ import { useViewTransition } from '../hooks/viewTransitions/useViewTransition'
 import { ROUTE } from '../router/router'
 import { ModalQuestion } from '../components/modals/ModalQuestion'
 import { useBiometricAuth } from '../hooks/biometric/useBiometricAuth'
+import { startRegistration } from '@simplewebauthn/browser'
+/* import { supabase } from '../supabase'
+  import { TABLES } from '../interfaces/enums/database/tables'
+  import { COLUMNS } from '../interfaces/enums/database/columns' */
 
 const LoginPage: React.FC = () => {
   const { auth } = useAuthContext()
@@ -27,12 +31,36 @@ const LoginPage: React.FC = () => {
     handleLogin,
     handleRememberID
   } = useLogin()
-  const { isAvaible, setIsAvaible, setBiometricUse, biometricUse } = useBiometricAuth()
+  const { isAvaible, setIsAvaible, setBiometricUse, biometricUse } =
+    useBiometricAuth()
 
-  const handleClick = (value: boolean): void => {
+  const handleClick = async (value: boolean): void => {
     localStorage.setItem('biometricAuth', JSON.stringify(value))
     setIsAvaible(!isAvaible)
     setBiometricUse(value)
+
+    if (value) {
+      const { registerNewUser, verifyAuthenticationUser } = await import(
+        '../server'
+      )
+      const response = JSON.parse(localStorage.getItem('biometricData'))
+
+      const registerUser = await registerNewUser({
+        id: response?.nrodocumento as unknown as string,
+        username: response?.nombre,
+        currentChallenge: response?.currentChallenge
+      })
+
+      const startRegister = await startRegistration(registerUser)
+
+      await verifyAuthenticationUser({
+        idUser: response?.nrodocumento as unknown as string,
+        body: startRegister,
+        currentChallenge: registerUser.challenge
+      }).catch((err) => {
+        console.log(err)
+      })
+    }
   }
 
   // if (isFetching) return <Loader />;
@@ -102,7 +130,7 @@ const LoginPage: React.FC = () => {
           </p>
         </>
       </BaseGenericForm>
-      {(isAvaible) && (
+      {isAvaible && (
         <>
           <div className="fixed w-full bottom-0 opacity-1-5 h-screen bg-principal"></div>
           <ModalQuestion
@@ -110,7 +138,7 @@ const LoginPage: React.FC = () => {
             handleClick={handleClick}
           >
             <figure className="flex items-center justify-center my-1">
-              <MdOutlineFingerprint className="font-fingerprint font-active" />
+              <MdOutlineFingerprint className="font-fingerprint--login font-active" />
             </figure>
           </ModalQuestion>
         </>

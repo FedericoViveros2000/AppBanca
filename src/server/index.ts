@@ -28,14 +28,11 @@ export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredent
     rpID,
     userID: user.id,
     userName: user.username,
-    timeout: 60000,
+    // timeout: 60000,
     attestationType: 'none',
 
-    excludeCredentials: userAuthenticators?.map((dev) => ({
-      id: base64ToUint8(dev.credentialID as unknown as string),
-      type: 'public-key',
-      transports: dev.transports
-    })),
+    excludeCredentials: undefined,
+
     supportedAlgorithmIDs: [-7, -257]
   }
 
@@ -96,6 +93,8 @@ export const verifyAuthenticationUser = async ({
         ),
         counter: registrationInfo?.counter
       }
+
+      console.log(newAuthenticator)
 
       await supabase
         .from(TABLES.WEBAUTHN)
