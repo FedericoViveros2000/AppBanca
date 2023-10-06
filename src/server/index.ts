@@ -16,8 +16,10 @@ const { VITE_RP_NAME: rpENV } = import.meta.env
 
 const rpName = rpENV
 const rpID = window.location.hostname
-// const origin = `http://${rpID}:5173`
-const origin = `https://${window.location.hostname}`
+
+const origin = `http://${rpID}:5173/`
+// const origin = `https://${window.location.hostname}`
+
 let userAuthenticators: Authenticator[] = []
 
 export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredentialCreationOptionsJSON> => {
@@ -30,8 +32,13 @@ export const registerNewUser = async (user: UserModel): Promise<PublicKeyCredent
     userName: user.username,
     // timeout: 60000,
     attestationType: 'none',
-
-    excludeCredentials: undefined,
+    excludeCredentials: userAuthenticators[0]?.credentialID !== undefined
+      ? userAuthenticators?.map((dev) => ({
+        id: base64ToUint8(dev?.credentialID as unknown as string),
+        type: 'public-key',
+        transports: dev?.transports
+      }))
+      : undefined,
 
     supportedAlgorithmIDs: [-7, -257]
   }
@@ -93,8 +100,6 @@ export const verifyAuthenticationUser = async ({
         ),
         counter: registrationInfo?.counter
       }
-
-      console.log(newAuthenticator)
 
       await supabase
         .from(TABLES.WEBAUTHN)

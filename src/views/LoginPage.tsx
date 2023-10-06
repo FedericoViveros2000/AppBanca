@@ -47,7 +47,7 @@ const LoginPage: React.FC = () => {
 
       const registerUser = await registerNewUser({
         id: response?.nrodocumento as unknown as string,
-        username: response?.nombre,
+        username: response?.username,
         currentChallenge: response?.currentChallenge
       })
 
